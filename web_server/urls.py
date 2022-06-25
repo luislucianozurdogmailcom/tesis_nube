@@ -18,5 +18,7 @@ from django.urls import path, include
 from . import views
 
 urlpatterns = [
-    path('', views.home), # Estamos creando el path a la pagina home
+    path('', views.home),       # Estamos creando el path a la pagina home
+    path('login', views.login), # Estamos creando el path a la pagina home
+    path('home/<id>/<user>', views.lading),   # Estamos creando el path a la pagina home
 ]

@@ -1,47 +1,32 @@
-from django.http import HttpResponse
-from django.shortcuts import render
-from django.template import Template,Context
-import mysql.connector
+from django.http      import HttpResponse
+from django.shortcuts import render,redirect
+from django.template  import Template,Context
 
-# Funcion para hacer los selects
-def conexion_peticion(query):
-    # Fabricamos la conexión
-    miConexion = mysql.connector.connect( host='localhost', user= 'root', passwd='Ariscopata1', db='ungsenergia' )
-    cursor     = miConexion.cursor();
+# Importamos funciones
+from web_server.funciones.conexion_db          import conexion_peticion
+from web_server.funciones.validacion_identidad import validacion_de_identidad,validacion_hash
+from web_server.funciones.sha256               import hasheo_dato
 
-    # Ejecutamos la query
-    cursor.execute(query);
-    datos      = [];
-
-    # Ponemos los datos en una lista
-    for i in cursor.fetchall() :
-        datos.append(i);
-    miConexion.close()
-
-    #Retornamos los datos
-    return datos;
-
-# Pagina de prueba HOME como plantilla
+# Pagina de prueba login como plantilla
 def home(request):
+    return render(request, 'login.html',{'advertencia':'Inicia Sesion','color':'gray'})
 
-    # Creamos la Query
-    query = 'select * from mediciones';
+# Validación de usuario
+def login(request):
 
-    # Pedimos a la db
-    datos = conexion_peticion(query)
+    # Validamos
+    validacion_es_true = validacion_de_identidad(request, conexion_peticion);
 
-    # Abrimos la plantilla
-    plantilla = open("""F:/FACULTAD/Proyecto Integrador Final/Python Scripts/templates/landing.html""");
+    if validacion_es_true:
+        # Creamos un hash y redirigimos
+        hash = hasheo_dato(request.POST.get('usuario'),request.POST.get('contraseña'));
+        return redirect('/home/' + hash + '/' + request.POST.get('usuario'));
+    else:
+        return render(request, 'login.html', {'advertencia':'Contraseña o usuario Incorrecto','color':'red'})
 
-    # Creamos el template
-    template  = Template(plantilla.read());
-
-    # Cerramos el archivo
-    plantilla.close();
-
-    # Creamos el contexto
-    contexto = Context({"variable":datos[0]});
-
-    # Creamos el archivito a responder o renderizar
-    documento = template.render(contexto);
-    return HttpResponse(documento)
+# Pagina home una vez ya redirigido
+def lading(request,id,user):
+    if validacion_hash(id, conexion_peticion):
+        return render(request, 'landing.html',{'usuario': user})#,{'usuario':request.POST.get('usuario')});
+    else:
+        return render(request, 'login.html', {'advertencia':'Su hash es incorrecto','color':'red'})
