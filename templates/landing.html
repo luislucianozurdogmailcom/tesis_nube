@@ -23,6 +23,7 @@
       href="{% static 'css/tailwind.css' %}"
     />
     -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.8.0/chart.min.js"></script>
     <title>Web Server UNGS</title>
   </head>
   <body class="text-gray-800 antialiased">
@@ -266,9 +267,7 @@
               <div
                 class="relative flex flex-col min-w-0 break-words bg-white w-full mb-6 shadow-lg rounded-lg bg-pink-600"
               >
-              <div id="d3-container">
-
-              </div>
+              <canvas id="myChart" width="400" height="400"></canvas>
               <!--
                 <img
                   alt="..."
@@ -836,6 +835,5 @@
       document.getElementById(collapseID).classList.toggle("block");
     }
   </script>
-  <script src="https://d3js.org/d3.v7.min.js"></script>
-  <script src="{% static 'js/barplot.js' %}"></script>
+  <script src="{% static 'js/graficos.js' %}"></script>
 </html>

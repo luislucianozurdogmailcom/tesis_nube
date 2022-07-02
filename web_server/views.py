@@ -62,4 +62,4 @@ def prueba(request):
     request.session['usuario'] = request.session.get('usuario', 'asd');
     #request.session['usuario'] = 'asd'
 
-    return render(request, 'login.html',{'advertencia':request.session['usuario'],'color':'gray'})
+    return render(request, 'prueba.html')
