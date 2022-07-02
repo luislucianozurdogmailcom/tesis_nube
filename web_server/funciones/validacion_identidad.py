@@ -24,6 +24,24 @@ def validacion_de_identidad(request,conexion_peticion):
         else:
             return False
 
+    # Si el metodo es get, le pedimos datos de su Sesion para verificar
+    if request.method == "GET":
+        # Traemos los usuarios de la db
+        usuarios_db = conexion_peticion('select usuario from usuarios');
+        usuarios_db = [i[0] for i in usuarios_db];
+
+        # Traemos las contraseñas de la db
+        contraseña_db = conexion_peticion('select contraseña from usuarios');
+        contraseña_db = [i[0] for i in contraseña_db];
+
+        # User y hash del formulario
+        usuario     = request.session['usuario'];
+        hash        = request.session['hash'];
+
+        # Buscamos la coincidencia
+        for n in range(len(usuarios_db)):
+            if (hasheo_dato(usuarios_db[n],contraseña_db[n]) == hash):
+                return True;
     else:
         return False
 

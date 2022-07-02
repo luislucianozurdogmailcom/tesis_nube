@@ -16,11 +16,14 @@
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
     />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" referrerpolicy="no-referrer" />
+    <!--
     <link
       rel="stylesheet"
       href="{% static 'css/tailwind.css' %}"
     />
-    <title>Landing | Tailwind Starter Kit by Creative Tim</title>
+    -->
+    <title>Web Server UNGS</title>
   </head>
   <body class="text-gray-800 antialiased">
     <nav
@@ -34,8 +37,8 @@
         >
           <a
             class="text-sm font-bold leading-relaxed inline-block mr-4 py-2 whitespace-nowrap uppercase text-white"
-            href="https://www.creative-tim.com/learning-lab/tailwind-starter-kit#/presentation"
-            >Tailwind Starter Kit</a
+            href="#ungsenergia"
+            >UNGS Energia</a
           ><button
             class="cursor-pointer text-xl leading-none px-3 py-1 border border-solid border-transparent rounded bg-transparent block lg:hidden outline-none focus:outline-none"
             type="button"
@@ -52,15 +55,16 @@
             <li class="flex items-center">
               <a
                 class="lg:text-white lg:hover:text-gray-300 text-gray-800 px-3 py-4 lg:py-2 flex items-center text-xs uppercase font-bold"
-                href="https://www.creative-tim.com/learning-lab/tailwind-starter-kit#/landing"
+                href="https://www.google.com"
                 ><i
                   class="lg:text-gray-300 text-gray-500 far fa-file-alt text-lg leading-lg mr-2"
                 ></i>
-                Docs</a
+                Informe</a
               >
             </li>
           </ul>
           <ul class="flex flex-col lg:flex-row list-none lg:ml-auto">
+            <!-- Comentamos los simbolos de twitter y facebook
             <li class="flex items-center">
               <a
                 class="lg:text-white lg:hover:text-gray-300 text-gray-800 px-3 py-4 lg:py-2 flex items-center text-xs uppercase font-bold"
@@ -81,24 +85,27 @@
                 ><span class="lg:hidden inline-block ml-2">Tweet</span></a
               >
             </li>
+            -->
             <li class="flex items-center">
               <a
                 class="lg:text-white lg:hover:text-gray-300 text-gray-800 px-3 py-4 lg:py-2 flex items-center text-xs uppercase font-bold"
-                href="#pablo"
+                href="https://github.com/luislucianozurdogmailcom/ungsenergia"
                 ><i
                   class="lg:text-gray-300 text-gray-500 fab fa-github text-lg leading-lg "
                 ></i
-                ><span class="lg:hidden inline-block ml-2">Star</span></a
+                ><span class="lg:hidden inline-block ml-2">GitHub</span></a
               >
             </li>
             <li class="flex items-center">
-              <button
-                class="bg-white text-gray-800 active:bg-gray-100 text-xs font-bold uppercase px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none lg:mr-1 lg:mb-0 ml-3 mb-3"
-                type="button"
-                style="transition: all 0.15s ease 0s;"
-              >
-                <i class="fas fa-arrow-alt-circle-down"></i> Download
-              </button>
+              <form method="get" action="/logout" >
+                <button
+                  class="bg-white text-gray-800 active:bg-gray-100 text-xs font-bold uppercase px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none lg:mr-1 lg:mb-0 ml-3 mb-3"
+                  type="submit"
+                  style="transition: all 0.15s ease 0s;"
+                >
+                  <i class="fas fa-arrow-alt-circle-right"></i> Logout
+                </button>
+              </form>
             </li>
           </ul>
         </div>
@@ -111,7 +118,7 @@
       >
         <div
           class="absolute top-0 w-full h-full bg-center bg-cover"
-          style='background-image: url("https://images.unsplash.com/photo-1557804506-669a67965ba0?ixlib=rb-1.2.1&amp;ixid=eyJhcHBfaWQiOjEyMDd9&amp;auto=format&amp;fit=crop&amp;w=1267&amp;q=80");'
+          style='background-image: url("https://upload.wikimedia.org/wikipedia/commons/d/d5/Campus_de_la_UNGS.jpg");'
         >
           <span
             id="blackOverlay"
@@ -126,9 +133,8 @@
                   Bienvenido {{ usuario }}!
                 </h1>
                 <p class="mt-4 text-lg text-gray-300">
-                  This is a simple example of a Landing Page you can build using
-                  Tailwind Starter Kit. It features multiple CSS components
-                  based on the Tailwindcss design system.
+                  Este es el servidor web desde el cual podras ver datos y controlar
+                  nodos pertencientes a la red de la UNGS.
                 </p>
               </div>
             </div>
@@ -154,10 +160,19 @@
           </svg>
         </div>
       </div>
+      <!-- Hasta acá llega el navbar y el recibimiento a la pagina -->
+
+
+
+
+
       <section class="pb-20 bg-gray-300 -mt-24">
         <div class="container mx-auto px-4">
+
+          <!-- TARJETAS ----------------------------------------->
+
           <div class="flex flex-wrap">
-            <div class="lg:pt-12 pt-6 w-full md:w-4/12 px-4 text-center">
+            <div class="w-full md:w-4/12 px-4 text-center">
               <div
                 class="relative flex flex-col min-w-0 break-words bg-white w-full mb-8 shadow-lg rounded-lg"
               >
@@ -165,12 +180,11 @@
                   <div
                     class="text-white p-3 text-center inline-flex items-center justify-center w-12 h-12 mb-5 shadow-lg rounded-full bg-red-400"
                   >
-                    <i class="fas fa-award"></i>
+                    <i class="fas fa-toggle-on"></i>
                   </div>
-                  <h6 class="text-xl font-semibold">Awarded Agency</h6>
+                  <h6 class="text-xl font-semibold">Controlar Nodos</h6>
                   <p class="mt-2 mb-4 text-gray-600">
-                    Divide details about your product or agency work into parts.
-                    A paragraph describing a feature will be enough.
+                    Podemos controlar los estados de los nodos en la placa CanBus.<br>
                   </p>
                 </div>
               </div>
@@ -183,17 +197,17 @@
                   <div
                     class="text-white p-3 text-center inline-flex items-center justify-center w-12 h-12 mb-5 shadow-lg rounded-full bg-blue-400"
                   >
-                    <i class="fas fa-retweet"></i>
+                    <i class="fas fa-solar-panel"></i>
                   </div>
-                  <h6 class="text-xl font-semibold">Free Revisions</h6>
+                  <h6 class="text-xl font-semibold">Visualizar Información</h6>
                   <p class="mt-2 mb-4 text-gray-600">
-                    Keep you user engaged by providing meaningful information.
-                    Remember that by this time, the user is curious.
+                    Podemos visualizar la información proveniente de los nodos
+                    con registro historico<br>
                   </p>
                 </div>
               </div>
             </div>
-            <div class="pt-6 w-full md:w-4/12 px-4 text-center">
+            <div class="w-full md:w-4/12 px-4 text-center">
               <div
                 class="relative flex flex-col min-w-0 break-words bg-white w-full mb-8 shadow-lg rounded-lg"
               >
@@ -201,56 +215,67 @@
                   <div
                     class="text-white p-3 text-center inline-flex items-center justify-center w-12 h-12 mb-5 shadow-lg rounded-full bg-green-400"
                   >
-                    <i class="fas fa-fingerprint"></i>
+                    <i class="fas fa-globe-africa"></i>
                   </div>
-                  <h6 class="text-xl font-semibold">Verified Company</h6>
+                  <h6 class="text-xl font-semibold">Accesibilidad</h6>
                   <p class="mt-2 mb-4 text-gray-600">
-                    Write a few lines about each one. A paragraph describing a
-                    feature will be enough. Keep you user engaged!
+                    Accesibilidad desde cualquier lugar y con un sitio web responsivo<br>
                   </p>
                 </div>
               </div>
             </div>
           </div>
-          <div class="flex flex-wrap items-center mt-32">
+
+
+          <!-- IMAGEN y TEXTO ------------------------------------>
+          <div class="flex flex-wrap items-center mt-10">
+
             <div class="w-full md:w-5/12 px-4 mr-auto ml-auto">
               <div
-                class="text-gray-600 p-3 text-center inline-flex items-center justify-center w-16 h-16 mb-6 shadow-lg rounded-full bg-gray-100"
+                class="text-white p-3 text-center inline-flex items-center justify-center w-full h-16 mb-6 shadow-lg rounded-full bg-red-400"
               >
-                <i class="fas fa-user-friends text-xl"></i>
+                <i class="fas fa-solar-panel"></i>
               </div>
-              <h3 class="text-3xl mb-2 font-semibold leading-normal">
-                Working with us is a pleasure
+              <h3 class="text-3xl text-center mb-2 font-semibold leading-normal">
+                Visualización
               </h3>
               <p
                 class="text-lg font-light leading-relaxed mt-4 mb-4 text-gray-700"
               >
-                Don't let your uses guess by attaching tooltips and popoves to
-                any element. Just make sure you enable them first via
-                JavaScript.
+                Con el panel que estas viendo, podes observar datos reales provenientes de
+                un registro historico que registra voltaje, corriente y potencia de
+                paneles solares en la Universidad Nacional General Sarmiento
               </p>
               <p
                 class="text-lg font-light leading-relaxed mt-0 mb-4 text-gray-700"
               >
-                The kit comes with three pre-built pages to help you get started
-                faster. You can change the text and images and you're good to
-                go. Just make sure you enable them first via JavaScript.
+                Estos datos están restringidos a usuarios con sus debidos permisos
+                sin embargo, en esta fase de prueba cualquier usuario tiene los permisos
+                para ver los datos de todos los nodos existentes.
               </p>
+              <!-- Texto en negrita facha
               <a
                 href="https://www.creative-tim.com/learning-lab/tailwind-starter-kit#/presentation"
                 class="font-bold text-gray-800 mt-8"
                 >Check Tailwind Starter Kit!</a
-              >
+              > -->
             </div>
-            <div class="w-full md:w-4/12 px-4 mr-auto ml-auto">
+
+
+            <div class="w-full md:w-5/12 px-4 mr-auto ml-auto">
               <div
                 class="relative flex flex-col min-w-0 break-words bg-white w-full mb-6 shadow-lg rounded-lg bg-pink-600"
               >
+              <div id="d3-container">
+
+              </div>
+              <!--
                 <img
                   alt="..."
                   src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?ixlib=rb-1.2.1&amp;ixid=eyJhcHBfaWQiOjEyMDd9&amp;auto=format&amp;fit=crop&amp;w=1051&amp;q=80"
                   class="w-full align-middle rounded-t-lg"
                 />
+                -->
                 <blockquote class="relative p-8 mb-4">
                   <svg
                     preserveAspectRatio="none"
@@ -811,4 +836,6 @@
       document.getElementById(collapseID).classList.toggle("block");
     }
   </script>
+  <script src="https://d3js.org/d3.v7.min.js"></script>
+  <script src="{% static 'js/barplot.js' %}"></script>
 </html>
