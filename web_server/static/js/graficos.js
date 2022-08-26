@@ -1,36 +1,43 @@
 
-const ctx = document.getElementById('myChart').getContext('2d');
-const myChart = new Chart(ctx, {
-    type: 'bar',
-    data: {
-        labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
-        datasets: [{
-            label: '# of Votes',
-            data: [12, 19, 3, 5, 2, 3],
-            backgroundColor: [
-                'rgba(255, 99, 132, 0.2)',
-                'rgba(54, 162, 235, 0.2)',
-                'rgba(255, 206, 86, 0.2)',
-                'rgba(75, 192, 192, 0.2)',
-                'rgba(153, 102, 255, 0.2)',
-                'rgba(255, 159, 64, 0.2)'
-            ],
-            borderColor: [
-                'rgba(255, 99, 132, 1)',
-                'rgba(54, 162, 235, 1)',
-                'rgba(255, 206, 86, 1)',
-                'rgba(75, 192, 192, 1)',
-                'rgba(153, 102, 255, 1)',
-                'rgba(255, 159, 64, 1)'
-            ],
-            borderWidth: 1
-        }]
-    },
+function grafico_linea(x,y,y_min,y_max,nombre){
+
+  // Seteamos la info
+  const data = {
+    labels: x,
+    datasets: [{
+      label: nombre,
+      data: y,
+      fill: false,
+      borderColor: 'rgb(75, 192, 192)',
+    }]
+  };
+
+
+  // Configuramos el gráfico
+  const config_line = {
+    type: 'line',
+    data: data,
     options: {
-        scales: {
-            y: {
-                beginAtZero: true
-            }
+      animations: {
+        tension: {
+          duration: 2000,
+          easing: 'easeInSine',
+          from: 0.2,
+          to: 0,
+          loop: true,
         }
+      },
+      scales: {
+        y: { // defining min and max so hiding the dataset does not change scale range
+          min: y_min,
+          max: y_max
+        }
+      }
     }
-});
+  };
+
+  // Hacemos el gráfico
+  const ctx = document.getElementById('graficoDeLineas').getContext('2d');
+
+  const stackedLine = new Chart(ctx, config_line);
+}

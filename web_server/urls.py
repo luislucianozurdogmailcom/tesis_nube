@@ -18,8 +18,9 @@ from django.urls import path, include
 from . import views
 
 urlpatterns = [
-    path('', views.home),         # Estamos creando el path a la pagina home
-    path('home', views.login),    # Estamos creando el path a la pagina home
-    path('logout', views.logout), # Reseteamos los datos de la Sesion
+    path('', views.home),                                       # Estamos creando el path a la pagina home
+    path('home', views.login),                                  # Estamos creando el path a la pagina home
+    path('logout', views.logout),                               # Reseteamos los datos de la Sesion
+    path('datos/<int:nodos>&<str:magnitudFisica>', views.datos), # Enviamos los datos, esto es un endpoint
     path('pruebas', views.prueba),
 ]

@@ -18,3 +18,10 @@ def conexion_peticion(query):
 
     #Retornamos los datos
     return datos;
+
+def conexion():
+    # Fabricamos la conexión
+    miConexion = mysql.connector.connect( host='localhost', user= 'root', passwd='Ariscopata1', db='ungsenergia' )
+
+    # Devolvemos la conexion
+    return miConexion

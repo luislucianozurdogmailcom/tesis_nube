@@ -1,11 +1,15 @@
+# Biblios django
 from django.http      import HttpResponse
 from django.shortcuts import render,redirect
 from django.template  import Template,Context
+from django.http      import JsonResponse
 
 # Importamos funciones
 from web_server.funciones.conexion_db          import conexion_peticion
+from web_server.funciones.datos_home           import datos_default_home
 from web_server.funciones.validacion_identidad import validacion_de_identidad,validacion_hash
 from web_server.funciones.sha256               import hasheo_dato
+from web_server.funciones.datos_home           import datos_default_home
 
 # Pagina de prueba login como plantilla
 def home(request):
@@ -29,10 +33,14 @@ def login(request):
         request.session['usuario'] = request.POST.get('usuario');
         request.session['hash']    = hash;
 
+        # Pedimos datos a la base de datos
+        df = datos_default_home(request.session['usuario']);
+
         # Creamos el contexto de datos
         context = {
             'usuario'   : request.POST.get('usuario'),
             'hash'      : hash,
+
         }
         return render(request,'landing.html',context);
     elif (validacion_es_true and request.method == "GET"):
@@ -57,9 +65,25 @@ def logout(request):
     # Cargamos la pagina de login
     return render(request, 'login.html', {'advertencia':'Inicia Sesion','color':'gray'})
 
+# Endpoint que alimenta gráficos en la página
+def datos(request,nodos,magnitudFisica):
+
+    # Traemos los datos de la DB
+    print(magnitudFisica)
+    datos = datos_default_home('admin', nodo = nodos, magnitud = magnitudFisica)#, magnitud = magnitudFisica);
+    # Estructura de los datos que hay que mandar
+    """
+    data = {
+        "x"     : [1,2,3,4,5,6,7],
+        "y"     : [65, 59, 80, 81, 26, 55, 40],
+        "y_min" : 1,
+        "y_max" : 90
+    }
+    """
+    return JsonResponse(datos)
+
 def prueba(request):
 
     request.session['usuario'] = request.session.get('usuario', 'asd');
-    #request.session['usuario'] = 'asd'
 
     return render(request, 'prueba.html')
