@@ -1,5 +1,5 @@
 
-function grafico_linea(x,y,y_min,y_max,nombre){
+function grafico_linea(x,y,y_min,y_max,nombre,id_html){
 
   // Seteamos la info
   const data = {
@@ -37,7 +37,7 @@ function grafico_linea(x,y,y_min,y_max,nombre){
   };
 
   // Hacemos el gráfico
-  const ctx = document.getElementById('graficoDeLineas').getContext('2d');
+  const ctx = document.getElementById(id_html).getContext('2d');
 
   const stackedLine = new Chart(ctx, config_line);
 }

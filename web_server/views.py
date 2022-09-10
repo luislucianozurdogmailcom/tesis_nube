@@ -69,8 +69,9 @@ def logout(request):
 def datos(request,nodos,magnitudFisica):
 
     # Traemos los datos de la DB
-    print(magnitudFisica)
-    datos = datos_default_home('admin', nodo = nodos, magnitud = magnitudFisica)#, magnitud = magnitudFisica);
+    usuario = request.session['usuario'];
+
+    datos = datos_default_home(usuario, nodo = nodos, magnitud = magnitudFisica);
     # Estructura de los datos que hay que mandar
     """
     data = {
@@ -82,8 +83,25 @@ def datos(request,nodos,magnitudFisica):
     """
     return JsonResponse(datos)
 
-def prueba(request):
+# Página orientada a la visualización de los datos
+def dashboard(request):
+    # Parametros por defecto de la session
 
-    request.session['usuario'] = request.session.get('usuario', 'asd');
+    request.session['usuario'] = request.session.get('usuario', '');
+    request.session['hash']    = request.session.get('hash', '');
 
-    return render(request, 'prueba.html')
+    # Validamos
+    validacion_es_true = validacion_de_identidad(request, conexion_peticion);
+
+    if (validacion_es_true and request.method == "GET"):
+
+        # Creamos el contexto de datos
+        context = {
+            'usuario'   : request.session['usuario'],
+            'hash'      : request.session['hash'],
+        }
+
+        return render(request,'dashboard.html',context);
+    else:
+        #raise ValueError(request.session['usuario'])
+        return render(request, 'login.html', {'advertencia':'Contraseña o usuario Incorrecto','color':'red'})

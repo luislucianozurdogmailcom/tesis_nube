@@ -16,7 +16,13 @@
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
     />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" referrerpolicy="no-referrer" />
+    <link 
+      rel="stylesheet" 
+      href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" 
+      referrerpolicy="no-referrer" />
+    <link 
+      rel="stylesheet" 
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"/>
     <!--
     <link
       rel="stylesheet"
@@ -76,17 +82,17 @@
                 ><span class="lg:hidden inline-block ml-2">Share</span></a
               >
             </li>
+          -->
             <li class="flex items-center">
               <a
                 class="lg:text-white lg:hover:text-gray-300 text-gray-800 px-3 py-4 lg:py-2 flex items-center text-xs uppercase font-bold"
-                href="#pablo"
+                href="/dashboard"
                 ><i
-                  class="lg:text-gray-300 text-gray-500 fab fa-twitter text-lg leading-lg "
+                  class="lg:text-gray-300 text-gray-500 fas fa-solar-panel text-lg leading-lg "
                 ></i
-                ><span class="lg:hidden inline-block ml-2">Tweet</span></a
+                ><span class="lg:hidden inline-block ml-2">Visualización de datos</span></a
               >
             </li>
-            -->
             <li class="flex items-center">
               <a
                 class="lg:text-white lg:hover:text-gray-300 text-gray-800 px-3 py-4 lg:py-2 flex items-center text-xs uppercase font-bold"
@@ -195,11 +201,15 @@
                 class="relative flex flex-col min-w-0 break-words bg-white w-full mb-8 shadow-lg rounded-lg"
               >
                 <div class="px-4 py-5 flex-auto">
-                  <div
-                    class="text-white p-3 text-center inline-flex items-center justify-center w-12 h-12 mb-5 shadow-lg rounded-full bg-blue-400"
-                  >
-                    <i class="fas fa-solar-panel"></i>
-                  </div>
+                  <a href="/dashboard">
+                    <div
+                      class="text-white p-3 text-center inline-flex items-center justify-center w-12 h-12 mb-5 shadow-lg rounded-full bg-blue-400"
+                    >
+                    
+                      <i class="fas fa-solar-panel"></i>
+                    
+                    </div>
+                  </a>
                   <h6 class="text-xl font-semibold">Visualizar Información</h6>
                   <p class="mt-2 mb-4 text-gray-600">
                     Podemos visualizar la información proveniente de los nodos
@@ -642,26 +652,21 @@
       <div class="container mx-auto px-4">
         <div class="flex flex-wrap">
           <div class="w-full lg:w-6/12 px-4">
-            <h4 class="text-3xl font-semibold">Let's keep in touch!</h4>
+            <h4 class="text-3xl font-semibold hover:text-blue-900">Proyecto de microredes</h4>
             <h5 class="text-lg mt-0 mb-2 text-gray-700">
-              Find us on any of these platforms, we respond 1-2 business days.
+              Encuentra las redes del proyecto
             </h5>
             <div class="mt-6">
               <button
-                class="bg-white text-blue-400 shadow-lg font-normal h-10 w-10 items-center justify-center align-center rounded-full outline-none focus:outline-none mr-2 p-3"
+                class="bg-white text-blue-500 shadow-lg font-normal h-10 w-10 items-center justify-center align-center rounded-full outline-none focus:outline-none mr-2 p-3"
                 type="button"
               >
                 <i class="flex fab fa-twitter"></i></button
               ><button
-                class="bg-white text-blue-600 shadow-lg font-normal h-10 w-10 items-center justify-center align-center rounded-full outline-none focus:outline-none mr-2 p-3"
+                class="bg-white text-blue-700 shadow-lg font-normal h-10 w-10 items-center justify-center align-center rounded-full outline-none focus:outline-none mr-2 p-3"
                 type="button"
               >
                 <i class="flex fab fa-facebook-square"></i></button
-              ><button
-                class="bg-white text-pink-400 shadow-lg font-normal h-10 w-10 items-center justify-center align-center rounded-full outline-none focus:outline-none mr-2 p-3"
-                type="button"
-              >
-                <i class="flex fab fa-dribbble"></i></button
               ><button
                 class="bg-white text-gray-900 shadow-lg font-normal h-10 w-10 items-center justify-center align-center rounded-full outline-none focus:outline-none mr-2 p-3"
                 type="button"
@@ -671,6 +676,7 @@
             </div>
           </div>
           <div class="w-full lg:w-6/12 px-4">
+            <!--
             <div class="flex flex-wrap items-top mb-6">
               <div class="w-full lg:w-4/12 px-4 ml-auto">
                 <span
@@ -745,6 +751,7 @@
                 </ul>
               </div>
             </div>
+            -->
           </div>
         </div>
         <hr class="my-6 border-gray-400" />
@@ -752,13 +759,13 @@
           class="flex flex-wrap items-center md:justify-between justify-center"
         >
           <div class="w-full md:w-4/12 px-4 mx-auto text-center">
-            <div class="text-sm text-gray-600 font-semibold py-1">
-              Copyright © 2019 Tailwind Starter Kit by
+            <div class="text-sm text-gray-500 font-semibold py-1">
+              Hecho con ♥ por 
               <a
-                href="https://www.creative-tim.com"
-                class="text-gray-600 hover:text-gray-900"
-                >Creative Tim</a
-              >.
+                href="https://www.linkedin.com/in/luis-luciano-zurdo/"
+                class="text-blue-700 text-xl hover:text-gray-900"
+                ><i class="fa fa-linkedin-in"></i></a
+              >
             </div>
           </div>
         </div>
@@ -774,11 +781,4 @@
   </script>
   <script src="{% static 'js/graficos.js' %}"></script>
   <script src="{% static 'js/alimentacion.js' %}"></script>
-  <!--<script>
-    fetch("http://localhost:80/datos").then(response => response.json()).then(json =>
-       //console.log(json['datasets'][0]['data'])
-       grafico_linea(json['datasets'][0]['data'])
-     );
-
-  </script>  -->
 </html>
