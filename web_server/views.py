@@ -105,3 +105,24 @@ def dashboard(request):
     else:
         #raise ValueError(request.session['usuario'])
         return render(request, 'login.html', {'advertencia':'Contraseña o usuario Incorrecto','color':'red'})
+
+    # Parametros por defecto de la session
+
+    request.session['usuario'] = request.session.get('usuario', '');
+    request.session['hash']    = request.session.get('hash', '');
+
+    # Validamos
+    validacion_es_true = validacion_de_identidad(request, conexion_peticion);
+
+    if (validacion_es_true and request.method == "GET"):
+
+        # Creamos el contexto de datos
+        context = {
+            'usuario'   : request.session['usuario'],
+            'hash'      : request.session['hash'],
+        }
+
+        return HttpResponse('const jorge = 10;')
+    else:
+        #raise ValueError(request.session['usuario'])
+        return render(request, 'login.html', {'advertencia':'Contraseña o usuario Incorrecto','color':'red'})

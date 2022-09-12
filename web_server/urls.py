@@ -22,5 +22,5 @@ urlpatterns = [
     path('home', views.login),                                   # Estamos creando el path a la pagina home
     path('logout', views.logout),                                # Reseteamos los datos de la Sesion
     path('datos/<int:nodos>&<str:magnitudFisica>', views.datos), # Enviamos los datos, esto es un endpoint
-    path('dashboard', views.dashboard),                             # Página de vizualización de datos
+    path('dashboard', views.dashboard),                             # Página de vizualización de datos                         # Página de vizualización de datos
 ]
