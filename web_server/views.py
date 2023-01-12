@@ -9,7 +9,6 @@ from web_server.funciones.conexion_db          import conexion_peticion
 from web_server.funciones.datos_home           import datos_default_home
 from web_server.funciones.validacion_identidad import validacion_de_identidad,validacion_hash
 from web_server.funciones.sha256               import hasheo_dato
-from web_server.funciones.datos_home           import datos_default_home
 
 # Pagina de prueba login como plantilla
 def home(request):
@@ -33,22 +32,32 @@ def login(request):
         request.session['usuario'] = request.POST.get('usuario');
         request.session['hash']    = hash;
 
-        # Pedimos datos a la base de datos
-        df = datos_default_home(request.session['usuario']);
+        # Traemos los datos de la DB
+        usuario      = request.session['usuario'];
+        datos        = datos_default_home(usuario);
 
         # Creamos el contexto de datos
         context = {
             'usuario'   : request.POST.get('usuario'),
             'hash'      : hash,
-
+            'datos'     : datos,
         }
         return render(request,'landing.html',context);
     elif (validacion_es_true and request.method == "GET"):
+
+        # Traemos los datos de la DB
+        usuario        = request.session['usuario'];
+        datos          = datos_default_home(usuario);
+        datos['max']   = max(datos['medicion']);
+        datos['min']   = min(datos['medicion']);
+        datos['uni']   = datos['entidad_fisica'][0];
+        datos['fecha'] = [i for i in datos['fecha']];
 
         # Creamos el contexto de datos
         context = {
             'usuario'   : request.session['usuario'],
             'hash'      : request.session['hash'],
+            'datos'     : datos,
         }
 
         return render(request,'landing.html',context);
@@ -95,34 +104,18 @@ def dashboard(request):
 
     if (validacion_es_true and request.method == "GET"):
 
+        # Traemos los datos de la DB
+        usuario      = request.session['usuario'];
+        datos        = datos_default_home(usuario);
+
         # Creamos el contexto de datos
         context = {
             'usuario'   : request.session['usuario'],
             'hash'      : request.session['hash'],
+            'datos'     : datos,
         }
 
         return render(request,'dashboard.html',context);
     else:
         #raise ValueError(request.session['usuario'])
-        return render(request, 'login.html', {'advertencia':'Contraseña o usuario Incorrecto','color':'red'})
-
-    # Parametros por defecto de la session
-
-    request.session['usuario'] = request.session.get('usuario', '');
-    request.session['hash']    = request.session.get('hash', '');
-
-    # Validamos
-    validacion_es_true = validacion_de_identidad(request, conexion_peticion);
-
-    if (validacion_es_true and request.method == "GET"):
-
-        # Creamos el contexto de datos
-        context = {
-            'usuario'   : request.session['usuario'],
-            'hash'      : request.session['hash'],
-        }
-
-        return HttpResponse('const jorge = 10;')
-    else:
-        #raise ValueError(request.session['usuario'])
-        return render(request, 'login.html', {'advertencia':'Contraseña o usuario Incorrecto','color':'red'})
+        return render(request, 'login.html', {'advertencia':'Contraseña o usuario Incorrecto','color':'red'});

@@ -24,12 +24,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = '=p@93@+c8%q$z0%1q985kgwfu49&u8-du@^(@tc@2_z@jrl3d0'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = True;
 
-ALLOWED_HOSTS = ['*']
-
-CORS_ALLOW_ALL_ORIGINS = True;
-
+ALLOWED_HOSTS = ['*'];
 
 # Application definition
 
@@ -55,11 +52,19 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-
+CSRF_COOKIE_SECURE = False
 
 CORS_ALLOWED_ORIGINS = [
     'http://localhost:80',
+    'http://127.0.0.1:80',
+    'https://aede-181-24-163-213.sa.ngrok.io',
 ];
+
+CORS_ORIGIN_WHITELIST = [
+    'http://localhost:8000',
+    'http://127.0.0.1:8000',
+    'https://aede-181-24-163-213.sa.ngrok.io',
+]
 
 ROOT_URLCONF = 'web_server.urls'
 

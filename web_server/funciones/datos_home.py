@@ -19,7 +19,7 @@ def datos_default_home(usuario, nodo = "", magnitud = "", resultados = 20):
         (select permisos.id_nodo from permisos
         where permisos.id_usuario in
         (select id_usuario from usuarios
-        where usuarios.usuario = "{usuario}")) and magnitudfisica = "Voltaje" and id_nodo = 1
+        where usuarios.usuario = "{usuario}"))  and id_nodo = 1
         order by Fecha
         limit {resultados}
         """
@@ -38,7 +38,7 @@ def datos_default_home(usuario, nodo = "", magnitud = "", resultados = 20):
         (select permisos.id_nodo from permisos
         where permisos.id_usuario in
         (select id_usuario from usuarios
-        where usuarios.usuario = "{usuario}")) and magnitudfisica = "Voltaje" and id_nodo = {nodo}
+        where usuarios.usuario = "{usuario}")) and id_nodo = {nodo}
         order by Fecha
         limit {resultados}
         """
@@ -90,6 +90,9 @@ def datos_default_home(usuario, nodo = "", magnitud = "", resultados = 20):
     # Transformamos los datos a DF y luego a JSON
     df     = pd.DataFrame(datos,columns = columnas);
     df_dic = df.to_dict('list');
+
+    # Transformamos los timestamps a strings
+    df_dic['fecha'] = [str(i) for i in df_dic['fecha']];
 
     # Pasamos el DF a tuplas
 

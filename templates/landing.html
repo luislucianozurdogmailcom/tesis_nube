@@ -30,8 +30,9 @@
     />
     -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.8.0/chart.min.js"></script>
+
     <title>Web Server UNGS</title>
-    <META http-equiv=refresh content=5>
+    <META http-equiv=refresh content=30>
   </head>
   <body class="text-gray-800 antialiased">
     <nav
@@ -279,29 +280,11 @@
                 class="relative flex flex-col min-w-0 break-words bg-white w-full mb-6 shadow-lg rounded-lg bg-gray-200"
               >
               <canvas class="p-4" id="graficoDeLineas" width="400" height="400"></canvas>
-              <!--
-                <img
-                  alt="..."
-                  src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?ixlib=rb-1.2.1&amp;ixid=eyJhcHBfaWQiOjEyMDd9&amp;auto=format&amp;fit=crop&amp;w=1051&amp;q=80"
-                  class="w-full align-middle rounded-t-lg"
-                />
-                -->
-                <blockquote class="relative p-8 mb-4">
-                  <!--
-                  <svg
-                    preserveAspectRatio="none"
-                    xmlns="http://www.w3.org/2000/svg"
-                    viewBox="0 0 583 95"
-                    class="absolute left-0 w-full block"
-                    style="height: 95px; top: -94px;"
-                  >
+                
+                
 
-                    <polygon
-                      points="-30,95 583,95 583,65"
-                      class="text-gray-100 fill-current"
-                    ></polygon>
-                  </svg>
-                  -->
+                <blockquote class="relative p-8 mb-4">
+                  
                   <h4 class="text-xl font-bold text-black">
                     Datos sobre el voltaje
                   </h4>
@@ -781,5 +764,15 @@
     }
   </script>
   <script src="{% static 'js/graficos.js' %}"></script>
-  <script src="{% static 'js/alimentacion.js' %}"></script>
+  <script>
+    // Asumimos que x, y, y_min, y_max, nombre y id_html tienen valores asignados
+    var fecha = "{{datos.fecha}}";
+    fecha     = fecha.replaceAll('&#x27;',"");
+    fecha     = fecha.replace('[',"");
+    fecha     = fecha.replace(']',"");
+    fecha     = fecha.split(',');
+    grafico_linea( fecha,
+                  {{datos.medicion}},{{datos.min}},{{datos.max}},'{{datos.uni}}',"graficoDeLineas");
+  </script>
+  
 </html>
