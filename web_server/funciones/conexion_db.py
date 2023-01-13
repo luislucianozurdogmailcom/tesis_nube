@@ -1,10 +1,17 @@
 import mysql.connector
 import datetime
+import platform
 
 # Funcion para hacer los selects
 def conexion_peticion(query):
     # Fabricamos la conexión
-    miConexion = mysql.connector.connect( host='localhost', user= 'root', passwd='Ariscopata1', db='ungsenergia' )
+    if platform.system() == 'Windows':
+        password   = 'Ariscopata1';
+    
+    elif platform.system() == 'Linux':
+        password   = 'Ariscopata1$';
+    
+    miConexion = mysql.connector.connect( host='localhost', user= 'root', passwd=password, db='ungsenergia' )
     cursor     = miConexion.cursor();
 
     # Ejecutamos la query
@@ -21,7 +28,13 @@ def conexion_peticion(query):
 
 def conexion():
     # Fabricamos la conexión
-    miConexion = mysql.connector.connect( host='localhost', user= 'root', passwd='Ariscopata1', db='ungsenergia' )
+    if platform.system() == 'Windows':
+        password   = 'Ariscopata1';
+    
+    elif platform.system() == 'Linux':
+        password   = 'Ariscopata1$';
+
+    miConexion = mysql.connector.connect( host='localhost', user= 'root', passwd=password, db='ungsenergia' )
 
     # Devolvemos la conexion
     return miConexion

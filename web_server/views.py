@@ -48,10 +48,9 @@ def login(request):
         # Traemos los datos de la DB
         usuario        = request.session['usuario'];
         datos          = datos_default_home(usuario);
-        datos['max']   = max(datos['medicion']);
-        datos['min']   = min(datos['medicion']);
-        datos['uni']   = datos['entidad_fisica'][0];
-        datos['fecha'] = [i for i in datos['fecha']];
+        datos['max']   = max(datos['valor']);
+        datos['min']   = min(datos['valor']);
+        datos['uni']   = datos['magnitud_fisica'][0];
 
         # Creamos el contexto de datos
         context = {
@@ -107,6 +106,9 @@ def dashboard(request):
         # Traemos los datos de la DB
         usuario      = request.session['usuario'];
         datos        = datos_default_home(usuario);
+        datos['max']   = max(datos['valor']);
+        datos['min']   = min(datos['valor']);
+        datos['uni']   = datos['magnitud_fisica'][0];
 
         # Creamos el contexto de datos
         context = {

@@ -1,91 +1,87 @@
 from web_server.funciones.conexion_db import conexion_peticion
-#from conexion_db import conexion_peticion
 import pandas as pd
 
-def datos_default_home(usuario, nodo = "", magnitud = "", resultados = 20):
+def datos_default_home(usuario, nodo = "", resultados = 20):
 
-    if (nodo == "" and magnitud == ""):
+    if (nodo == ""):
         query_home = f"""
-        select id_nodo as nodo,
-        sensor,
-        Valor as medicion,
-        CONCAT_WS(" ",ordenmagnitud,magnitudfisica) AS entidad_fisica,
-        Fecha,
-        error
-        from mediciones
-        inner join sensores on sensores.id_sensor = mediciones.id_sensor
-        inner join `magnitud fisica` mf on mf.id_magnitudfisica = sensores.id_magnitudfisica
-        where id_nodo in
-        (select permisos.id_nodo from permisos
-        where permisos.id_usuario in
-        (select id_usuario from usuarios
-        where usuarios.usuario = "{usuario}"))  and id_nodo = 1
-        order by Fecha
+        with tabla_permisos as (
+        select
+        	p.id_nodo,
+        	u.usuario,
+            n.locacion 
+        from
+        	permisos p
+        inner join usuarios u ON
+        	p.id_usuario = u.id_usuario
+        inner join nodos n on 
+	        n.id_nodo = p.id_nodo
+        where
+        	u.usuario = '{usuario}'
+        )
+        select
+        	tp.id_nodo,
+            tp.locacion,
+        	tp.usuario,
+        	m.valor,
+        	s.rango_minimo,
+        	s.rango_maximo,
+        	s.rango_digital_minimo,
+        	s.rango_digital_maximo,
+        	CONCAT(mf.ordenmagnitud , ' ', mf.magnitudfisica) as magnitud_fisica,
+            m.fecha
+        from
+        	tabla_permisos tp
+        inner join mediciones m on
+        	m.id_nodo = tp.id_nodo
+        inner join sensores s on
+        	s.id_sensor = m.id_sensor
+        inner join `magnitud fisica` mf on
+        	mf.id_magnitudfisica = s.id_magnitudfisica
         limit {resultados}
         """
-    elif (nodo != "" and magnitud == ""):
+    elif (nodo != ""):
         query_home = f"""
-        select id_nodo as nodo,
-        sensor,
-        Valor as medicion,
-        CONCAT_WS(" ",ordenmagnitud,magnitudfisica) AS entidad_fisica,
-        Fecha,
-        error
-        from mediciones
-        inner join sensores on sensores.id_sensor = mediciones.id_sensor
-        inner join `magnitud fisica` mf on mf.id_magnitudfisica = sensores.id_magnitudfisica
-        where id_nodo in
-        (select permisos.id_nodo from permisos
-        where permisos.id_usuario in
-        (select id_usuario from usuarios
-        where usuarios.usuario = "{usuario}")) and id_nodo = {nodo}
-        order by Fecha
-        limit {resultados}
-        """
-    elif (nodo == "" and magnitud != ""):
-        query_home = f"""
-        select id_nodo as nodo,
-        sensor,
-        Valor as medicion,
-        CONCAT_WS(" ",ordenmagnitud,magnitudfisica) AS entidad_fisica,
-        Fecha,
-        error
-        from mediciones
-        inner join sensores on sensores.id_sensor = mediciones.id_sensor
-        inner join `magnitud fisica` mf on mf.id_magnitudfisica = sensores.id_magnitudfisica
-        where id_nodo in
-        (select permisos.id_nodo from permisos
-        where permisos.id_usuario in
-        (select id_usuario from usuarios
-        where usuarios.usuario = "{usuario}")) and magnitudfisica = "{magnitud}" and id_nodo = 1
-        order by Fecha
-        limit {resultados}
-        """
-    else:
-        query_home = f"""
-        select id_nodo as nodo,
-        sensor,
-        Valor as medicion,
-        CONCAT_WS(" ",ordenmagnitud,magnitudfisica) AS entidad_fisica,
-        Fecha,
-        error
-        from mediciones
-        inner join sensores on sensores.id_sensor = mediciones.id_sensor
-        inner join `magnitud fisica` mf on mf.id_magnitudfisica = sensores.id_magnitudfisica
-        where id_nodo in
-        (select permisos.id_nodo from permisos
-        where permisos.id_usuario in
-        (select id_usuario from usuarios
-        where usuarios.usuario = "{usuario}")) and magnitudfisica = "{magnitud}" and id_nodo = {nodo}
-        order by Fecha 
+        with tabla_permisos as (
+        select
+        	p.id_nodo,
+        	u.usuario,
+            n.locacion 
+        from
+        	permisos p
+        inner join usuarios u ON
+        	p.id_usuario = u.id_usuario
+        inner join nodos n on 
+        	n.id_nodo = p.id_nodo
+        where
+        	u.usuario = '{usuario}' and p.id_nodo = {nodo}
+        )
+        select
+        	tp.id_nodo,
+            tp.locacion,
+        	tp.usuario,
+        	m.valor,
+        	s.rango_minimo,
+        	s.rango_maximo,
+        	s.rango_digital_minimo,
+        	s.rango_digital_maximo,
+        	CONCAT(mf.ordenmagnitud , ' ', mf.magnitudfisica) as magnitud_fisica,
+            m.fecha
+        from
+        	tabla_permisos tp
+        inner join mediciones m on
+        	m.id_nodo = tp.id_nodo
+        inner join sensores s on
+        	s.id_sensor = m.id_sensor
+        inner join `magnitud fisica` mf on
+        	mf.id_magnitudfisica = s.id_magnitudfisica
         limit {resultados}
         """
 
-
-    columnas = ["nodo","sensor","medicion","entidad_fisica","fecha","error"]
+    columnas = ["id_nodo","locacion","usuario","valor","rango_minimo","rango_maximo","rango_digital_minimo","rango_digital_maximo","magnitud_fisica","fecha"];
 
     # Pedimos los datos
-    datos = conexion_peticion(query_home);
+    datos  = conexion_peticion(query_home);
 
     # Transformamos los datos a DF y luego a JSON
     df     = pd.DataFrame(datos,columns = columnas);

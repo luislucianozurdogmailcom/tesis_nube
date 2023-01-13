@@ -772,7 +772,14 @@
     fecha     = fecha.replace(']',"");
     fecha     = fecha.split(',');
     grafico_linea( fecha,
-                  {{datos.medicion}},{{datos.min}},{{datos.max}},'{{datos.uni}}',"graficoDeLineas");
+                  {{datos.valor}},{{datos.min}},{{datos.max}},'{{datos.uni}}',"graficoDeLineas");
+
+    grafico_linea( fecha,
+                  {{datos.valor}},{{datos.min}},{{datos.max}},'{{datos.uni}}',"graficoDeLineas_2");
+    
+    grafico_linea( fecha,
+                  {{datos.valor}},{{datos.min}},{{datos.max}},'{{datos.uni}}',"graficoDeLineas_3");
+    
   </script>
   
 </html>
