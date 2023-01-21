@@ -13,6 +13,11 @@
       sizes="76x76"
       href="{% static 'assets/img/apple-icon.png' %}"
     />
+    <!-- Estilos de vibración y animaciones-->
+    <link
+      rel  = "stylesheet"
+      href = "{% static 'css/estilos_propios.css' %}"
+    />
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
@@ -34,15 +39,15 @@
           class="w-full relative flex justify-between lg:w-auto lg:static lg:block lg:justify-start"
         >
           <a
-            class="text-sm font-bold leading-relaxed inline-block mr-4 py-2 whitespace-nowrap uppercase text-white"
-            href="https://www.creative-tim.com/learning-lab/tailwind-starter-kit#/presentation"
+            class="text-sm font-bold leading-relaxed inline-block mr-4 py-2 whitespace-nowrap uppercase text-gray-500"
+            href="https://github.com/luislucianozurdogmailcom/ungsenergia"
             >Web Server UNGS</a
           ><button
             class="cursor-pointer text-xl leading-none px-3 py-1 border border-solid border-transparent rounded bg-transparent block lg:hidden outline-none focus:outline-none"
             type="button"
             onclick="toggleNavbar('example-collapse-navbar')"
           >
-            <i class="text-white fas fa-bars"></i>
+            <i class="text-gray-500 fas fa-bars"></i>
           </button>
         </div>
         <div
@@ -52,10 +57,10 @@
           <ul class="flex flex-col lg:flex-row list-none mr-auto">
             <li class="flex items-center">
               <a
-                class="lg:text-white lg:hover:text-gray-300 text-gray-800 px-3 py-4 lg:py-2 flex items-center text-xs uppercase font-bold"
-                href="https://www.creative-tim.com/learning-lab/tailwind-starter-kit#/login"
+                class="lg:hover:text-gray-300 text-gray-500  px-3 py-4 lg:py-2 flex items-center text-xs uppercase font-bold"
+                href="https://github.com/luislucianozurdogmailcom/ungsenergia"
                 ><i
-                  class="lg:text-gray-300 text-gray-500 far fa-file-alt text-lg leading-lg mr-2"
+                  class="text-gray-500 far fa-file-alt text-lg leading-lg mr-2"
                 ></i>
                 Docs</a
               >
@@ -64,42 +69,44 @@
           <ul class="flex flex-col lg:flex-row list-none lg:ml-auto">
             <li class="flex items-center">
               <a
-                class="lg:text-white lg:hover:text-gray-300 text-gray-800 px-3 py-4 lg:py-2 flex items-center text-xs uppercase font-bold"
-                href="#pablo"
+                class="lg:text-white lg:hover:text-gray-300 text-gray-500 px-3 py-4 lg:py-2 flex items-center text-xs uppercase font-bold"
+                href=""
                 ><i
-                  class="lg:text-gray-300 text-gray-500 fab fa-facebook text-lg leading-lg "
+                  class="lg:text-gray-800 text-gray-500 fab fa-facebook text-lg leading-lg "
                 ></i
-                ><span class="lg:hidden inline-block ml-2">Share</span></a
+                ><span class="lg:hidden inline-block ml-2">Facebook</span></a
               >
             </li>
             <li class="flex items-center">
               <a
-                class="lg:text-white lg:hover:text-gray-300 text-gray-800 px-3 py-4 lg:py-2 flex items-center text-xs uppercase font-bold"
-                href="#pablo"
+                class="lg:text-white lg:hover:text-gray-300 text-gray-500 px-3 py-4 lg:py-2 flex items-center text-xs uppercase font-bold"
+                href=""
                 ><i
-                  class="lg:text-gray-300 text-gray-500 fab fa-twitter text-lg leading-lg "
+                  class="lg:text-gray-800 text-gray-500 fab fa-twitter text-lg leading-lg "
                 ></i
-                ><span class="lg:hidden inline-block ml-2">Tweet</span></a
+                ><span class="lg:hidden inline-block ml-2">Twitter</span></a
               >
             </li>
             <li class="flex items-center">
               <a
-                class="lg:text-white lg:hover:text-gray-300 text-gray-800 px-3 py-4 lg:py-2 flex items-center text-xs uppercase font-bold"
-                href="#pablo"
+                class="lg:text-white lg:hover:text-gray-300 text-gray-500 px-3 py-4 lg:py-2 flex items-center text-xs uppercase font-bold"
+                href=""
                 ><i
-                  class="lg:text-gray-300 text-gray-500 fab fa-github text-lg leading-lg "
+                  class="lg:text-gray-800 text-gray-500 fab fa-github text-lg leading-lg "
                 ></i
-                ><span class="lg:hidden inline-block ml-2">Star</span></a
+                ><span class="lg:hidden inline-block ml-2">Github</span></a
               >
             </li>
             <li class="flex items-center">
-              <button
-                class="bg-white text-gray-800 active:bg-gray-100 text-xs font-bold uppercase px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none lg:mr-1 lg:mb-0 ml-3 mb-3"
-                type="button"
-                style="transition: all 0.15s ease 0s;"
-              >
-                <i class="fas fa-arrow-alt-circle-down"></i> Download
-              </button>
+              <a href="https://github.com/luislucianozurdogmailcom/ungsenergia/archive/refs/heads/main.zip">
+                <button
+                  class="lucho-vibrate-button bg-gray-800 text-gray-300 active:bg-gray-500  text-xs font-bold uppercase px-4 py-2 rounded shadow outline-none focus:outline-none lg:mr-1 lg:mb-0 ml-3 mb-3"
+                  type="button"
+                  style="transition: all 0.15s ease 0s;"
+                >
+                  <i class="fas fa-arrow-alt-circle-down"></i> Download
+                </button>
+              </a>
             </li>
           </ul>
         </div>
@@ -109,7 +116,7 @@
       <section class="absolute w-full h-full">
         <div
           class="absolute top-0 w-full h-full bg-gray-900"
-          style="background-image: url({% static 'assets/img/register_bg_2.png' %}); background-size: 100%; background-repeat: no-repeat;"
+          style="background-image: url({% static 'assets/img/login.jpg' %}); background-repeat: no-repeat;"
         ></div>
         <div class="container mx-auto px-4 h-full">
           <div class="flex content-center items-center justify-center h-full">
@@ -150,7 +157,7 @@
                 </div>
                 <div class="flex-auto px-4 lg:px-10 py-10 pt-0">
                   <div class="text-gray-500 text-center mb-3 font-bold">
-                    <small>Si aun no tenes una cuenta por favor comunicate con el desarrollador {{usuarios_db}}</small>
+                    <small id="text_delayed"> Si aun no tenes una cuenta por favor comunicate con el desarrollador {{usuarios_db}}</small>
                   </div>
                   <form action="/home" method="post">
                     {% csrf_token %}
@@ -161,7 +168,7 @@
                         >Email</label
                       ><input
                         type="text"
-                        class="border-0 px-3 py-3 placeholder-gray-400 text-gray-700 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full"
+                        class="lucho-vibrate-field border-0 px-3 py-3 placeholder-gray-400 text-gray-700 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full"
                         placeholder="Email"
                         name = "usuario"
                         style="transition: all 0.15s ease 0s;"
@@ -174,7 +181,7 @@
                         >Password</label
                       ><input
                         type="password"
-                        class="border-0 px-3 py-3 placeholder-gray-400 text-gray-700 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full"
+                        class="lucho-vibrate-field border-0 px-3 py-3 placeholder-gray-400 text-gray-700 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full"
                         placeholder="Password"
                         name = "contraseña"
                         style="transition: all 0.15s ease 0s;"
@@ -194,7 +201,7 @@
                     </div>-->
                     <div class="text-center mt-6">
                       <button
-                        class="bg-gray-900 text-white active:bg-gray-700 text-sm font-bold uppercase px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 w-full"
+                        class="lucho-vibrate-button bg-gray-900 text-white active:bg-gray-700 text-sm font-bold uppercase px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 w-full"
                         type="submit"
                         style="transition: all 0.15s ease 0s;"
                       >
@@ -229,12 +236,14 @@
                 <div class="text-sm text-white font-semibold py-1">
                   Copyright © 2023
                   <a
-                    href="https://www.creative-tim.com"
+                    href="https://github.com/luislucianozurdogmailcom/ungsenergia"
                     class="text-white hover:text-gray-400 text-sm font-semibold py-1"
                     >Ungs Energia</a
                   >
                 </div>
               </div>
+              <!-- Otros elementos del footer -->
+              <!--
               <div class="w-full md:w-8/12 px-4">
                 <ul
                   class="flex flex-wrap list-none md:justify-end  justify-center"
@@ -269,6 +278,7 @@
                   </li>
                 </ul>
               </div>
+              -->
             </div>
           </div>
         </footer>
@@ -281,4 +291,5 @@
       document.getElementById(collapseID).classList.toggle("block");
     }
   </script>
+  <script href="js/animaciones_propias.js"></script>
 </html>
