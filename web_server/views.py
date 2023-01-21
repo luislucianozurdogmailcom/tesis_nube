@@ -35,6 +35,9 @@ def login(request):
         # Traemos los datos de la DB
         usuario      = request.session['usuario'];
         datos        = datos_default_home(usuario);
+        datos['max']   = max(datos['valor']) + 0.05 * max(datos['valor']);
+        datos['min']   = min(datos['valor']) - 0.05 * max(datos['valor']);
+        datos['uni']   = datos['magnitud_fisica'][0];
 
         # Creamos el contexto de datos
         context = {
@@ -48,8 +51,8 @@ def login(request):
         # Traemos los datos de la DB
         usuario        = request.session['usuario'];
         datos          = datos_default_home(usuario);
-        datos['max']   = max(datos['valor']);
-        datos['min']   = min(datos['valor']);
+        datos['max']   = max(datos['valor']) + 0.05 * max(datos['valor']);
+        datos['min']   = min(datos['valor']) - 0.05 * max(datos['valor']);
         datos['uni']   = datos['magnitud_fisica'][0];
 
         # Creamos el contexto de datos

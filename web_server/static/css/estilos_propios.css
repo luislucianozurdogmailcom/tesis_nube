@@ -1,0 +1,22 @@
+.lucho-vibrate-button:hover {
+    animation: rotate 0.25s ease-in-out infinite;
+  }
+  
+.lucho-vibrate-field:hover {
+    animation: rotate 0.5s ease-in-out infinite;
+}
+
+    @keyframes rotate {
+          25% {
+            transform: rotate(1deg);
+          }
+          50% {
+            transform: rotate(-1deg);
+          }
+          75% {
+            transform: rotate(1deg);
+          }
+          100% {
+            transform: rotate(-1deg);
+          }
+    }
