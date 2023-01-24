@@ -23,16 +23,23 @@
     <link 
       rel="stylesheet" 
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"/>
-    <!--
+    
+    <!-- Elemento CSS de animaciones de botones vibrantes -->
     <link
       rel="stylesheet"
-      href="{% static 'css/tailwind.css' %}"
+      href="{% static 'css/estilos_propios.css' %}"
     />
-    -->
+
+    <!-- css de particulas -->
+    <link
+      rel  = "stylesheet"
+      href = "{% static 'css/style.css' %}"
+    />
+    
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.8.0/chart.min.js"></script>
 
     <title>Web Server UNGS</title>
-    <META http-equiv=refresh content=30>
+    <META http-equiv=refresh content=60>
   </head>
   <body class="text-gray-800 antialiased">
     <nav
@@ -45,7 +52,7 @@
           class="w-full relative flex justify-between lg:w-auto lg:static lg:block lg:justify-start"
         >
           <a
-            class="text-sm font-bold leading-relaxed inline-block mr-4 py-2 whitespace-nowrap uppercase text-white"
+            class="lucho-simbol-shine-white text-sm font-bold leading-relaxed inline-block mr-4 py-2 whitespace-nowrap uppercase text-white"
             href="#ungsenergia"
             >UNGS Energia</a
           ><button
@@ -63,7 +70,7 @@
           <ul class="flex flex-col lg:flex-row list-none mr-auto">
             <li class="flex items-center">
               <a
-                class="lg:text-white lg:hover:text-gray-300 text-gray-800 px-3 py-4 lg:py-2 flex items-center text-xs uppercase font-bold"
+                class="lucho-simbol-shine-white lg:text-white lg:hover:text-gray-300 text-gray-800 px-3 py-4 lg:py-2 flex items-center text-xs uppercase font-bold"
                 href="https://www.google.com"
                 ><i
                   class="lg:text-gray-300 text-gray-500 far fa-file-alt text-lg leading-lg mr-2"
@@ -90,7 +97,7 @@
                 class="lg:text-white lg:hover:text-gray-300 text-gray-800 px-3 py-4 lg:py-2 flex items-center text-xs uppercase font-bold"
                 href="/dashboard"
                 ><i
-                  class="lg:text-gray-300 text-gray-500 fas fa-solar-panel text-lg leading-lg "
+                  class="lucho-simbol-shine-white lg:text-gray-300 text-gray-500 fas fa-solar-panel text-lg leading-lg "
                 ></i
                 ><span class="lg:hidden inline-block ml-2">Visualización de datos</span></a
               >
@@ -100,7 +107,7 @@
                 class="lg:text-white lg:hover:text-gray-300 text-gray-800 px-3 py-4 lg:py-2 flex items-center text-xs uppercase font-bold"
                 href="https://github.com/luislucianozurdogmailcom/ungsenergia"
                 ><i
-                  class="lg:text-gray-300 text-gray-500 fab fa-github text-lg leading-lg "
+                  class="lg:text-gray-300 lucho-simbol-shine-white text-gray-500 fab fa-github text-lg leading-lg "
                 ></i
                 ><span class="lg:hidden inline-block ml-2">GitHub</span></a
               >
@@ -108,7 +115,7 @@
             <li class="flex items-center">
               <form method="get" action="/logout" >
                 <button
-                  class="bg-white text-gray-800 active:bg-gray-100 text-xs font-bold uppercase px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none lg:mr-1 lg:mb-0 ml-3 mb-3"
+                  class="lucho-neon-button-white bg-white lucho-vibrate-field text-gray-800 active:bg-gray-100 text-xs font-bold uppercase px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none lg:mr-1 lg:mb-0 ml-3 mb-3"
                   type="submit"
                   style="transition: all 0.15s ease 0s;"
                 >
@@ -126,8 +133,9 @@
         style="min-height: 75vh;"
       >
         <div
+          id="particles-js"
           class="absolute top-0 w-full h-full bg-center bg-cover"
-          style='background-image: url("https://upload.wikimedia.org/wikipedia/commons/d/d5/Campus_de_la_UNGS.jpg");'
+          style='background: white;/*background-image: url("https://upload.wikimedia.org/wikipedia/commons/d/d5/Campus_de_la_UNGS.jpg");*/'
         >
           <span
             id="blackOverlay"
@@ -139,7 +147,7 @@
             <div class="w-full lg:w-6/12 px-4 ml-auto mr-auto text-center">
               <div class="p-12">
                 <h1 class="text-white font-semibold text-5xl">
-                  Bienvenido {{ usuario }}!
+                  Bienvenido <span class="text_delayed_usuario text-blue-500"> </span>!
                 </h1>
                 <p class="mt-4 text-lg text-gray-300">
                   Este es el servidor web desde el cual podras ver datos y controlar
@@ -175,7 +183,7 @@
 
 
 
-      <section class="pb-20 bg-gray-300 -mt-24">
+      <section class="pb-20 bg-gray-300 -mt-24" >
         <div class="container mx-auto px-4">
 
           <!-- TARJETAS ----------------------------------------->
@@ -187,7 +195,7 @@
               >
                 <div class="px-4 py-5 flex-auto">
                   <div
-                    class="text-white p-3 text-center inline-flex items-center justify-center w-12 h-12 mb-5 shadow-lg rounded-full bg-red-400"
+                    class="text-white p-3 text-center inline-flex items-center justify-center w-12 h-12 mb-5 shadow-lg rounded-full bg-gray-600"
                   >
                     <i class="fas fa-toggle-on"></i>
                   </div>
@@ -204,7 +212,7 @@
               >
                 <div class="px-4 py-5 flex-auto">
                   <a href="/dashboard">
-                    <div class="text-white p-3 text-center inline-flex items-center justify-center w-12 h-12 mb-5 shadow-lg rounded-full bg-blue-400 hover:shadow-none hover:bg-blue-300">
+                    <div class="text-white p-3 text-center inline-flex items-center justify-center w-12 h-12 mb-5 shadow-lg rounded-full bg-gray-600 hover:shadow-none hover:bg-blue-300">
                     
                       <i class="fas fa-solar-panel"></i>
                     
@@ -224,7 +232,7 @@
               >
                 <div class="px-4 py-5 flex-auto">
                   <div
-                    class="text-white p-3 text-center inline-flex items-center justify-center w-12 h-12 mb-5 shadow-lg rounded-full bg-green-400"
+                    class="text-white p-3 text-center inline-flex items-center justify-center w-12 h-12 mb-5 shadow-lg rounded-full bg-gray-600"
                   >
                     <i class="fas fa-globe-africa"></i>
                   </div>
@@ -244,7 +252,7 @@
             <div class="w-full md:w-5/12 px-4 mr-auto ml-auto">
               <div class="w-full text-center">
                 <a href="/dashboard">
-                  <div class="text-white p-3 text-center inline-flex items-center justify-center w-3/12 h-16 mb-6 shadow-lg rounded-full bg-blue-400 hover:shadow-none hover:bg-blue-300">
+                  <div class="text-white p-3 text-center inline-flex items-center justify-center w-3/12 h-16 mb-6 shadow-lg rounded-full bg-gray-400 hover:shadow-none hover:bg-blue-300">
                     <i class="fas fa-solar-panel"></i>
                   </div>
                 </a>
@@ -299,7 +307,9 @@
       </section>
       
       <!-- Segunda sección -->
-      <section class="relative py-20">
+        <section class="relative py-20 bg-gray-300 bg-transparent" > <!--id="particles-js-2"-->
+        <!-- Inclinación-->
+        <!--
         <div
           class="bottom-auto top-0 left-0 right-0 w-full absolute pointer-events-none overflow-hidden -mt-20"
           style="height: 80px;"
@@ -319,13 +329,14 @@
             ></polygon>
           </svg>
         </div>
+        -->
 
         <!-- Aca ponemos el texto central sobre los gráficos -->
-        <div class="container mx-auto px-4">
+        <div class="container mx-auto px-4" >
             <div class="flex flex-wrap justify-center text-center mb-24">
               <div class="w-full lg:w-6/12 px-4">
-                <h2 class="text-4xl font-semibold">Mas gráficas sobre datos en los nodos</h2>
-                <p class="text-lg leading-relaxed m-4 text-gray-600">
+                <h2 class="text-4xl font-semibold lucho-text-shine-white">Mas gráficas sobre datos en los nodos</h2>
+                <p class="text-lg leading-relaxed m-4 text-gray-600 lucho-text-shine-white">
                   En estos gráficos podremos ver datos detallados de otras variables analógicas de nuestros datos.
                 </p>
               </div>
@@ -373,165 +384,10 @@
 
         </div>
 
-        <!--Copiamos la segunda sección-->
-      </section>
-      
-      <!--
-      <section class="pt-20 pb-48">
-        <div class="container mx-auto px-4">
-          <div class="flex flex-wrap justify-center text-center mb-24">
-            <div class="w-full lg:w-6/12 px-4">
-              <h2 class="text-4xl font-semibold">Here are our heroes</h2>
-              <p class="text-lg leading-relaxed m-4 text-gray-600">
-                According to the National Oceanic and Atmospheric
-                Administration, Ted, Scambos, NSIDClead scentist, puts the
-                potentially record maximum.
-              </p>
-            </div>
-          </div>
-          <div class="flex flex-wrap">
-            <div class="w-full md:w-6/12 lg:w-3/12 lg:mb-0 mb-12 px-4">
-              <div class="px-6">
-                <img
-                  alt="..."
-                  src="./assets/img/team-1-800x800.jpg"
-                  class="shadow-lg rounded-full max-w-full mx-auto"
-                  style="max-width: 120px;"
-                />
-                <div class="pt-6 text-center">
-                  <h5 class="text-xl font-bold">Ryan Tompson</h5>
-                  <p class="mt-1 text-sm text-gray-500 uppercase font-semibold">
-                    Web Developer
-                  </p>
-                  <div class="mt-6">
-                    <button
-                      class="bg-blue-400 text-white w-8 h-8 rounded-full outline-none focus:outline-none mr-1 mb-1"
-                      type="button"
-                    >
-                      <i class="fab fa-twitter"></i></button
-                    ><button
-                      class="bg-blue-600 text-white w-8 h-8 rounded-full outline-none focus:outline-none mr-1 mb-1"
-                      type="button"
-                    >
-                      <i class="fab fa-facebook-f"></i></button
-                    ><button
-                      class="bg-pink-500 text-white w-8 h-8 rounded-full outline-none focus:outline-none mr-1 mb-1"
-                      type="button"
-                    >
-                      <i class="fab fa-dribbble"></i>
-                    </button>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="w-full md:w-6/12 lg:w-3/12 lg:mb-0 mb-12 px-4">
-              <div class="px-6">
-                <img
-                  alt="..."
-                  src="./assets/img/team-2-800x800.jpg"
-                  class="shadow-lg rounded-full max-w-full mx-auto"
-                  style="max-width: 120px;"
-                />
-                <div class="pt-6 text-center">
-                  <h5 class="text-xl font-bold">Romina Hadid</h5>
-                  <p class="mt-1 text-sm text-gray-500 uppercase font-semibold">
-                    Marketing Specialist
-                  </p>
-                  <div class="mt-6">
-                    <button
-                      class="bg-red-600 text-white w-8 h-8 rounded-full outline-none focus:outline-none mr-1 mb-1"
-                      type="button"
-                    >
-                      <i class="fab fa-google"></i></button
-                    ><button
-                      class="bg-blue-600 text-white w-8 h-8 rounded-full outline-none focus:outline-none mr-1 mb-1"
-                      type="button"
-                    >
-                      <i class="fab fa-facebook-f"></i>
-                    </button>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="w-full md:w-6/12 lg:w-3/12 lg:mb-0 mb-12 px-4">
-              <div class="px-6">
-                <img
-                  alt="..."
-                  src="./assets/img/team-3-800x800.jpg"
-                  class="shadow-lg rounded-full max-w-full mx-auto"
-                  style="max-width: 120px;"
-                />
-                <div class="pt-6 text-center">
-                  <h5 class="text-xl font-bold">Alexa Smith</h5>
-                  <p class="mt-1 text-sm text-gray-500 uppercase font-semibold">
-                    UI/UX Designer
-                  </p>
-                  <div class="mt-6">
-                    <button
-                      class="bg-red-600 text-white w-8 h-8 rounded-full outline-none focus:outline-none mr-1 mb-1"
-                      type="button"
-                    >
-                      <i class="fab fa-google"></i></button
-                    ><button
-                      class="bg-blue-400 text-white w-8 h-8 rounded-full outline-none focus:outline-none mr-1 mb-1"
-                      type="button"
-                    >
-                      <i class="fab fa-twitter"></i></button
-                    ><button
-                      class="bg-gray-800 text-white w-8 h-8 rounded-full outline-none focus:outline-none mr-1 mb-1"
-                      type="button"
-                    >
-                      <i class="fab fa-instagram"></i>
-                    </button>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="w-full md:w-6/12 lg:w-3/12 lg:mb-0 mb-12 px-4">
-              <div class="px-6">
-                <img
-                  alt="..."
-                  src="./assets/img/team-4-470x470.png"
-                  class="shadow-lg rounded-full max-w-full mx-auto"
-                  style="max-width: 120px;"
-                />
-                <div class="pt-6 text-center">
-                  <h5 class="text-xl font-bold">Jenna Kardi</h5>
-                  <p class="mt-1 text-sm text-gray-500 uppercase font-semibold">
-                    Founder and CEO
-                  </p>
-                  <div class="mt-6">
-                    <button
-                      class="bg-pink-500 text-white w-8 h-8 rounded-full outline-none focus:outline-none mr-1 mb-1"
-                      type="button"
-                    >
-                      <i class="fab fa-dribbble"></i></button
-                    ><button
-                      class="bg-red-600 text-white w-8 h-8 rounded-full outline-none focus:outline-none mr-1 mb-1"
-                      type="button"
-                    >
-                      <i class="fab fa-google"></i></button
-                    ><button
-                      class="bg-blue-400 text-white w-8 h-8 rounded-full outline-none focus:outline-none mr-1 mb-1"
-                      type="button"
-                    >
-                      <i class="fab fa-twitter"></i></button
-                    ><button
-                      class="bg-gray-800 text-white w-8 h-8 rounded-full outline-none focus:outline-none mr-1 mb-1"
-                      type="button"
-                    >
-                      <i class="fab fa-instagram"></i>
-                    </button>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-      -->
+        </section>
+      <!--Copiamos la segunda sección-->
 
-      <section class="pb-20 relative block bg-gray-900">
+      <section class="pb-10 pt-20 relative block bg-black">
         <div
           class="bottom-auto top-0 left-0 right-0 w-full absolute pointer-events-none overflow-hidden -mt-20"
           style="height: 80px;"
@@ -546,12 +402,12 @@
             y="0"
           >
             <polygon
-              class="text-gray-900 fill-current"
+              class="text-black fill-current"
               points="2560 0 2560 100 0 100"
             ></polygon>
           </svg>
         </div>
-        <div class="container mx-auto px-4 lg:pt-24 lg:pb-64">
+        <div class="container mx-auto px-4 lg:pt-20 lg:pb-20">
           <div class="flex flex-wrap text-center justify-center">
             <div class="w-full lg:w-6/12 px-4">
               <h2 class="text-4xl font-semibold text-white">Variables de estado o booleanas</h2>
@@ -563,7 +419,7 @@
           <div class="flex flex-wrap mt-12 justify-center">
             <div class="w-full lg:w-3/12 px-4 text-center">
               <div
-                class="text-green-300 p-3 w-12 h-12 shadow-lg rounded-full bg-black inline-flex items-center justify-center"
+                class="lucho-neon-button-green lucho-vibrate-circular-button text-green-300 p-3 w-12 h-12 shadow-lg rounded-full bg-black inline-flex items-center justify-center"
               >
                 <i class="fas fa-power-off text-xl"></i>
               </div>
@@ -576,7 +432,7 @@
             </div>
             <div class="w-full lg:w-3/12 px-4 text-center">
               <div
-                class="text-green-300 p-3 w-12 h-12 shadow-lg rounded-full bg-black inline-flex items-center justify-center"
+                class="lucho-neon-button-green lucho-vibrate-circular-button text-green-300 p-3 w-12 h-12 shadow-lg rounded-full bg-black inline-flex items-center justify-center"
               >
                 <i class="fas fa-power-off text-xl"></i>
               </div>
@@ -589,7 +445,7 @@
             </div>
             <div class="w-full lg:w-3/12 px-4 text-center">
               <div
-                class="text-red-600 p-3 w-12 h-12 shadow-lg rounded-full bg-black inline-flex items-center justify-center"
+                class="lucho-neon-button-red lucho-vibrate-circular-button text-red-600 p-3 w-12 h-12 shadow-lg rounded-full bg-black inline-flex items-center justify-center"
               >
                 <i class="fas fa-power-off text-xl"></i>
               </div>
@@ -600,7 +456,7 @@
             </div>
             <div class="w-full lg:w-3/12 px-4 text-center">
               <div
-                class="text-red-600 p-3 w-12 h-12 shadow-lg rounded-full bg-black inline-flex items-center justify-center"
+                class="lucho-neon-button-red lucho-vibrate-circular-button text-red-600 p-3 w-12 h-12 shadow-lg rounded-full bg-black inline-flex items-center justify-center"
               >
                 <i class="fas fa-power-off text-xl"></i>
               </div>
@@ -615,44 +471,31 @@
     </main>
     <footer class="relative bg-gray-300 pt-8 pb-6">
       <div
-        class="bottom-auto top-0 left-0 right-0 w-full absolute pointer-events-none overflow-hidden -mt-20"
+        class="bottom-auto top-0 left-0 right-0 w-full absolute pointer-events-none overflow-hidden mt-20"
         style="height: 80px;"
       >
-        <svg
-          class="absolute bottom-0 overflow-hidden"
-          xmlns="http://www.w3.org/2000/svg"
-          preserveAspectRatio="none"
-          version="1.1"
-          viewBox="0 0 2560 100"
-          x="0"
-          y="0"
-        >
-          <polygon
-            class="text-gray-300 fill-current"
-            points="2560 0 2560 100 0 100"
-          ></polygon>
-        </svg>
+
       </div>
       <div class="container mx-auto px-4">
         <div class="flex flex-wrap">
           <div class="w-full lg:w-6/12 px-4">
-            <h4 class="text-3xl font-semibold hover:text-blue-900">Proyecto de microredes</h4>
+            <h4 class="lucho-text-shine-skyblue text-3xl font-semibold hover:text-blue-900">Proyecto de microredes</h4>
             <h5 class="text-lg mt-0 mb-2 text-gray-700">
               Encuentra las redes del proyecto
             </h5>
             <div class="mt-6">
               <button
-                class="bg-white text-blue-500 shadow-lg font-normal h-10 w-10 items-center justify-center align-center rounded-full outline-none focus:outline-none mr-2 p-3"
+                class="lucho-neon-button-white bg-white text-blue-500 shadow-lg font-normal h-10 w-10 items-center justify-center align-center rounded-full outline-none focus:outline-none mr-2 p-3"
                 type="button"
               >
                 <i class="flex fab fa-twitter"></i></button
               ><button
-                class="bg-white text-blue-700 shadow-lg font-normal h-10 w-10 items-center justify-center align-center rounded-full outline-none focus:outline-none mr-2 p-3"
+                class="lucho-neon-button-white bg-white text-blue-700 shadow-lg font-normal h-10 w-10 items-center justify-center align-center rounded-full outline-none focus:outline-none mr-2 p-3"
                 type="button"
               >
                 <i class="flex fab fa-facebook-square"></i></button
               ><button
-                class="bg-white text-gray-900 shadow-lg font-normal h-10 w-10 items-center justify-center align-center rounded-full outline-none focus:outline-none mr-2 p-3"
+                class="lucho-neon-button-white bg-white text-gray-900 shadow-lg font-normal h-10 w-10 items-center justify-center align-center rounded-full outline-none focus:outline-none mr-2 p-3"
                 type="button"
               >
                 <i class="flex fab fa-github"></i>
@@ -660,82 +503,6 @@
             </div>
           </div>
           <div class="w-full lg:w-6/12 px-4">
-            <!--
-            <div class="flex flex-wrap items-top mb-6">
-              <div class="w-full lg:w-4/12 px-4 ml-auto">
-                <span
-                  class="block uppercase text-gray-600 text-sm font-semibold mb-2"
-                  >Useful Links</span
-                >
-                <ul class="list-unstyled">
-                  <li>
-                    <a
-                      class="text-gray-700 hover:text-gray-900 font-semibold block pb-2 text-sm"
-                      href="https://www.creative-tim.com/presentation"
-                      >About Us</a
-                    >
-                  </li>
-                  <li>
-                    <a
-                      class="text-gray-700 hover:text-gray-900 font-semibold block pb-2 text-sm"
-                      href="https://blog.creative-tim.com"
-                      >Blog</a
-                    >
-                  </li>
-                  <li>
-                    <a
-                      class="text-gray-700 hover:text-gray-900 font-semibold block pb-2 text-sm"
-                      href="https://www.github.com/creativetimofficial"
-                      >Github</a
-                    >
-                  </li>
-                  <li>
-                    <a
-                      class="text-gray-700 hover:text-gray-900 font-semibold block pb-2 text-sm"
-                      href="https://www.creative-tim.com/bootstrap-themes/free"
-                      >Free Products</a
-                    >
-                  </li>
-                </ul>
-              </div>
-              <div class="w-full lg:w-4/12 px-4">
-                <span
-                  class="block uppercase text-gray-600 text-sm font-semibold mb-2"
-                  >Other Resources</span
-                >
-                <ul class="list-unstyled">
-                  <li>
-                    <a
-                      class="text-gray-700 hover:text-gray-900 font-semibold block pb-2 text-sm"
-                      href="https://github.com/creativetimofficial/argon-design-system/blob/master/LICENSE.md"
-                      >MIT License</a
-                    >
-                  </li>
-                  <li>
-                    <a
-                      class="text-gray-700 hover:text-gray-900 font-semibold block pb-2 text-sm"
-                      href="https://creative-tim.com/terms"
-                      >Terms &amp; Conditions</a
-                    >
-                  </li>
-                  <li>
-                    <a
-                      class="text-gray-700 hover:text-gray-900 font-semibold block pb-2 text-sm"
-                      href="https://creative-tim.com/privacy"
-                      >Privacy Policy</a
-                    >
-                  </li>
-                  <li>
-                    <a
-                      class="text-gray-700 hover:text-gray-900 font-semibold block pb-2 text-sm"
-                      href="https://creative-tim.com/contact-us"
-                      >Contact Us</a
-                    >
-                  </li>
-                </ul>
-              </div>
-            </div>
-            -->
           </div>
         </div>
         <hr class="my-6 border-gray-400" />
@@ -781,5 +548,53 @@
                   {{datos.valor}},{{datos.min}},{{datos.max}},'{{datos.uni}}',"graficoDeLineas_3");
     
   </script>
+
+  <!-- Tipeado con delay -->
+  <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
+  <script>
+    var typed = new Typed(".text_delayed_usuario",{
+    strings: [,  "{{ usuario }}",
+                 "al proyecto de microredes"] ,
+    typeSpeed: 500,
+    backSpeed: 80,
+    loop: true
+
+    })
+  </script>
+
+   <!-- Scripts particulas -->
+   <script src="{% static 'js/particles.js' %}"></script>
+   <script src="{% static 'js/app.js' %}"></script>
+   <script src="{% static 'js/app-2.js' %}"></script>
+ 
+   <!-- stats.js particulas-->
+   <script src="{% static 'js/lib/stats.js' %}"></script>
+   <script>
+     stats.domElement.style.display = 'none'
+     var count_particles, stats, update;
+     stats = new Stats;
+     stats.setMode(0);
+     stats.domElement.style.position = 'absolute';
+     stats.domElement.style.left = '0px';
+     stats.domElement.style.top = '0px';
+     document.body.appendChild(stats.domElement);
+     count_particles = document.querySelector('.js-count-particles');
+     update = function() {
+       stats.begin();
+       stats.end();
+       if (window.pJSDom[0].pJS.particles && window.pJSDom[0].pJS.particles.array) {
+         count_particles.innerText = window.pJSDom[0].pJS.particles.array.length;
+       }
+       requestAnimationFrame(update);
+     };
+     requestAnimationFrame(update);
+   </script>
+
+   <script>
+    var canvas_selector             = document.getElementsByClassName('particles-js-canvas-el');
+    canvas_selector[1].className   += ' lucho-particles-background';
+    //canvas_selector[1].style.height = document.getElementById('particles-js-2').clientHeight + "px'";
+    //canvas_selector[1].height       = document.getElementById('particles-js-2').clientHeight;
+   </script>
   
 </html>

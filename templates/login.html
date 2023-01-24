@@ -31,8 +31,6 @@
       rel  = "stylesheet"
       href = "{% static 'css/style.css' %}"
     />
-    <!-- Particulas -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/particles.js/2.0.0/particles.min.js" integrity="sha512-Kef5sc7gfTacR7TZKelcrRs15ipf7+t+n7Zh6mKNJbmW+/RRdCW9nwfLn4YX0s2nO6Kv5Y2ChqgIakaC6PW09A==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     
     <title>Web server UNGS</title>
   </head>
@@ -121,10 +119,10 @@
       </div>
     </nav>
     <main>
-      <section class="absolute w-full h-full">
+      <section class="absolute w-full h-full" >
         <div
           id    = "particles-js"
-          class = "absolute top-0 w-full bg-cover h-full bg-white stats-off"
+          class = "absolute top-0 w-full bg-cover h-full bg-white"
           style = "background-color: whitesmoke;/*background-image: url({% static 'assets/img/login.jpg' %}); background-repeat: no-repeat;*/"
         ></div>
         <div class="container mx-auto px-4 h-full">
@@ -139,29 +137,6 @@
                       {{advertencia}}
                     </h6>
                   </div>
-                  <!--<div class="btn-wrapper text-center">
-                    <button
-                      class="bg-white active:bg-gray-100 text-gray-800 font-normal px-4 py-2 rounded outline-none focus:outline-none mr-2 mb-1 uppercase shadow hover:shadow-md inline-flex items-center font-bold text-xs"
-                      type="button"
-                      style="transition: all 0.15s ease 0s;"
-                    >
-                      <img
-                        alt="..."
-                        class="w-5 mr-1"
-                        src="./assets/img/github.svg"
-                      />Github</button
-                    ><button
-                      class="bg-white active:bg-gray-100 text-gray-800 font-normal px-4 py-2 rounded outline-none focus:outline-none mr-1 mb-1 uppercase shadow hover:shadow-md inline-flex items-center font-bold text-xs"
-                      type="button"
-                      style="transition: all 0.15s ease 0s;"
-                    >
-                      <img
-                        alt="..."
-                        class="w-5 mr-1"
-                        src="./assets/img/google.svg"
-                      />Google
-                    </button>
-                  </div>-->
                   <hr class="mt-6 border-b-1 border-gray-400" />
                 </div>
                 <div class="flex-auto px-4 lg:px-10 py-10 pt-0">
@@ -196,18 +171,6 @@
                         style="transition: all 0.15s ease 0s;"
                       />
                     </div>
-                    <!--<div>
-                      <label class="inline-flex items-center cursor-pointer"
-                        ><input
-                          id="customCheckLogin"
-                          type="checkbox"
-                          class="form-checkbox border-0 rounded text-gray-800 ml-1 w-5 h-5"
-                          style="transition: all 0.15s ease 0s;"
-                        /><span class="ml-2 text-sm font-semibold text-gray-700"
-                          >Remember me</span
-                        ></label
-                      >
-                    </div>-->
                     <div class="text-center mt-6">
                       <button
                         class="lucho-vibrate-button bg-gray-100 text-black active:bg-gray-700 text-sm font-bold uppercase px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 w-full"
@@ -314,7 +277,7 @@
     })
   </script>
 
-  <!-- scripts particulas -->
+  <!-- Scripts particulas -->
   <script src="{% static 'js/particles.js' %}"></script>
   <script src="{% static 'js/app.js' %}"></script>
 
