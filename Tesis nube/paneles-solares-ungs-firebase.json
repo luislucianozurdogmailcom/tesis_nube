@@ -1,0 +1,13 @@
+{
+  "type": "service_account",
+  "project_id": "paneles-solares-ungs",
+  "private_key_id": "827e4d7d25672d9e3f7896b1d6925c8d864f3dac",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvAIBADANBgkqhkiG9w0BAQEFAASCBKYwggSiAgEAAoIBAQCrawkMy/bHxMbB\nkgK6LUvbQWCtZfC0L6Zem2VPT9qZuLnvvClNxspExAqlBM8qFQR0CnL4wHs7Gb9w\n9bPoJlJq9XKzmCHeboCTr/igXHt6nPgXIT65do+NqIS3CDEP2EQOVQ0ysfUQnONt\nvB7GzgIkbvudHmAOy812caLl2mNDgVJ160ViOV/W8dw4Pp77Yr6ge/hmcLL/9Vih\nF0GOfBTP1sQrUqTFuAaf/Q7hnsbTeyjTRdKLGxCxgkrtZF98TabuTPsjFoAlvU81\nWTCWYKsrOz+HlSz1dZHNq/sOqsgpoSCTH1fBFSmq3iZqKFqURsvGxQqGDICXGzY1\nfxljvqxDAgMBAAECggEAEBNgwDItA0bfq7Q0pkVTAyc3JYih9+8tQPUXNxNr+RU0\nw5gkhXzaZ9pWWmumvZff/yPvUu3DAMoyEaoxN4wuF+xlCxVK1wnYH0GWMi/KJesS\n0+4UH4Xpzr6nLf6wkmXu2ys8KoaiG9Wixh4QAtPu3OZwzI2jM4mgZXaHV0GeV1Lh\n/UPlUiTTHazDyvQE3YG5F/uqTsfbsGOSNVzaGGSsy0DgitIrrnKR5nabjvprchif\ns0GbNAkBNyteskbYq57O0Dl1lyr8KzV1bJR2koZGYZut1VzKnwgOFWD4hEWeqfzI\nCvhjr1NByl7fnKzY3hTAkfXQZZoyzI1ft/2k6SGweQKBgQDf5SH+4XgAm7+N7TUR\nRF1pCKS8zVHBiVsBq0KY2XbQSde2tDfzaC99/uCzSlQlpODkSRx2pkIG0Q4kQZ2a\nIllmtZd0gzDG96+XgrmcsqbtuRhg/13HJadtZdMfGdzLOdO9vv9EGdQzvtWzK3e0\n5u4DU/Ar2hcpZOGtM1Dak2DAWQKBgQDD/4yK5hTR9W3zBPcGmxoJHFWtbquOBCKl\nuk+fdmn/C8XJ/Qdew4AhY2POtNYkuEG/hgNAufujG9rXpnW2m5lnz5EmcrBXDzzr\nv8pLU85cpXQithMeflWGREHLWyKDBiBIDWIwevm4yZ8LliygxgIl4f1x+qCj7RqJ\n5a3vW9gd+wKBgQCD/GVgBbZiVW5E0nMYLL8MLgY/LqJlfv1hLH5j8L5z5zP9Bpx9\nJwvoMJpx1v1n+5x/twHKiBQgRJkbknq/5EPjomUYUEYu5NBkdrHIyCBTv2u5spCr\n12yttvsQOITKYNqL3s5IbRmFL5h2uMcmo4Pn/lF06GoDAu9u1PNzBrJgcQKBgQCz\nXT75sdsl1Wu8NTP3WKN36PVDVP8sZP5sGddaABy6acSkt6kyAMlWRMWG2hkK25BX\nvEVny4vMVeZs6YnaBgVaairUO6rC0VAYEpkHXHeCc2uXhHZ0tnp/+CEZ/5nSvB14\nsr7DzRaRE/o3uUO4EdzPXEP7NbgirA5YWddWL//UVwJ/EHBwEKbqr162b/p97yOq\nOCxpHoaLma89LQyup4fisZUY1WY0804cwPM3xMARJ3rFU9zTriblq4Nft5UB/7eW\nyk38NQL57OxTlot4KUD20KeI+D5mJkybwMda6qPRw80PQ/QDygdvGABXqaI/3MTc\n6pLWjVljgr/1PpeuYK2TZg==\n-----END PRIVATE KEY-----\n",
+  "client_email": "firebase-adminsdk-k4c5o@paneles-solares-ungs.iam.gserviceaccount.com",
+  "client_id": "117968399957015493415",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/firebase-adminsdk-k4c5o%40paneles-solares-ungs.iam.gserviceaccount.com",
+  "universe_domain": "googleapis.com"
+}

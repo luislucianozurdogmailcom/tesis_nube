@@ -1,0 +1,25 @@
+export const ApiCall = async(url,token,rol,contenido,modelo,temperatura) => {
+    try{
+
+        console.log('asdasd primera parte')
+        /*
+        const response = await fetch(url,{
+            method         : 'POST',
+            mode           : 'cors',
+            credentials    : 'include',
+            headers        : {
+                'Authentication' : 'Bearer '+token,
+                'Content-Type'   : 'application/json',
+            },
+            body           : JSON.stringify({
+                model       : modelo,
+                messages    : [{role : rol, content : contenido}],
+                temperatura : temperatura
+            }),
+        }).then(data => console.log(data))
+        */
+
+    } catch(error){
+        console.log(error);
+    }
+}

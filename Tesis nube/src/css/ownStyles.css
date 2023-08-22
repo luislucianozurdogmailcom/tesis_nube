@@ -1,0 +1,63 @@
+/* Porcentajes de ancho */
+.w-10p{
+    width: 10%;
+}
+
+.w-20p{
+    width: 20%;
+}
+
+.w-30p{
+    width: 30%;
+}
+
+.w-40p{
+    width: 40%;
+}
+
+.w-50p{
+    width: 50%;
+}
+
+.w-60p{
+    width: 60%;
+}
+
+.w-70p{
+    width: 70%;
+}
+
+.w-80p{
+    width: 80%;
+}
+
+.w-90p{
+    width: 90%;
+}
+
+.h-10p{
+    height: 10%;
+}
+
+/* Porcentajes de alto */
+
+.h-14p{
+    height: 14%;
+}
+
+.h-15p{
+    height: 15%;
+}
+
+/* Porcentajes de ancho mínimo */
+
+/* Sombras y animaciones */
+
+.hover-shadow {
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.hover-shadow:hover {
+    transform: scale(1.05);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 5px 15px rgba(0, 0, 0, 0.1);
+}
