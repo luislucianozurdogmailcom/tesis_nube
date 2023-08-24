@@ -1,0 +1,10 @@
+Actualmente estoy trabajando con Firebase y con React.js Me encuentro consumiendo los servicios de hosting, de firestore y de firebase functions.
+
+Mi código actual del componente que consume a firebase desde react es:
+
+```js
+
+```
+
+Necesitaria que me des un acercamiento de código para poder hacer:
+

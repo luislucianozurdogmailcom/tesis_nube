@@ -3,6 +3,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCoffee, faHashtag, faCircleNodes } from '@fortawesome/free-solid-svg-icons'
 import CardIndicator from './CardIndicator'
 import { faBolt } from '@fortawesome/free-solid-svg-icons'
+import axios from 'axios';
 
 // Biblios de firebase
 // Import the functions you need from the SDKs you need
@@ -22,11 +23,12 @@ const Indicators = () => {
     const [nodosCount, setNodosCount] = useState(0);
 
     // Obtención de las mediciones
+    /*
     useEffect(() => {
       async function fetchData() {
-        const mediciones = collection(db, 'mediciones');
+        const mediciones         = collection(db, 'mediciones');
         const medicionesSnapshot = await getDocs(mediciones);
-        const medicionesData = medicionesSnapshot.docs.map(doc => doc.data());
+        const medicionesData     = medicionesSnapshot.docs.map(doc => doc.data());
         
         // Seteamos las variables
         setMedicionesList(medicionesData);
@@ -36,43 +38,60 @@ const Indicators = () => {
 
       fetchData();
     }, []);
+    */
 
     // Obtención de los nodos
+    /*
     useEffect(() => {
-        async function fetchData() {
-          const nodos         = collection(db, 'nodos');
-          const nodosSnapshot = await getDocs(nodos);
-          const nodosData     = nodosSnapshot.docs.map(doc => doc.data());
-          setNodosList(nodosData);
-          setNodosCount(nodosSnapshot.size);
-        }
-  
-        fetchData();
-      }, []);
+      async function fetchData() {
+        const nodos         = collection(db, 'nodos');
+        const nodosSnapshot = await getDocs(nodos);
+        const nodosData     = nodosSnapshot.docs.map(doc => doc.data());
+        setNodosList(nodosData);
+        setNodosCount(nodosSnapshot.size);
+      }
 
-    // Seteo de la configuración de Firebase
-    const firebaseConfig = {
-        apiKey: "AIzaSyBh_K6r6iErdj1NFz3w_X3FafjiIJ8WUgE",
-        authDomain: "paneles-solares-ungs.firebaseapp.com",
-        projectId: "paneles-solares-ungs",
-        storageBucket: "paneles-solares-ungs.appspot.com",
-        messagingSenderId: "895158660385",
-        appId: "1:895158660385:web:ef3c9d34e1c028f703a260",
-        measurementId: "G-ZB0N8MSBBY"
+      fetchData();
+    }, []);
+    */
+    // Obtención de datos agregados
+    // intentamos enviar la petición
+    useEffect(() => {
+
+      // Traemos datos de avg
+      const fetchDataAvg = async (campo,funcion) => { // Marcar la función como asincrónica
+        try {
+          const response = await axios.post(`https://us-central1-paneles-solares-ungs.cloudfunctions.net/calculateAverage?campo=${campo}`);
+          
+          if (response.status === 200) {
+            funcion(response.data.average);
+          } else {
+            // Hacer algo en caso de error
+          }
+        } catch (error) {
+          console.error('An error occurred while sending the request:', error);
+        }
+      };
+      
+      // Contamos cantidad de mediciones
+      const fetchDataCount = async (campo,esquema,funcion) => {
+        try {
+          const response = await axios.post(`https://us-central1-paneles-solares-ungs.cloudfunctions.net/calculateCount?campo=${campo}&esquema=${esquema}`);
+          
+          if (response.status === 200) {
+            funcion(response.data.totalCount);
+          } else {
+            // Hacer algo en caso de error
+          }
+        } catch (error) {
+          console.error('An error occurred while sending the request:', error);
+        }
       };
 
-    // Initialize Firebase
-    const app       = initializeApp(firebaseConfig);
-    const analytics = getAnalytics(app);
-    const db        = getFirestore(app);
 
-    // Get a list of cities from your database
-    async function getCities(db) {
-        const mediciones   = collection(db, 'mediciones');
-        const citySnapshot = await getDocs(mediciones);
-        const cityList     = citySnapshot.docs.map(doc => doc.data());
-        return cityList.toString;
-    }
+      fetchDataCount('valor','mediciones',setMedicionesCount); // Llamar a la función asincrónica
+      fetchDataCount('id_nodo','nodos',setNodosCount);         // Llamar a la función asincrónica
+    },[]);
 
 
 
@@ -118,7 +137,7 @@ const Indicators = () => {
             </div>
         </div>
 
-  )
+  );
 }
 
 export default Indicators

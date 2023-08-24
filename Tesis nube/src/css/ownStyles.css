@@ -61,3 +61,30 @@
     transform: scale(1.05);
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 5px 15px rgba(0, 0, 0, 0.1);
 }
+
+@keyframes slideOutLeft {
+    from {
+      transform: translateX(0);
+    }
+    to {
+      transform: translateX(-100%);
+    }
+  }
+  
+  /* Animación para deslizar el Navbar hacia la derecha */
+  @keyframes slideOutRight {
+    from {
+      transform: translateX(0);
+    }
+    to {
+      transform: translateX(100%);
+    }
+  }
+  
+  .sidebar.slide-out-left {
+    animation: slideOutLeft 0.3s ease-in-out;
+  }
+  
+  .sidebar.slide-out-right {
+    animation: slideOutRight 0.3s ease-in-out;
+  }
