@@ -5,6 +5,11 @@ import CardIndicator from './CardIndicator'
 import { faBolt } from '@fortawesome/free-solid-svg-icons'
 import axios from 'axios';
 
+// Redux
+import { useDispatch, useSelector } from "react-redux";
+import { nodeSelected, changeNode } from "../reducers/nodeSelected"; // Asegúrate de importar el slice correcto
+
+
 // Biblios de firebase
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
@@ -17,43 +22,16 @@ const Indicators = () => {
     const [medicionesCount, setMedicionesCount] = useState(0);
     const [medicionesList, setMedicionesList]   = useState([]);
     const [medicionesAvg, setMedicionesAvg]     = useState(0); // Nuevo estado para el promedio
+    
+    // Redux
+    const dispatch  = useDispatch();
+    const nodoRedux = useSelector((state) => state.nodeSelected.node);
+
 
     // Nodos
     const [nodosList, setNodosList]   = useState([]);
     const [nodosCount, setNodosCount] = useState(0);
 
-    // Obtención de las mediciones
-    /*
-    useEffect(() => {
-      async function fetchData() {
-        const mediciones         = collection(db, 'mediciones');
-        const medicionesSnapshot = await getDocs(mediciones);
-        const medicionesData     = medicionesSnapshot.docs.map(doc => doc.data());
-        
-        // Seteamos las variables
-        setMedicionesList(medicionesData);
-        setMedicionesCount(medicionesSnapshot.size);
-      
-        }
-
-      fetchData();
-    }, []);
-    */
-
-    // Obtención de los nodos
-    /*
-    useEffect(() => {
-      async function fetchData() {
-        const nodos         = collection(db, 'nodos');
-        const nodosSnapshot = await getDocs(nodos);
-        const nodosData     = nodosSnapshot.docs.map(doc => doc.data());
-        setNodosList(nodosData);
-        setNodosCount(nodosSnapshot.size);
-      }
-
-      fetchData();
-    }, []);
-    */
     // Obtención de datos agregados
     // intentamos enviar la petición
     useEffect(() => {
@@ -88,20 +66,68 @@ const Indicators = () => {
         }
       };
 
+      // función que trae los datos de los nodos disponibles en la DB
+      const fetchDataNominal = async (campo,esquema,funcion) => {
+        try {
+          const response = await axios.get(`https://us-central1-paneles-solares-ungs.cloudfunctions.net/getValues?campo_1=${campo}&esquema=${esquema}&page=1&pageSize=20`);
+
+          if (response.status === 200) {
+            const idNodos = response.data.map(item => item.id_nodo);
+            funcion(idNodos);
+          } else {
+            // Hacer algo en caso de error
+          }
+        } catch (error) {
+          console.error('An error occurred while sending the request:', error);
+        }
+      };
+
 
       fetchDataCount('valor','mediciones',setMedicionesCount); // Llamar a la función asincrónica
       fetchDataCount('id_nodo','nodos',setNodosCount);         // Llamar a la función asincrónica
+      fetchDataNominal('id_nodo','nodos',setNodosList);        // Llamar a la función asincrónica 
     },[]);
 
+  // Opciones para el dropdown
+  const options = [
+    '1',
+    '2',
+    '3',
+    '4',
+  ];
 
+  // Manejar cambios en la selección y enviar automáticamente el formulario
+  const handleOptionChange = (event) => {
+    dispatch(changeNode(event.target.value))
+  };
 
   return (
         <div className='grid lg:grid-cols-4 grid-cols-2 m-4'>
-            <div className='lg:col-span-4 col-span-2 flex flex-row justify-between'>
+            <div className='lg:col-span-2 col-span-2 flex flex-row justify-between'>
                 <div className='text-5xl p-4 mb-4 font-extralight rounded-3xl '>
                     ¡Bienvenido <span className='bg-gradient-to-r from-blue-500 to-purple-500 text-transparent bg-clip-text font-normal'> Usuario </span>!
                 </div>
             </div>
+            <div className='col-span-2 w-full font-light flex flex-row justify-center bg-white rounded-xl p-4 m-4 px-8 items-center'>
+                  <form className='text-center'>
+                    <div>
+                      <label htmlFor="dropdown">Nodo seleccionado: </label>
+                      <select
+                        id="dropdown"
+                        name="dropdown"
+                        value={nodoRedux}
+                        onChange={handleOptionChange}
+                      >
+                        <option value="">--</option>
+                        {nodosList.map((option, index) => (
+                          <option key={index} value={option.id_nodo}>
+                            {option}
+                          </option>
+                        ))}
+                      </select>
+                    </div>
+                  </form>
+                </div>
 
             <div className='p-4'>
             <CardIndicator 

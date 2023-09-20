@@ -13,16 +13,14 @@ const MainPage = () => {
   const isOpen = useSelector((state) => state.sideBar.isOpen); // Accede al valor isOpen desde el estado
 
   return (
-    <div className='flex flex-row w-screen overlfow-hidden bg-gray-200'>
+    <div className='flex flex-row h-full w-screen overlfow-hidden bg-gray-200'>
       <Navbar />
       <ButtonNavBar />
       <div className={isOpen ? 'hidden' : 'h-full w-12' }></div>
-      <div className={isOpen ? 'w-10/12 h-screen bg-gray-200' :'w-12/12 h-screen bg-gray-200'}>
+      <div className={isOpen ? 'w-10/12 h-full bg-gray-200' :'w-12/12 h-full bg-gray-200'}>
         <Indicators />
         <LineChartContainer />
       </div>
-      
-      
     </div>
   )
 }

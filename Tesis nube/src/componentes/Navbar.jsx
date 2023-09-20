@@ -1,7 +1,7 @@
 import React, {useState} from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {faHouse} from '@fortawesome/free-solid-svg-icons'
-import {faChartGantt} from '@fortawesome/free-solid-svg-icons'
+import {faChartGantt, faCircleNodes, faCircleQuestion, faDatabase} from '@fortawesome/free-solid-svg-icons'
 import {faGear, faArrowLeft} from '@fortawesome/free-solid-svg-icons'
 
 // Redux
@@ -26,6 +26,9 @@ const Navbar = () => {
       <ul className="py-4 flex-1">
         <li className="py-4 pl-6 hover:bg-white hover:text-slate-700"><FontAwesomeIcon icon={faHouse}></FontAwesomeIcon> &nbsp;  Home </li>
         <li className="py-4 pl-6 hover:bg-white hover:text-slate-700"><FontAwesomeIcon icon={faChartGantt} /> &nbsp; Analytics</li>
+        <li className="py-4 pl-6 hover:bg-white hover:text-slate-700"><FontAwesomeIcon icon={faCircleNodes} /> &nbsp; Seteo</li>
+        <li className="py-4 pl-6 hover:bg-white hover:text-slate-700"><FontAwesomeIcon icon={faCircleQuestion} /> &nbsp; Help</li>
+        <li className="py-4 pl-6 hover:bg-white hover:text-slate-700"><FontAwesomeIcon icon={faDatabase} /> &nbsp; DQuery</li>
         <li className="py-4 pl-6 hover:bg-white hover:text-slate-700"><FontAwesomeIcon icon={faGear} /> &nbsp;Settings</li>
       </ul>
       <div className='h-32 flex flex-row justify-end'>

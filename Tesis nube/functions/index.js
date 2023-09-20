@@ -89,23 +89,41 @@ exports.getValues = functions.https.onRequest(async (req, res) => {
     try {
       const db = admin.firestore();
 
-      const medicionesRef = db.collection(req.query.esquema);
-      const medicionesSnapshot = await medicionesRef.get();
+      // eslint-disable-next-line max-len
+      // Verifica si se proporcionan los parámetros "page" y "pageSize" para paginación
+      const page = req.query.page ? parseInt(req.query.page) : 1;
+      const pageSize = req.query.pageSize ? parseInt(req.query.pageSize) : 10;
 
-      const ArrayCampo1 = [];
-      const ArrayCampo2 = [];
+      // Calcula el índice del primer documento de la página actual
+      const startIndex = (page - 1) * pageSize;
+
+      // eslint-disable-next-line max-len
+      const medicionesRef = db.collection(req.query.esquema);
+
+      // Consulta los documentos usando el índice calculado
+      const medicionesSnapshot = await medicionesRef
+          .orderBy(req.query.campo_1)
+          .startAt(startIndex)
+          .limit(pageSize)
+          .get();
+
+      // Instanciamos el array principal de devolución
+      const responseArray = [];
 
       medicionesSnapshot.forEach((doc) => {
         const data = doc.data();
+
+        let valor1;
+        let valor2;
 
         if (req.query.campo_1 === "fecha") {
           // Convertir el timestamp a una fecha legible
           // eslint-disable-next-line max-len
           const timestamp1 = new Date(data[req.query.campo_1]._seconds * 1000); // Multiplicar por 1000 para obtener milisegundos
           // eslint-disable-next-line max-len
-          ArrayCampo1.push(timestamp1.toLocaleString()); // Convertir a una cadena legible
+          valor1 = timestamp1.toLocaleString();
         } else {
-          ArrayCampo1.push(data[req.query.campo_1]);
+          valor1 = data[req.query.campo_1];
         }
 
         if (req.query.campo_2 === "fecha") {
@@ -113,18 +131,97 @@ exports.getValues = functions.https.onRequest(async (req, res) => {
           // eslint-disable-next-line max-len
           const timestamp2 = new Date(data[req.query.campo_2]._seconds * 1000); // Multiplicar por 1000 para obtener milisegundos
           // eslint-disable-next-line max-len
-          ArrayCampo1.push(timestamp2.toLocaleString()); // Convertir a una cadena legible
+          valor2 = timestamp2.toLocaleString();
         } else {
-          ArrayCampo2.push(data[req.query.campo_2]);
+          valor2 = data[req.query.campo_2];
         }
+
+        // Creamos el objeto respuesta para meter en el array mas grande
+        const responseObj = {
+          [req.query.campo_1]: valor1,
+          [req.query.campo_2]: valor2,
+        };
+
+        // Pusheamos al array principal
+        responseArray.push(responseObj);
       });
 
-      const responseObj = {
-        campo_1: ArrayCampo1,
-        campo_2: ArrayCampo2,
-      };
+      return res.status(200).json(responseArray);
+    } catch (error) {
+      console.error(error);
+      return res.status(500).json({error: "Something went wrong"});
+    }
+  });
+});
 
-      return res.status(200).json(responseObj);
+exports.insertFictitiousData = functions.https.onRequest(async (req, res) => {
+  cors(req, res, async () => {
+    try {
+      const db = admin.firestore();
+      // eslint-disable-next-line max-len
+      const batch = db.batch(); // Use a batch to write multiple documents at once
+      // eslint-disable-next-line max-len
+      const numDocumentsToInsert = 1; // Number of fictitious documents to insert
+
+      for (let i = 0; i < numDocumentsToInsert; i++) {
+        const idMedicion = i + 1; // Auto-incremental ID
+        const idNodo = 1;
+        const idSensor = 1;
+        const valor = Math.random(); // Generate a random value
+
+        // eslint-disable-next-line max-len
+        const fecha = admin.firestore.Timestamp.fromDate(new Date()); // Current timestamp
+
+        const medicionData = {
+          fecha,
+          id_medicion: idMedicion,
+          id_nodo: idNodo,
+          id_sensor: idSensor,
+          valor: valor,
+        };
+        // eslint-disable-next-line max-len
+        const medicionRef = db.collection("mediciones").doc(); // Generate a new document ID
+        batch.set(medicionRef, medicionData);
+      }
+
+      await batch.commit(); // Commit the batch
+      // eslint-disable-next-line max-len
+      return res.status(200).json({message: `${numDocumentsToInsert} fictitious documents inserted.`});
+    } catch (error) {
+      console.error(error);
+      return res.status(500).json({error: "Something went wrong"});
+    }
+  });
+});
+
+exports.insertFictitiousData = functions.https.onRequest(async (req, res) => {
+  cors(req, res, async () => {
+    try {
+      const db = admin.firestore();
+      // eslint-disable-next-line max-len
+      const batch = db.batch(); // Use a batch to write multiple documents at once
+      // eslint-disable-next-line max-len
+      const numDocumentsToInsert = 1; // Number of fictitious documents to insert
+
+      // eslint-disable-next-line max-len
+      const fecha = admin.firestore.Timestamp.fromDate(new Date()); // Current timestamp
+
+      const medicionData = {
+        fecha,
+        id_medicion: idMedicion,
+        id_nodo: idNodo,
+        id_sensor: idSensor,
+        valor: valor,
+      };
+      
+      // eslint-disable-next-line max-len
+      const medicionRef = db.collection("mediciones").doc(); // Generate a new document ID
+      batch.set(medicionRef, medicionData);
+      
+
+      await batch.commit(); // Commit the batch
+      // eslint-disable-next-line max-len
+      return res.status(200).json({message: `${numDocumentsToInsert} fictitious documents inserted.`});
     } catch (error) {
       console.error(error);
       return res.status(500).json({error: "Something went wrong"});
