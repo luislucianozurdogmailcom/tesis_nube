@@ -1,6 +1,0 @@
-$ python manage.py runserver
-
-comando para que se pueda entrar desde otros servidores
-
-$ python manage.py runserver 0.0.0.0:8000
-
