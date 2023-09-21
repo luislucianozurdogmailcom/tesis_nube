@@ -2,7 +2,7 @@ import time
 import numpy as np
 import conexion_db as con
 import lector_nodos_input
-# from microredes import microredes as mr # Importación de la librería
+from microredes import microredes as mr # Importación de la librería
 
 # Bandera que guarda el valor del estado de carga
 bandera_sin_errores = False
@@ -14,7 +14,7 @@ bandera_sin_errores = False
 while bandera_sin_errores == False:
 
     # Traemos los nodos
-    nodos, lista_campos, df = lector_nodos_input.nodos_activos();
+    # nodos, lista_campos, df = lector_nodos_input.nodos_activos();
     
     """
     # Iteramos sobre todos los nodos
@@ -44,7 +44,7 @@ while bandera_sin_errores == False:
         
 
     """
-    print('Arrancamo el programita');
+    print('Arrancamos el programita');
 
     try:
         # Leemos los nodos que tenemos:
