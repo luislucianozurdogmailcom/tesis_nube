@@ -35,7 +35,8 @@ class CalcHelper(object):
         return final_value, unit
 
     def get_data_parts(self, data):
-        return data[2:4], data[0:]
+        return data[2:3], data[3:4] # modificación por bandera
+        # return data[2:4], data[0:]
         # return data[0:4], data[4:8]
 
     def hex_arr_to_int(self, arr):

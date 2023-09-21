@@ -6,21 +6,29 @@ import numpy as np
 #import lector_nodos_input
 from microredes import microredes as mr # Importación de la librería
 
-bus = mr.Microredes('COM6', '115200') # Conexión al BUS
 
-bus.set_target(3) # Setea la dirección de destino del equipo a consultar
-query_id = bus.qry_analog_in(0, interval=0) # Lee la entrada analógica 0 con un intervalo de 1 segundo
-
-#bus.set_target(4) # Setea la dirección de destino del equipo a consultar
-#query_id = bus.qry_analog_in(0, interval=1) # Lee la entrada analógica 0 con un intervalo de 1 segundo
-
-cont = 0  # Inicio contador en 0
-while True:  # Lee en bucle infinito la respuesta desde el BUS
-  res = bus.can_read()
-
-  if len(res):
-    print(res)
+def lectura(puerto_pc='COM6',target='3',entrada_analogica=0):
+    """
+    Funcion que tiene por objetivo abstraer un poco lo lógica de 
+    conexión y pedido de los datos
+    """
     
+    
+    bus = mr.Microredes(puerto_pc, '115200') # Conexión al BUS
+
+    bus.set_target(target) # Setea la dirección de destino del equipo a consultar
+    query_id = bus.qry_analog_in(entrada_analogica, interval=0) # Lee la entrada analógica 0 con un intervalo de 1 segundo
+
+    #bus.set_target(4) # Setea la dirección de destino del equipo a consultar
+    #query_id = bus.qry_analog_in(0, interval=1) # Lee la entrada analógica 0 con un intervalo de 1 segundo
+    
+    res = bus.can_read()
+
+    if len(res):
+      return res;
+    else:
+       return False;
+
 
 """
 f', '0x0', '0x0', '0x0'], 'valor': 1.03125, 'unidad': 'v'}]
