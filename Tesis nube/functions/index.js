@@ -194,7 +194,7 @@ exports.insertFictitiousData = functions.https.onRequest(async (req, res) => {
   });
 });
 
-exports.insertFictitiousData = functions.https.onRequest(async (req, res) => {
+exports.insertMedicion = functions.https.onRequest(async (req, res) => {
   cors(req, res, async () => {
     try {
       const db = admin.firestore();
@@ -206,22 +206,53 @@ exports.insertFictitiousData = functions.https.onRequest(async (req, res) => {
       // eslint-disable-next-line max-len
       const fecha = admin.firestore.Timestamp.fromDate(new Date()); // Current timestamp
 
-      const medicionData = {
-        fecha,
-        id_medicion: idMedicion,
-        id_nodo: idNodo,
-        id_sensor: idSensor,
-        valor: valor,
-      };
-      
       // eslint-disable-next-line max-len
-      const medicionRef = db.collection("mediciones").doc(); // Generate a new document ID
-      batch.set(medicionRef, medicionData);
-      
+      const medicionesRef = db.collection("mediciones");
 
-      await batch.commit(); // Commit the batch
-      // eslint-disable-next-line max-len
-      return res.status(200).json({message: `${numDocumentsToInsert} fictitious documents inserted.`});
+      // Verificar la autenticación con client_id y secret en los encabezados
+      const clientId = req.headers["client_id"];
+      const secret = req.headers["secret"];
+
+      // Verifica si los valores de client_id y secret son válidos
+      if (clientId === "ungs_energia" && secret === "0f1abfe5ae3b407ff3") {
+        // Consulta para obtener el máximo idMedicion
+        const querySnapshot = await medicionesRef
+            .orderBy("id_medicion", "desc") // Ordena por idMedicion
+            .limit(1) // Limita la consulta a un solo resultado (el máximo)
+            .get();
+
+        // eslint-disable-next-line max-len
+        let idMedicion = 0; // Valor predeterminado si no hay documentos en la colección
+
+        if (!querySnapshot.empty) {
+          // Si se encontró al menos un documento, obtén su idMedicion
+          const maxDoc = querySnapshot.docs[0];
+          idMedicion = maxDoc.data().id_nodo;
+        }
+
+        // Incrementa el idMedicion para el nuevo documento
+        idMedicion++;
+
+        const medicionData = {
+          fecha,
+          id_medicion: idMedicion,
+          id_nodo: req.query.idNodo,
+          id_sensor: req.query.idSensor,
+          valor: req.query.valor,
+        };
+
+        // eslint-disable-next-line max-len
+        const medicionInsert = db.collection("mediciones").doc(); // Generate a new document ID
+        batch.set(medicionInsert, medicionData);
+
+
+        await batch.commit();
+        // eslint-disable-next-line max-len
+        return res.status(200).json({message: `${numDocumentsToInsert} medida insertada.`});
+      } else {
+        // Si la autenticación falla, responde con un error
+        return res.status(401).json({error: "Autenticación fallida."});
+      }
     } catch (error) {
       console.error(error);
       return res.status(500).json({error: "Something went wrong"});
