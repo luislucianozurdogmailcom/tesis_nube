@@ -233,12 +233,17 @@ exports.insertMedicion = functions.https.onRequest(async (req, res) => {
         // Incrementa el idMedicion para el nuevo documento
         idMedicion++;
 
+        // Parsea los valores como números
+        const idNodo = parseInt(req.query.idNodo, 10);
+        const idSensor = parseInt(req.query.idSensor, 10);
+        const valor = parseFloat(req.query.valor);
+
         const medicionData = {
           fecha,
           id_medicion: idMedicion,
-          id_nodo: req.query.idNodo,
-          id_sensor: req.query.idSensor,
-          valor: req.query.valor,
+          id_nodo: idNodo,
+          id_sensor: idSensor,
+          valor: valor,
         };
 
         // eslint-disable-next-line max-len

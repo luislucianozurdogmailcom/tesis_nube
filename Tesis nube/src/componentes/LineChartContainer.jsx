@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react'
 import LineChartComponent from './LineChartComponent'
 import PieChartComponent from './PieChartComponent'
 import axios from 'axios'
+import BarChartComponent from './BarChartComponents'
 
 const LineChartContainer = () => {
 
@@ -45,6 +46,9 @@ const LineChartContainer = () => {
         </div>
         <div className='p-4 col-span-2'>
           <PieChartComponent />
+        </div>
+        <div className='p-4 col-span-2'>
+          <BarChartComponent data={data} dataKeys={dataKeys}/>
         </div>
     </div>
   )

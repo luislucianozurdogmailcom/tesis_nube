@@ -40,7 +40,7 @@ const LineChartComponent = ({data, dataKeys, title}) => {
                 <stop offset="100%" stopColor={hexEnd} />
               </linearGradient>
             </defs>
-            <XAxis dataKey={dataKeys[0]} />
+            <XAxis dataKey={dataKeys[0]}/>
             <YAxis dataKey={dataKeys[1]}/>
             <CartesianGrid strokeDasharray="3 3" />
             <Tooltip />
