@@ -88,3 +88,20 @@
   .sidebar.slide-out-right {
     animation: slideOutRight 0.3s ease-in-out;
   }
+
+  @keyframes animate-gradient {
+    0% {
+      background-position: 100% 0%;
+    }
+    100% {
+      background-position: -100% 0%;
+    }
+  }
+  
+  .bg-gradient-to-r-mine {
+    background-size: 200% 100%;
+    background-image: linear-gradient(90deg, rgb(114, 37, 222), rgb(3, 81, 237));
+    animation: animate-gradient 2s ease-in-out infinite;
+  }
+  
+  

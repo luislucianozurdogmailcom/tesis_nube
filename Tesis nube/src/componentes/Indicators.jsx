@@ -15,8 +15,9 @@ import { nodeSelected, changeNode } from "../reducers/nodeSelected"; // Asegúra
 import { initializeApp } from "firebase/app";
 import { getAnalytics } from "firebase/analytics";
 import { getFirestore, collection, getDocs, query, doc, getDoc, aggregate } from 'firebase/firestore/lite';
+import GradientCircle from './GradientCircle'
 
-const Indicators = () => {
+const Indicators = ({titulo_pagina}) => {
 
     // Mediciones
     const [medicionesCount, setMedicionesCount] = useState(0);
@@ -88,13 +89,6 @@ const Indicators = () => {
       fetchDataNominal('id_nodo','nodos',setNodosList);        // Llamar a la función asincrónica 
     },[]);
 
-  // Opciones para el dropdown
-  const options = [
-    '1',
-    '2',
-    '3',
-    '4',
-  ];
 
   // Manejar cambios en la selección y enviar automáticamente el formulario
   const handleOptionChange = (event) => {
@@ -103,9 +97,9 @@ const Indicators = () => {
 
   return (
         <div className='grid lg:grid-cols-4 grid-cols-2 m-4'>
-            <div className='lg:col-span-2 col-span-2 flex flex-row justify-between'>
-                <div className='text-5xl p-4 mb-4 font-extralight rounded-3xl '>
-                    ¡Bienvenido <span className='bg-gradient-to-r from-blue-500 to-purple-500 text-transparent bg-clip-text font-normal'> Usuario </span>!
+            <div className='lg:col-span-2 col-span-2 flex flex-row justify-center'>
+                <div className='text-5xl p-4 mb-4 font-extralight rounded-3xl'>
+                    <span className='bg-gradient-to-r from-blue-500 to-purple-500 text-transparent bg-clip-text font-normal'> {titulo_pagina} </span>
                 </div>
             </div>
             <div className='col-span-2 w-full font-light flex flex-row justify-center bg-white rounded-xl p-4 m-4 px-8 items-center'>
@@ -118,7 +112,7 @@ const Indicators = () => {
                         value={nodoRedux}
                         onChange={handleOptionChange}
                       >
-                        <option value="">--</option>
+                        <option value={nodoRedux}>--</option>
                         {nodosList.map((option, index) => (
                           <option key={index} value={option.id_nodo}>
                             {option}
@@ -127,8 +121,9 @@ const Indicators = () => {
                       </select>
                     </div>
                   </form>
+                  
+                  <div className='px-8 numero-animado'><GradientCircle texto={nodoRedux}/></div>
                 </div>
-
             <div className='p-4'>
             <CardIndicator 
                     icon={faHashtag} 

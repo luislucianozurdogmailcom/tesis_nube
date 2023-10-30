@@ -24,12 +24,12 @@ const Navbar = () => {
         <h1 className="text-white text-xl font-bold">Proyecto UNGS</h1>
       </div>
       <ul className="py-4 flex-1">
-        <li className="py-4 pl-6 hover:bg-white hover:text-slate-700"><FontAwesomeIcon icon={faHouse}></FontAwesomeIcon> &nbsp;  Home </li>
-        <li className="py-4 pl-6 hover:bg-white hover:text-slate-700"><FontAwesomeIcon icon={faChartGantt} /> &nbsp; Analytics</li>
-        <li className="py-4 pl-6 hover:bg-white hover:text-slate-700"><FontAwesomeIcon icon={faCircleNodes} /> &nbsp; Seteo</li>
+        <a href='/'><li className="py-4 pl-6 hover:bg-white hover:text-slate-700"><FontAwesomeIcon icon={faHouse}></FontAwesomeIcon> &nbsp;  Home </li></a>
+        <a href='/Analytics'><li className="py-4 pl-6 hover:bg-white hover:text-slate-700"><FontAwesomeIcon icon={faChartGantt} /> &nbsp; Analytics</li></a>
+        <a href='/Seteo'><li className="py-4 pl-6 hover:bg-white hover:text-slate-700"><FontAwesomeIcon icon={faCircleNodes} /> &nbsp; Seteo</li></a>
         <li className="py-4 pl-6 hover:bg-white hover:text-slate-700"><FontAwesomeIcon icon={faCircleQuestion} /> &nbsp; Help</li>
         <li className="py-4 pl-6 hover:bg-white hover:text-slate-700"><FontAwesomeIcon icon={faDatabase} /> &nbsp; DQuery</li>
-        <li className="py-4 pl-6 hover:bg-white hover:text-slate-700"><FontAwesomeIcon icon={faGear} /> &nbsp;Settings</li>
+        <a href='/Settings'><li className="py-4 pl-6 hover:bg-white hover:text-slate-700"><FontAwesomeIcon icon={faGear} /> &nbsp;Settings</li></a>
       </ul>
       <div className='h-32 flex flex-row justify-end'>
         <div className='h-14 w-10 bg-white rounded-l-3xl pl-2 text-slate-700 text-2xl flex flex-row items-center justify-center'>

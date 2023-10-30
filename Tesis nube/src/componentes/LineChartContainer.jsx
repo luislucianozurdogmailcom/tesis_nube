@@ -45,10 +45,10 @@ const LineChartContainer = () => {
             <LineChartComponent title={'Titulo 2'} data={data2} dataKeys={dataKeys}/>
         </div>
         <div className='p-4 col-span-2'>
-          <PieChartComponent />
+          <PieChartComponent title={'Titulo 3'} data={data} dataKeys={dataKeys} />
         </div>
         <div className='p-4 col-span-2'>
-          <BarChartComponent data={data} dataKeys={dataKeys}/>
+          <BarChartComponent title={'Titulo 4'} data={data} dataKeys={dataKeys}/>
         </div>
     </div>
   )
