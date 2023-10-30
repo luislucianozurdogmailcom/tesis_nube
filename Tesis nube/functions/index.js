@@ -91,19 +91,20 @@ exports.getValues = functions.https.onRequest(async (req, res) => {
 
       // eslint-disable-next-line max-len
       // Verifica si se proporcionan los parámetros "page" y "pageSize" para paginación
-      const page = req.query.page ? parseInt(req.query.page) : 1;
+      // const page = req.query.page ? parseInt(req.query.page) : 1;
       const pageSize = req.query.pageSize ? parseInt(req.query.pageSize) : 10;
 
       // Calcula el índice del primer documento de la página actual
-      const startIndex = (page - 1) * pageSize;
+      // const startIndex = (page - 1) * pageSize;
 
       // eslint-disable-next-line max-len
       const medicionesRef = db.collection(req.query.esquema);
 
       // Consulta los documentos usando el índice calculado
       const medicionesSnapshot = await medicionesRef
-          .orderBy(req.query.campo_1)
-          .startAt(startIndex)
+          .orderBy(req.query.campo_1, "desc")
+          // eslint-disable-next-line max-len
+          .startAfter(new Date(2024, 10, 30, 6, 54, 0)) // for testing Date(year, date, month, hh, mm, ss)
           .limit(pageSize)
           .get();
 
