@@ -13,8 +13,8 @@ function App() {
     <BrowserRouter>
 
       <Routes>
-          <Route path="/Analytics" Component={Analytics}></Route>
           <Route path="/" Component={Home} ></Route>
+          <Route path="/Analytics" Component={Analytics}></Route>
           <Route path="/Seteo" Component={Seteo}></Route>
           <Route path="/Settings" Component={Settings} ></Route>
       </Routes>

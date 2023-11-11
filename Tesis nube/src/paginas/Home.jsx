@@ -20,7 +20,7 @@ const Home = () => {
       <div className={isOpen ? 'w-10/12 h-full bg-gray-200' :'w-12/12 h-full bg-gray-200'}>
         <Indicators titulo_pagina={'Home'}/>
         <div className='w-full items-center justify-center flex w-screen'></div>
-        <div className='bg-white flex flex-col justify-center items-center text-3xl text-gray-700 p-6 mx-8 rounded-xl'>
+        <div className={`bg-white ${isOpen ? '' : 'ml-20'} flex flex-col justify-center items-center text-3xl text-gray-700 p-6 mx-8 rounded-xl`}>
           ¡Bienvenido/a!
           <span className='text-lg font-light mt-4'>Esta es la página de trackeo de nodos de la microred montada en la Universidad 
           Nacional de General Sarmiento</span>
@@ -28,6 +28,7 @@ const Home = () => {
           <span className='text-lg font-light mt-4'>El propósito es poder enviar y recibir información de la placa desarrollada en el marco del proyecto de microredes
           por tanto esta página es una interface de comunicación con la placa</span>
         </div>
+        {<div className='bg-gray-200 w-full h-screen'></div>}
       </div>
     </div>
   )
