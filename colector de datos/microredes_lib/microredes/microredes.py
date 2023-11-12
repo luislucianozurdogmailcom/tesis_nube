@@ -1,6 +1,6 @@
-import microredes.connection as conn
-import microredes.calc_helper as cal
-from microredes.constants import master_address, functions, variables
+import microredes_lib.microredes.connection as conn
+import microredes_lib.microredes.calc_helper as cal
+from microredes_lib.microredes.constants import master_address, functions, variables
 from datetime import datetime
 import uuid
 
@@ -28,6 +28,9 @@ class Microredes(object):
         data_low = arr[2:6][::-1]
         data_high = arr[6:10][::-1]
         envio = data_low + data_high
+        
+        # Nos aseguramos que todos los caracteres sean numeros
+        envio = [int(i) for i in envio]
 
         listener = self.conn.send_cmd(arbitration_id, envio, interval)
 
@@ -117,9 +120,10 @@ class Microredes(object):
         status_code = list(functions.keys())[function_index]
         timestamp = datetime.fromtimestamp(msg.timestamp).isoformat(" ")
         variable = msg.data[2]
-
+        
         calc_helper = cal.CalcHelper()
         valor, unidad = calc_helper.calc_value(variable, lst_data)
+        # print(variable, lst_data)
         return {'origen': origen,
                 'status': status_code,
                 'timestamp': timestamp,

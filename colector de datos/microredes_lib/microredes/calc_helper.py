@@ -29,13 +29,14 @@ class CalcHelper(object):
         return final_value, unit
 
     def analog(self, value_low, value_high):
-        print(hex(value_high),' ',hex(value_low));
-        final_value = (((value_high * 255) + value_low) / 4096) * 9.9
+        
+        final_value = (((value_high * 255) + value_low) / 4096) * 10 ;# 9.9
         unit = 'v'
+
         return final_value, unit
 
     def get_data_parts(self, data):
-        return data[2:3], data[3:4] # modificación por bandera
+        return data[4:5], data[3:4] # modificación por bandera
         # return data[2:4], data[0:]
         # return data[0:4], data[4:8]
 
@@ -57,7 +58,7 @@ class CalcHelper(object):
         valor_final = None
         unidad = None
         data_low, data_high = self.get_data_parts(msg_data)
-        print(data_low, '  ', data_high)
+
         value_low, value_high = self.get_value_parts(msg_data)
         sign = ''
 
