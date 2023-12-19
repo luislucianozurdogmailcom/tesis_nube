@@ -18,7 +18,7 @@ const PieChartComponent = ({ data, dataKeys, title }) => {
           <h2 className="text-2xl text-center bg-gradient-to-r from-blue-500 to-purple-500 text-transparent bg-clip-text font-light mb-4">
               {title}
           </h2>
-          <div style={{ width: '100%', height: 380 }} className='bg-white rounded-xl pb-2 pt-4 pr-8 pl-2'>
+          <div style={{ width: '100%', height: 380 }} className='bg-white flex justify-center rounded-xl pb-2 pt-4 pr-8 pl-2'>
                 <PieChart width={400} height={400}>
               <Pie
                 data={data}
@@ -26,7 +26,7 @@ const PieChartComponent = ({ data, dataKeys, title }) => {
                 nameKey="fecha"
                 cx="50%"
                 cy="50%"
-                outerRadius={100}
+                outerRadius={150}
                 fill="#8884d8"
                 label
               >
@@ -35,7 +35,7 @@ const PieChartComponent = ({ data, dataKeys, title }) => {
                 ))}
               </Pie>
               <Tooltip />
-              <Legend />
+              {/*<Legend />*/}
             </PieChart>
           </div>
     </div>

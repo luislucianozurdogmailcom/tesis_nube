@@ -9,6 +9,7 @@ const LineChartContainer = () => {
 
   const [data, setData]         = useState([]);
   const [data2, setData2]       = useState([]);
+  const [data3, setData3]       = useState([]);
   const [dataKeys, setDataKeys] = useState(['fecha','valor']);
 
   useEffect(() => {
@@ -22,7 +23,8 @@ const LineChartContainer = () => {
         const response = await axios.get(url);
         
         if (response.status === 200) {
-          setMethod(response.data);
+          // Invertimos el órden para dejar el ultimo dato a la derecha del gráfico
+          setMethod(response.data.reverse());
           setDataKeys(Object.keys(data[0]))
         } else {
           // Hacer algo en caso de error
@@ -32,8 +34,9 @@ const LineChartContainer = () => {
       }
     };
     
-    fetchData('fecha','valor','mediciones','1','10',setData);
-    fetchData('fecha','valor','mediciones','1','20',setData2);
+    fetchData('fecha','valor','mediciones','1','4',setData);
+    fetchData('fecha','valor','mediciones','1','4',setData2);
+    fetchData('fecha','valor','mediciones','1','2',setData3);
   },[]);
 
   return (
@@ -45,7 +48,7 @@ const LineChartContainer = () => {
             <LineChartComponent title={'Titulo 2'} data={data2} dataKeys={dataKeys}/>
         </div>
         <div className='p-4 col-span-2'>
-          <PieChartComponent title={'Titulo 3'} data={data} dataKeys={dataKeys} />
+          <PieChartComponent title={'Titulo 3'} data={data3} dataKeys={dataKeys} />
         </div>
         <div className='p-4 col-span-2'>
           <BarChartComponent title={'Titulo 4'} data={data} dataKeys={dataKeys}/>
