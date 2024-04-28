@@ -21,8 +21,8 @@ const Indicators = ({titulo_pagina}) => {
 
     // Mediciones
     const [medicionesCount, setMedicionesCount] = useState(0);
-    const [medicionesList, setMedicionesList]   = useState([]);
-    const [medicionesAvg, setMedicionesAvg]     = useState(0); // Nuevo estado para el promedio
+    //const [medicionesList, setMedicionesList]   = useState([]);
+    //const [medicionesAvg, setMedicionesAvg]     = useState(0); // Nuevo estado para el promedio
     
     // Redux
     const dispatch  = useDispatch();
@@ -37,44 +37,21 @@ const Indicators = ({titulo_pagina}) => {
     // intentamos enviar la petición
     useEffect(() => {
 
-      // Traemos datos de avg
-      const fetchDataAvg = async (campo,funcion) => { // Marcar la función como asincrónica
-        try {
-          const response = await axios.post(`https://us-central1-paneles-solares-ungs.cloudfunctions.net/calculateAverage?campo=${campo}`);
-          
-          if (response.status === 200) {
-            funcion(response.data.average);
-          } else {
-            // Hacer algo en caso de error
-          }
-        } catch (error) {
-          console.error('An error occurred while sending the request:', error);
-        }
-      };
-      
-      // Contamos cantidad de mediciones
-      const fetchDataCount = async (campo,esquema,funcion) => {
-        try {
-          const response = await axios.post(`https://us-central1-paneles-solares-ungs.cloudfunctions.net/calculateCount?campo=${campo}&esquema=${esquema}`);
-          
-          if (response.status === 200) {
-            funcion(response.data.totalCount);
-          } else {
-            // Hacer algo en caso de error
-          }
-        } catch (error) {
-          console.error('An error occurred while sending the request:', error);
-        }
-      };
-
       // función que trae los datos de los nodos disponibles en la DB
-      const fetchDataNominal = async (campo,esquema,funcion) => {
+      const fetchDataNominal = async (query) => {
         try {
-          const response = await axios.get(`https://us-central1-paneles-solares-ungs.cloudfunctions.net/getValues?campo_1=${campo}&esquema=${esquema}&page=1&pageSize=20`);
+          const response = await fetch(`https://62bwhyuxp6.execute-api.us-east-2.amazonaws.com/prod/lanzarQuery?query=${query}`, {
+            method: 'GET',
+            mode: 'no-cors',
+            headers: {
+              'Content-Type': 'application/json', // Especifica el tipo de contenido en el header
+              'Authorization': 'Bearer your-token-here' // Aquí puedes agregar cualquier otro encabezado necesario
+            },
+          });
 
           if (response.status === 200) {
-            const idNodos = response.data.map(item => item.id_nodo);
-            funcion(idNodos);
+            const idNodos = response.data.map(item => item[0][0]);
+              console.log(idNodos);
           } else {
             // Hacer algo en caso de error
           }
@@ -83,10 +60,8 @@ const Indicators = ({titulo_pagina}) => {
         }
       };
 
-
-      fetchDataCount('valor','mediciones',setMedicionesCount); // Llamar a la función asincrónica
-      fetchDataCount('id_nodo','nodos',setNodosCount);         // Llamar a la función asincrónica
-      fetchDataNominal('id_nodo','nodos',setNodosList);        // Llamar a la función asincrónica 
+      // Llamamos a la API
+      fetchDataNominal('select count(*) from mediciones');
     },[]);
 
 
@@ -156,7 +131,11 @@ const Indicators = ({titulo_pagina}) => {
                     improve={12}
                     />
             </div>
+            <div>
+              {}
+            </div>
         </div>
+
 
   );
 }
