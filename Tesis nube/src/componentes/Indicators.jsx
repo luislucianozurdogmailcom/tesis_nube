@@ -72,33 +72,6 @@ const Indicators = ({titulo_pagina}) => {
 
   return (
         <div className='grid lg:grid-cols-4 grid-cols-2 m-4'>
-            <div className='lg:col-span-2 col-span-2 flex flex-row justify-center'>
-                <div className='text-5xl p-4 mb-4 font-extralight rounded-3xl'>
-                    <span className='bg-gradient-to-r from-blue-500 to-purple-500 text-transparent bg-clip-text font-normal'> {titulo_pagina} </span>
-                </div>
-            </div>
-            <div className='col-span-2 w-full font-light flex flex-row justify-center bg-white rounded-xl p-4 m-4 px-8 items-center'>
-                  <form className='text-center'>
-                    <div>
-                      <label htmlFor="dropdown">Nodo seleccionado: </label>
-                      <select
-                        id="dropdown"
-                        name="dropdown"
-                        value={nodoRedux}
-                        onChange={handleOptionChange}
-                      >
-                        <option value={nodoRedux}>--</option>
-                        {nodosList.map((option, index) => (
-                          <option key={index} value={option.id_nodo}>
-                            {option}
-                          </option>
-                        ))}
-                      </select>
-                    </div>
-                  </form>
-                  
-                  <div className='px-8 numero-animado'><GradientCircle texto={nodoRedux}/></div>
-                </div>
             <div className='p-4'>
             <CardIndicator 
                     icon={faHashtag} 
