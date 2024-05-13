@@ -7,7 +7,7 @@ import axios from 'axios';
 
 // Redux
 import { useDispatch, useSelector } from "react-redux";
-import { nodeSelected, changeNode } from "../reducers/nodeSelected"; // Asegúrate de importar el slice correcto
+import { nodeSelected, changeNode } from "../../reducers/nodeSelected"; // Asegúrate de importar el slice correcto
 
 
 // Biblios de firebase
@@ -15,7 +15,7 @@ import { nodeSelected, changeNode } from "../reducers/nodeSelected"; // Asegúra
 import { initializeApp } from "firebase/app";
 import { getAnalytics } from "firebase/analytics";
 import { getFirestore, collection, getDocs, query, doc, getDoc, aggregate } from 'firebase/firestore/lite';
-import GradientCircle from './GradientCircle'
+import GradientCircle from '../GradientCircle'
 
 const Indicators = ({ titulo_pagina }) => {
 
