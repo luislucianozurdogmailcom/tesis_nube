@@ -1,5 +1,5 @@
 import React from 'react';
-import ChartContainer from '../ChartComponents';
+import ChartContainer from '../ChartElements';
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer, Label } from 'recharts';
 
 const BarChartComponent = ({ data, dataKeys, title }) => {

@@ -1,4 +1,4 @@
-import React,{useState, useEffect} from 'react'
+import React, { useState, useEffect } from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCoffee, faHashtag, faCircleNodes } from '@fortawesome/free-solid-svg-icons'
 import CardIndicator from './CardIndicator'
@@ -17,52 +17,52 @@ import { getAnalytics } from "firebase/analytics";
 import { getFirestore, collection, getDocs, query, doc, getDoc, aggregate } from 'firebase/firestore/lite';
 import GradientCircle from './GradientCircle'
 
-const Indicators = ({titulo_pagina}) => {
+const Indicators = ({ titulo_pagina }) => {
 
-    // Mediciones
-    const [medicionesCount, setMedicionesCount] = useState(0);
-    //const [medicionesList, setMedicionesList]   = useState([]);
-    //const [medicionesAvg, setMedicionesAvg]     = useState(0); // Nuevo estado para el promedio
-    
-    // Redux
-    const dispatch  = useDispatch();
-    const nodoRedux = useSelector((state) => state.nodeSelected.node);
+  // Mediciones
+  const [medicionesCount, setMedicionesCount] = useState(0);
+  //const [medicionesList, setMedicionesList]   = useState([]);
+  //const [medicionesAvg, setMedicionesAvg]     = useState(0); // Nuevo estado para el promedio
+
+  // Redux
+  const dispatch = useDispatch();
+  const nodoRedux = useSelector((state) => state.nodeSelected.node);
 
 
-    // Nodos
-    const [nodosList, setNodosList]   = useState([]);
-    const [nodosCount, setNodosCount] = useState(0);
+  // Nodos
+  const [nodosList, setNodosList] = useState([]);
+  const [nodosCount, setNodosCount] = useState(0);
 
-    // Obtención de datos agregados
-    // intentamos enviar la petición
-    useEffect(() => {
+  // Obtención de datos agregados
+  // intentamos enviar la petición
+  useEffect(() => {
 
-      // función que trae los datos de los nodos disponibles en la DB
-      const fetchDataNominal = async (query) => {
-        try {
-          const response = await fetch(`https://62bwhyuxp6.execute-api.us-east-2.amazonaws.com/prod/lanzarQuery?query=${query}`, {
-            method: 'GET',
-            mode: 'no-cors',
-            headers: {
-              'Content-Type': 'application/json', // Especifica el tipo de contenido en el header
-              'Authorization': 'Bearer your-token-here' // Aquí puedes agregar cualquier otro encabezado necesario
-            },
-          });
+    // función que trae los datos de los nodos disponibles en la DB
+    const fetchDataNominal = async (query) => {
+      try {
+        const response = await fetch(`https://62bwhyuxp6.execute-api.us-east-2.amazonaws.com/prod/lanzarQuery?query=${query}`, {
+          method: 'GET',
+          mode: 'no-cors',
+          headers: {
+            'Content-Type': 'application/json', // Especifica el tipo de contenido en el header
+            'Authorization': 'Bearer your-token-here' // Aquí puedes agregar cualquier otro encabezado necesario
+          },
+        });
 
-          if (response.status === 200) {
-            const idNodos = response.data.map(item => item[0][0]);
-              console.log(idNodos);
-          } else {
-            // Hacer algo en caso de error
-          }
-        } catch (error) {
-          console.error('An error occurred while sending the request:', error);
+        if (response.status === 200) {
+          const idNodos = response.data.map(item => item[0][0]);
+          console.log(idNodos);
+        } else {
+          // Hacer algo en caso de error
         }
-      };
+      } catch (error) {
+        console.error('An error occurred while sending the request:', error);
+      }
+    };
 
-      // Llamamos a la API
-      fetchDataNominal('select count(*) from mediciones');
-    },[]);
+    // Llamamos a la API
+    fetchDataNominal('select count(*) from mediciones');
+  }, []);
 
 
   // Manejar cambios en la selección y enviar automáticamente el formulario
@@ -71,45 +71,32 @@ const Indicators = ({titulo_pagina}) => {
   };
 
   return (
-        <div className='grid lg:grid-cols-4 grid-cols-2 m-4'>
-            <div className='p-4'>
-            <CardIndicator 
-                    icon={faHashtag} 
-                    value={medicionesCount} 
-                    indicator={'Cantidad total de mediciones realizadas'}
-                    improve={medicionesCount}
-                    />
-            </div>
-            <div className='p-4'>
-            <CardIndicator 
-                    icon={faCircleNodes} 
-                    value={nodosCount} 
-                    indicator={'Nodos funcionales'}
-                    improve={nodosCount}
-                    />
-            </div>
-            <div className='p-4'>
-            <CardIndicator 
-                    icon={faBolt} 
-                    value={"12,457A"} 
-                    indicator={'Corriente total medida en Amperios'}
-                    improve={36}
-                    />
-            </div>
-            <div className='p-4'>
-                <CardIndicator 
-                    icon={faBolt} 
-                    value={"12,457A"} 
-                    indicator={'Corriente total medida en Amperios'}
-                    improve={12}
-                    />
-            </div>
-            <div>
-              {}
-            </div>
-        </div>
-
-
+    <div className='grid lg:grid-cols-4 grid-cols-2 gap-10 mb-10'>
+      <CardIndicator
+        icon={faHashtag}
+        value={medicionesCount}
+        indicator={'Cantidad total de mediciones realizadas'}
+        improve={medicionesCount}
+      />
+      <CardIndicator
+        icon={faCircleNodes}
+        value={nodosCount}
+        indicator={'Nodos funcionales'}
+        improve={nodosCount}
+      />
+      <CardIndicator
+        icon={faBolt}
+        value={"12,457A"}
+        indicator={'Corriente total medida en Amperios'}
+        improve={36}
+      />
+      <CardIndicator
+        icon={faBolt}
+        value={"12,457A"}
+        indicator={'Corriente total medida en Amperios'}
+        improve={12}
+      /> 
+    </div>
   );
 }
 

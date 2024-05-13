@@ -4,7 +4,7 @@ import { faArrowTrendUp, faArrowTrendDown} from '@fortawesome/free-solid-svg-ico
 
 const CardIndicator = (props) => {
   return (
-    <div className='bg-indigo-900 flex flex-col items-start rounded-xl h-full p-4 items-center hover-shadow'>
+    <div className='flex flex-col items-start rounded-2xl h-full p-4 items-center hover-shadow' style={{background: '#2D305B'}}>
         <FontAwesomeIcon icon={props.icon} className='text-3xl mx-auto text-yellow-500'/>
         <span className='text-violet-200 font-bold text-xl mt-3'>{props.value}</span>
         <span className='text-white font-light text-sm mt-1 text-center'>{props.indicator}</span>
