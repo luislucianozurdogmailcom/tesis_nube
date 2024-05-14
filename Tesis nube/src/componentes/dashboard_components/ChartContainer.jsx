@@ -49,9 +49,9 @@ const ChartsContainer = () => {
 
 
   return (
-    <div className="grid lg:grid-cols-10 grid-cols-1 gap-10">
+    <div className="grid grid-cols-1 lg:grid-cols-10 gap-10">
       {dataProof.map((chart, index) => (
-        <div key={index} className={`w-full lg:${index === 0 && dataProof.length % 2 !== 0 ? 'col-span-10' : 'col-span-5 lg:col-span-5'} ${index !== 0 && 'lg:col-span-5 sm:col-span-10'}`}>
+        <div key={index} className={`w-full lg:${index === 0 && dataProof.length % 2 !== 0 ? 'col-span-10 sm:col-span-10' : 'col-span-5'} ${index !== 0 && 'sm:col-span-10'}`}>
           <LineChartComponent data={chart.data} dataKeys={dataKeys} title={chart.title} />
         </div>
       ))}

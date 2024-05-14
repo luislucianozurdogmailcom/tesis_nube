@@ -42,7 +42,7 @@ const PieChartComponent = ({ data, dataKeys, title }) => {
               <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
             ))}
           </Pie>
-          <Tooltip itemStyle={{ color: '#ffffff' }} contentStyle={{ backgroundColor: 'rgba(0, 0, 0, 0.8)' }} />
+          <Tooltip itemStyle={{ color: '#ffffff' }} contentStyle={{ backgroundColor: 'rgba(0, 0, 0, 0.8)', color: '#ffffff', borderRadius: 12}} />
         </PieChart>
       </ChartContainer>
     </>

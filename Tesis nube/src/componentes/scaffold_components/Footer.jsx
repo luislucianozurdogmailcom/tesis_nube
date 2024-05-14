@@ -37,7 +37,7 @@ const ContactButtons = () => {
 const FooterLogo = () => {
     return (
         <div className='flex-1 text-gray-200 flex justify-center'> 
-            <img src={Logo} alt='Logo' className='w-10 h-10 lg:w-12 lg:h-12 mr-3 hidden lg:block'/> 
+            <img src={Logo} alt='Logo' className='w-10 h-10 lg:w-12 lg:h-12 mr-3 hidden md:block'/> 
             <div className='mx-2 text-left hidden lg:block'> 
                 Universidad Nacional <br></br>
                 General Sarmiento
@@ -48,7 +48,7 @@ const FooterLogo = () => {
 
 const Footer = () => {
     return (
-        <div className='rounded-t-2xl p-6 flex mt-10' style={{ backgroundColor: '#2D305B' }}>
+        <div className='bg-[#2D305B] rounded-t-2xl p-6 flex'>
             <Copyright />
             <FooterLogo />
             <ContactButtons />

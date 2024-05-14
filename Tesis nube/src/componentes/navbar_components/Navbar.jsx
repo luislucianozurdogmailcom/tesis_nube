@@ -3,18 +3,18 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faHome, faChartBar, faAngleLeft, faAngleRight, faWrench, faDatabase, faGear, faCircleInfo } from '@fortawesome/free-solid-svg-icons';
 import NavBarButton from './NavBarButton';
 
-import Logo from '../../assets/Logo.png'; 
+import Logo from '../../assets/Logo.png';
 
 const UngsLogo = ({ isExpanded }) => {
-    return (
-        <div className='flex items-center justify-center flex-row'>
-            <img src={Logo} className='my-10' alt='Logo' style={{ width: 30, height: 30 }} />
-            <div className={`text-sm text-left text-white pl-3  ${isExpanded ? 'block' : 'hidden'}`}>
-                Universidad Nacional <br /> General Sarmiento
-            </div>
-        </div>
-    );
-} 
+  return (
+    <div className='flex items-center justify-center flex-row'>
+      <img src={Logo} className='my-10' alt='Logo' style={{ width: 30, height: 30 }} />
+      <div className={`text-sm text-left text-white pl-3  ${isExpanded ? 'block' : 'hidden'}`}>
+        Universidad Nacional <br /> General Sarmiento
+      </div>
+    </div>
+  );
+}
 
 const NavBar = ({ isExpanded, toggleExpanded }) => {
   const topButtons = [
@@ -30,35 +30,39 @@ const NavBar = ({ isExpanded, toggleExpanded }) => {
   ];
 
   return (
-    <div className='flex flex-col rounded-r-2xl' style={{ backgroundColor: '#2D305B' }}>
-      <div className="sticky top-0" style={{ width: isExpanded ? 200 : 120 }}>
+    <div className='sticky top-0 h-screen bg-[#2D305B] rounded-r-2xl'>
+      <div className='justify-between h-full flex flex-col ' style={{ width: isExpanded ? 200 : 120 }}>
         <UngsLogo isExpanded={isExpanded} />
-        {topButtons.map((button, index) => (
-          <NavBarButton
-            key={index}
-            isExpanded={isExpanded}
-            to={button.to}
-            label={button.label}
-            icon={button.icon}
-            isSelected={window.location.pathname === button.to}
-          />
-        ))}
-        <div className='sm:h-72' />
-        {bottomButtons.map((button, index) => (
-          <NavBarButton
-            key={index}
-            isExpanded={isExpanded}
-            to={button.to}
-            label={button.label}
-            icon={button.icon}
-            isSelected={window.location.pathname === button.to}
-          />
-        ))}
+        <div>
+          {topButtons.map((button, index) => (
+            <NavBarButton
+              key={index}
+              isExpanded={isExpanded}
+              to={button.to}
+              label={button.label}
+              icon={button.icon}
+              isSelected={window.location.pathname === button.to}
+            />
+          ))}
+        </div>
+        <div className='h-72' /> 
+        <div>
+          {bottomButtons.map((button, index) => (
+            <NavBarButton
+              key={index}
+              isExpanded={isExpanded}
+              to={button.to}
+              label={button.label}
+              icon={button.icon}
+              isSelected={window.location.pathname === button.to}
+            />
+          ))}
+        </div>
         <div className='flex items-center justify-center rounded-l-3xl'>
           <button className="text-white text-white p-4 items-center " onClick={toggleExpanded}>
             {isExpanded ? <FontAwesomeIcon icon={faAngleLeft} /> : <FontAwesomeIcon icon={faAngleRight} />}
           </button>
-        </div> 
+        </div>
       </div>
     </div>
   );

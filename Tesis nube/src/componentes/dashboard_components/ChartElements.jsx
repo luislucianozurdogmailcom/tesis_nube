@@ -58,7 +58,7 @@ const ChartContainer = ({ children, title, legend, description }) => {
     }, []);
 
     return (
-        <div className='px-10 py-8 col-span-2 rounded-2xl' style={{ backgroundColor: '#2D305B' }}>
+        <div className='bg-[#2D305B] px-10 py-8 col-span-2 rounded-2xl'>
             <ChartTitle title={title} description={description}/>
             <div className="w-full p-2 rounded-2x1 rounded-lg">
                 <div className="w-full h-54 mb-5" ref={chartContainerRef}>

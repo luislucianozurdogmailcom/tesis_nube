@@ -60,7 +60,7 @@ const LineChartComponent = ({ data, dataKeys, title }) => {
               className={`hidden md:block text-white font-semibold`} 
             />
           </YAxis> 
-          <Tooltip contentStyle={{ backgroundColor: 'rgba(0, 0, 0, 0.8)', color: '#ffffff' }} />
+          <Tooltip contentStyle={{ backgroundColor: 'rgba(0, 0, 0, 0.8)', color: '#ffffff', borderRadius: 12}}/>
           <Area
             type="monotone"
             dataKey={dataKeys[1]}

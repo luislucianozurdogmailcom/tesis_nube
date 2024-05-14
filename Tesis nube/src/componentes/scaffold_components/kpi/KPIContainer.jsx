@@ -77,7 +77,7 @@ const KPIContainer = ({ fixKPI }) => {
   ];
 
   return (
-    <div className='grid lg:grid-cols-4 grid-cols-2 gap-10 mb-10'>
+    <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10'>
       {kpis.map((kpi, index) => (
         <div key={index}>
           <KPI 

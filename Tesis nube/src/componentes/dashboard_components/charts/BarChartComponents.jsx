@@ -28,7 +28,7 @@ const BarChartComponent = ({ data, dataKeys, title }) => {
                 legend={legend}
                 description={'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua'}
             >
-                <BarChart data={data} margin={{ bottom: 15 }}> 
+                <BarChart data={data} margin={{ bottom: 15 }}>
                     <XAxis
                         dataKey="fecha"
                         stroke='#ffffff'
@@ -39,7 +39,6 @@ const BarChartComponent = ({ data, dataKeys, title }) => {
                             fill="#ffffff"
                             dy={20}
                             offset={20}
-                        /* className={`${containerWidth > 400 ? 'block' : 'hidden'} text-white font-semibold`}  */
                         />
                     </XAxis>
                     <YAxis
@@ -52,10 +51,9 @@ const BarChartComponent = ({ data, dataKeys, title }) => {
                             angle={-90}
                             dx={-20}
                             fill="#ffffff"
-                        /* className={`${containerWidth > 400 ? 'block' : 'hidden'} text-white font-semibold`} */
                         />
                     </YAxis>
-                    <Tooltip contentStyle={{ backgroundColor: 'rgba(0, 0, 0, 0.8)', color: '#ffffff' }} />
+                    <Tooltip contentStyle={{ backgroundColor: 'rgba(0, 0, 0, 0.8)', color: '#ffffff', borderRadius: 12 }} />
                     <Bar dataKey="valor" fill="#8884d8" />
                 </BarChart>
             </ChartContainer>

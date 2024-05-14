@@ -7,7 +7,7 @@ import Scaffold from '../componentes/scaffold_components/Scaffold';
 
 const WelcomeBox = () => {
   return (
-    <div className='justify-center items-center text-xl text-white p-10 rounded-2xl' style={{ backgroundColor: '#2D305B' }}>
+    <div className='bg-[#2D305B] justify-center items-center text-xl text-white p-10 rounded-2xl'>
       Esta web permite rastrear los nodos de la microrred instalada en la Universidad Nacional de General Sarmiento. Permite facilitar el envío y recepción de información con la placa desarrollada para el proyecto de microrredes, sirviendo como interfaz de comunicación.
     </div>
   );
@@ -15,11 +15,11 @@ const WelcomeBox = () => {
 
 const InformationBox = ({ title, content }) => {
   return (
-    <div className='flex flex-col text-white text-left rounded-2xl p-6' style={{ backgroundColor: '#2D305B' }}>
+    <div className='bg-[#2D305B] flex flex-col text-white text-left rounded-2xl p-6'>
       <span className='text-white font-bold text-2xl'>{title}</span>
       <div className='text-white mt-6 pl-4'>{content}</div>
       <div className='flex flex-col mt-auto items-end'>
-        <button className='mt-2 py-2 px-5 rounded-xl' style={{ backgroundColor: '#202344' }}>Más info</button>
+        <button className='bg-[#202344] mt-2 py-2 px-5 rounded-xl'>Más info</button>
       </div>
     </div>
   );
