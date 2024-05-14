@@ -1,8 +1,8 @@
 import React from 'react'
 import Navbar from '../componentes/Navbar'
-import Indicators from '../componentes/Indicators'
-import LineChartContainer from '../componentes/LineChartContainer'
-import ButtonNavBar from '../componentes/ButtonNavBar'
+import Indicators from '../componentes/Indicators' 
+import ButtonNavBar from '../componentes/ButtonNavBar' 
+import ChartsContainer from '../componentes/dashboard_components/ChartsContainer';
 
 // Redux
 import { useDispatch, useSelector } from "react-redux";
@@ -18,8 +18,8 @@ const Analytics = () => {
       <ButtonNavBar />
       <div className={isOpen ? 'hidden' : 'h-full w-12' }></div>
       <div className={isOpen ? 'w-10/12 h-full bg-gray-200' :'w-12/12 h-full bg-gray-200'}>
-        <Indicators titulo_pagina={'Analytics'}/>
-        <LineChartContainer />
+        <Indicators titulo_pagina={'Analytics'}/> 
+        <ChartsContainer/>
       </div>
     </div>
   )
