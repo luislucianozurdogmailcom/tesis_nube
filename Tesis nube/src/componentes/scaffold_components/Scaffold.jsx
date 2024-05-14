@@ -1,7 +1,7 @@
 import React from 'react';
-import {useState} from 'react'; 
+import { useState } from 'react';
 import Indicators from './Indicators';
-import NavBar from './navbar_components/Navbar';
+import NavBar from '../navbar_components/Navbar';
 
 // Redux
 import { useSelector } from "react-redux";
@@ -17,12 +17,13 @@ const Scaffold = ({ children }) => {
 
     return (
         <div className='flex w-screen' style={{ backgroundColor: '#202344' }}>
-            <NavBar isExpanded={isExpanded} toggleExpanded={toggleExpanded} />
-            {/*Body*/}
-            <div className='flex flex-col px-10 pt-10'>
+            <NavBar isExpanded={isExpanded} toggleExpanded={toggleExpanded} /> 
+            <div className='flex flex-col px-10 pt-5'>
                 <Indicators titulo_pagina={'Analytics'} />
                 {children}
-                <Footer />
+                <div className='mt-10'>
+                    <Footer />
+                </div>
             </div>
         </div>
     );

@@ -6,15 +6,17 @@ import { toggleSideBar } from "../reducers/sideBar"; // Asegúrate de importar e
 import Scaffold from '../componentes/scaffold_components/Scaffold';
 
 
-const Settings = () => {
-
+const Controllers = () => {
+  
   const isOpen = useSelector((state) => state.sideBar.isOpen); // Accede al valor isOpen desde el estado
-
+  
   return (
     <Scaffold>
 
-    </Scaffold> 
+    </Scaffold>
+
+    
   )
 }
 
-export default Settings
+export default Controllers 

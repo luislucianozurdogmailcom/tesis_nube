@@ -3,9 +3,9 @@ import { BrowserRouter, Routes } from "react-router-dom";
 import { Route } from "react-router-dom";
 //import ChatPage from './paginas/ChatPage';
 import ownStyles from './css/ownStyles.css';
-import Analytics from "./paginas/Analytics";
+import Dashboard from "./paginas/Dashboard";
 import Home from "./paginas/Home";
-import Seteo from "./paginas/Seteo";
+import Controllers from "./paginas/Controllers";
 import Settings from "./paginas/Settings";
 
 function App() {
@@ -13,8 +13,8 @@ function App() {
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/Analytics" element={<Analytics />} />
-        <Route path="/Seteo" element={<Seteo />} />
+        <Route path="/Dashboard" element={<Dashboard />} />
+        <Route path="/Controllers" element={<Controllers />} />
         <Route path="/Settings" element={<Settings />} />
       </Routes>
     </BrowserRouter>

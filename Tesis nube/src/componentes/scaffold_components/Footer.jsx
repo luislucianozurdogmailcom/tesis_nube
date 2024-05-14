@@ -1,9 +1,9 @@
 import React from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import Linkedin from '../assets/linkedin.svg'
-import Phone from '../assets/phone.svg'
-import Email from '../assets/email.svg'
-import Logo from '../assets/Logo.png'
+import Linkedin from '../../assets/linkedin.svg'
+import Phone from '../../assets/phone.svg'
+import Email from '../../assets/email.svg'
+import Logo from '../../assets/Logo.png'
 
 import { faCopyright } from '@fortawesome/free-solid-svg-icons';
 
@@ -48,7 +48,7 @@ const FooterLogo = () => {
 
 const Footer = () => {
     return (
-        <div className='rounded-t-2xl p-6 flex mt-10' style={{ backgroundColor: '#2D305B' }}>
+        <div className='rounded-t-2xl p-6 flex mt-auto' style={{ backgroundColor: '#2D305B' }}>
             <Copyright />
             <FooterLogo />
             <ContactButtons />
