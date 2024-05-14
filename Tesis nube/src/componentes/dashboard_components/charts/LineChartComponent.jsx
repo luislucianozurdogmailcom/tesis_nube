@@ -1,5 +1,5 @@
 import React from 'react';
-import ChartContainer from '../ChartComponents';
+import ChartContainer from '../ChartElements';
 import { AreaChart, XAxis, YAxis, Tooltip, Area, Label } from 'recharts';
 
 const LineChartComponent = ({ data, dataKeys, title }) => {

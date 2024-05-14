@@ -11,14 +11,12 @@ import Settings from "./paginas/Settings";
 function App() {
   return (
     <BrowserRouter>
-
       <Routes>
-          <Route path="/" Component={Home} ></Route>
-          <Route path="/Analytics" Component={Analytics}></Route>
-          <Route path="/Seteo" Component={Seteo}></Route>
-          <Route path="/Settings" Component={Settings} ></Route>
+        <Route path="/" element={<Home />} />
+        <Route path="/Analytics" element={<Analytics />} />
+        <Route path="/Seteo" element={<Seteo />} />
+        <Route path="/Settings" element={<Settings />} />
       </Routes>
-
     </BrowserRouter>
   );
 }

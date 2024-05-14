@@ -1,6 +1,6 @@
 import React from 'react';
 import { useEffect, useState } from 'react';
-import ChartContainer from '../ChartComponents';
+import ChartContainer from '../ChartElements';
 import { PieChart, Pie, Cell, Legend, Tooltip } from 'recharts';
 
 const PieChartComponent = ({ data, dataKeys, title }) => {

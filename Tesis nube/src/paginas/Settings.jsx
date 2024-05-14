@@ -1,6 +1,6 @@
 import React from 'react'
 import Indicators from '../componentes/Indicators'
-import Navbar from '../componentes/Navbar'
+/* import NavBar from '../componentes/Navbar' */
 import ButtonNavBar from '../componentes/ButtonNavBar'
 
 // Redux
@@ -14,7 +14,7 @@ const Settings = () => {
 
   return (
     <div className='flex flex-row h-full w-screen overlfow-hidden bg-gray-200'>
-    <Navbar />
+    {/* <NavBar /> */}
     <ButtonNavBar />
     <div className={isOpen ? 'hidden' : 'h-full w-12' }></div>
     <div className={isOpen ? 'w-10/12 h-full bg-gray-200' :'w-12/12 h-full bg-gray-200'}>

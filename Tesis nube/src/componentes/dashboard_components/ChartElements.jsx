@@ -4,7 +4,7 @@ import { ResponsiveContainer } from 'recharts';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCircleInfo, faCircle } from '@fortawesome/free-solid-svg-icons';
 
-const ChartTitle = ({ title }) => {
+const ChartTitle = ({ title, description }) => {
     const [isTooltipOpen, setIsTooltipOpen] = useState(false);
 
     const handleMouseEnter = () => {
@@ -22,9 +22,7 @@ const ChartTitle = ({ title }) => {
             </div>
             <h2 className="text-xl text-left text-white bg-clip-text font-medium">{title}</h2>
             {isTooltipOpen && (
-                <div className="absolute text-white py-2 px-4 rounded shadow lg:w-80 md:w-50" style={{backgroundColor: 'rgba(0, 0, 0, 0.8)'}}>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua
-                </div>
+                <div className="absolute text-white py-2 px-4 rounded-xl shadow lg:w-80 md:w-50" style={{ backgroundColor: 'rgba(0, 0, 0, 0.8)' }}>{description}</div>
             )}
         </div>
     );
@@ -45,14 +43,6 @@ const ChartLegend = ({ items }) => {
     );
 }
 
-const ChartDescription = ({ description }) => {
-    return (
-        <div className="hidden md:block flex items-center justify-center pt-4 pl-16">
-            <p className="text-white text-sm">{description}</p>
-        </div>
-    );
-}
-
 const ChartContainer = ({ children, title, legend, description }) => {
     const chartContainerRef = useRef(null);
     const [containerWidth, setContainerWidth] = useState(0);
@@ -68,15 +58,14 @@ const ChartContainer = ({ children, title, legend, description }) => {
     }, []);
 
     return (
-        <div className='px-10 py-8 col-span-2 rounded-3xl' style={{ backgroundColor: '#2D305B' }}>
-            <ChartTitle title={title} />
+        <div className='px-10 py-8 col-span-2 rounded-2xl' style={{ backgroundColor: '#2D305B' }}>
+            <ChartTitle title={title} description={description}/>
             <div className="w-full p-2 rounded-2x1 rounded-lg">
                 <div className="w-full h-54 mb-5" ref={chartContainerRef}>
                     <div className='flex'>
                         <ResponsiveContainer width="100%" height={260}>{children}</ResponsiveContainer>
-                        <ChartLegend items={legend}/>
+                        <ChartLegend items={legend} />
                     </div>
-                    <ChartDescription description={description}/>
                 </div>
             </div>
         </div>
