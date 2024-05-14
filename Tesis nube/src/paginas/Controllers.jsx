@@ -1,18 +1,42 @@
-import React from 'react' 
-
-// Redux
-import { useDispatch, useSelector } from "react-redux";
-import { toggleSideBar } from "../reducers/sideBar"; // Asegúrate de importar el slice correcto
+import React from 'react'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faSave, faRotate } from '@fortawesome/free-solid-svg-icons';
 import Scaffold from '../componentes/scaffold_components/Scaffold';
+import Controller from '../componentes/controller_components/controller';
 
+const ControllerButton = ({ icon, color, label }) => {
+  return (
+    <button className='flex flex-row items-center text-white font-medium py-4 px-4 rounded-md' style={{ backgroundColor: color }}>
+      <FontAwesomeIcon icon={icon} className='text-2xl text-white pr-5' />
+      {label}
+    </button>
+  );
+}
 
 const Controllers = () => {
-  
-  const isOpen = useSelector((state) => state.sideBar.isOpen); // Accede al valor isOpen desde el estado
-  
+
+  const controllers = [
+    { name: 'Switch 1', type: 'switch' },
+    { name: 'Variable 1', type: 'input' },
+    { name: 'Switch 2', type: 'switch' },
+    { name: 'Variable 2', type: 'input' },
+    { name: 'Variable 3', type: 'input' },
+    { name: 'Switch 3', type: 'switch' },
+  ];
+
   return (
     <Scaffold>
-
+      <div className='flex flex-col sm:flex-row gap-4 mb-5'>
+        <ControllerButton icon={faSave} color={'#119542'} label={'Guardar Todo'}/>
+        <ControllerButton icon={faRotate} color={'#9B2727'} label={'Restaurar Todo'}/>
+      </div>
+      {controllers.map((c, index) => (
+        <Controller
+          name={c.name}
+          description={'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec vel egestas dolor, nec dignissim metus.'}
+          type={c.type}
+        />
+      ))}
     </Scaffold>
   )
 }
