@@ -54,7 +54,7 @@ const NavBar = ({ isExpanded, toggleExpanded }) => {
             isSelected={window.location.pathname === button.to}
           />
         ))}
-        <div className='flex items-center justify-start rounded-l-3xl pl-6'>
+        <div className='flex items-center justify-center rounded-l-3xl'>
           <button className="text-white text-white p-4 items-center " onClick={toggleExpanded}>
             {isExpanded ? <FontAwesomeIcon icon={faAngleLeft} /> : <FontAwesomeIcon icon={faAngleRight} />}
           </button>

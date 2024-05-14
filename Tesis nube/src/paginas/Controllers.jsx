@@ -14,9 +14,7 @@ const Controllers = () => {
     <Scaffold>
 
     </Scaffold>
-
-    
   )
 }
 
-export default Controllers 
+export default Controllers;

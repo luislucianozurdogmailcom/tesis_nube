@@ -11,7 +11,7 @@ const WelcomeBox = () => {
       Esta web permite rastrear los nodos de la microrred instalada en la Universidad Nacional de General Sarmiento. Permite facilitar el envío y recepción de información con la placa desarrollada para el proyecto de microrredes, sirviendo como interfaz de comunicación.
     </div>
   );
-}
+} 
 
 const InformationBox = ({ title, content }) => {
   return (
@@ -27,7 +27,7 @@ const InformationBox = ({ title, content }) => {
 
 const Home = () => {
   return (
-    <Scaffold>
+    <Scaffold fixKPI={true}>
       <WelcomeBox />
       <div className='grid grid-cols-1 xl:grid-cols-3 gap-8 mt-10'>
         <InformationBox title={'Objetivo'} content={'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec vel egestas dolor, nec dignissim metus. Donec augue elit, rhoncus ac sodales id, porttitor vitae est. Donec laoreet rutrum libero sed pharetra. Donec vel egestas dolor, nec dignissim metus. Donec augue elit, rhoncus ac sodales id, porttitor vitae est. Donec laoreet rutrum libero sed pharetra. Duis a arcu convallis, gravida purus eget, mollis diam.'} />
@@ -42,4 +42,4 @@ const Home = () => {
   );
 }
 
-export default Home
+export default Home;
