@@ -1,25 +1,24 @@
 import React, { useState, useEffect } from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCoffee, faHashtag, faCircleNodes } from '@fortawesome/free-solid-svg-icons'
-import CardIndicator from './CardIndicator'
+import KPI from './KPI'
 import { faBolt } from '@fortawesome/free-solid-svg-icons'
 import axios from 'axios';
 
 // Redux
 import { useDispatch, useSelector } from "react-redux";
-import { nodeSelected, changeNode } from "../../reducers/nodeSelected"; // Asegúrate de importar el slice correcto
+import { nodeSelected, changeNode } from "../../../reducers/nodeSelected"; // Asegúrate de importar el slice correcto
 
 
 // Biblios de firebase
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
 import { getAnalytics } from "firebase/analytics";
-import { getFirestore, collection, getDocs, query, doc, getDoc, aggregate } from 'firebase/firestore/lite';
-import GradientCircle from '../GradientCircle'
+import { getFirestore, collection, getDocs, query, doc, getDoc, aggregate } from 'firebase/firestore/lite'; 
 
-const Indicators = ({ titulo_pagina }) => {
+const KPIContainer = ({ fixKPI }) => {
 
-  // Mediciones
+  // Medicionesd
   const [medicionesCount, setMedicionesCount] = useState(0);
   //const [medicionesList, setMedicionesList]   = useState([]);
   //const [medicionesAvg, setMedicionesAvg]     = useState(0); // Nuevo estado para el promedio
@@ -70,34 +69,25 @@ const Indicators = ({ titulo_pagina }) => {
     dispatch(changeNode(event.target.value))
   };
 
+  const kpis = [
+    { icon: faHashtag, value: medicionesCount, indicator: 'Cantidad total de mediciones realizadas', improve: medicionesCount },
+    { icon: faCircleNodes, value: nodosCount, indicator: 'Nodos funcionales', improve: nodosCount },
+    { icon: faBolt, value: "12,457A", indicator: 'Corriente total medida en Amperios', improve: 36 },
+    { icon: faBolt, value: "12,457A", indicator: 'Corriente total medida en Amperios', improve: 12 },
+  ];
+
   return (
     <div className='grid lg:grid-cols-4 grid-cols-2 gap-10 mb-10'>
-      <CardIndicator
-        icon={faHashtag}
-        value={medicionesCount}
-        indicator={'Cantidad total de mediciones realizadas'}
-        improve={medicionesCount}
-      />
-      <CardIndicator
-        icon={faCircleNodes}
-        value={nodosCount}
-        indicator={'Nodos funcionales'}
-        improve={nodosCount}
-      />
-      <CardIndicator
-        icon={faBolt}
-        value={"12,457A"}
-        indicator={'Corriente total medida en Amperios'}
-        improve={36}
-      />
-      <CardIndicator
-        icon={faBolt}
-        value={"12,457A"}
-        indicator={'Corriente total medida en Amperios'}
-        improve={12}
-      /> 
+      {kpis.map((kpi, index) => (
+        <div key={index}>
+          <KPI 
+            isFixed={fixKPI}
+            props={kpi}
+          />
+        </div>
+      ))}
     </div>
   );
 }
 
-export default Indicators
+export default KPIContainer

@@ -48,7 +48,7 @@ const FooterLogo = () => {
 
 const Footer = () => {
     return (
-        <div className='rounded-t-2xl p-6 flex mt-auto' style={{ backgroundColor: '#2D305B' }}>
+        <div className='rounded-t-2xl p-6 flex mt-10' style={{ backgroundColor: '#2D305B' }}>
             <Copyright />
             <FooterLogo />
             <ContactButtons />
