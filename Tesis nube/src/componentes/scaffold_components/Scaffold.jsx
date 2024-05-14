@@ -16,14 +16,14 @@ const Scaffold = ({ children, fixKPI }) => {
     };
 
     return (
-        <div className='flex w-screen' style={{ backgroundColor: '#202344' }}>
-            <NavBar isExpanded={isExpanded} toggleExpanded={toggleExpanded} /> 
-            <div className='flex flex-col px-10 pt-5'>
+        <div className='bg-[#202344] flex w-full h-full'>
+            <NavBar isExpanded={isExpanded} toggleExpanded={toggleExpanded} />
+            <div className='flex flex-col px-10 pt-5 justify-between'>
                 <KPIContainer fixKPI={fixKPI} />
-                {children}
-                <div className='mt-auto'>
-                    <Footer />
+                <div className='my-5'>
+                    {children}
                 </div>
+                <Footer />
             </div>
         </div>
     );

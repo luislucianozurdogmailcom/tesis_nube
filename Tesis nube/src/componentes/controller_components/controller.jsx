@@ -36,8 +36,8 @@ const Input = () => {
 const Controller = ({ name, description, type }) => {
 
     return (
-        <div className='grid grid-cols-12 items-center py-4 px-8 rounded-2xl mb-5' style={{ backgroundColor: '#2D305B' }}>
-            <div className='text-white text-lg col-span-4 md:col-span-2'>{name}</div>
+        <div className='bg-[#2D305B] grid grid-cols-12 items-center py-4 px-8 rounded-2xl mb-5'>
+            <div className='text-white col-span-4 md:col-span-2'>{name}</div>
             <div className='text-white text-lg hidden md:block md:col-span-6'>{description}</div>
             <div className='flex justify-end col-span-4 md:col-span-2'>
                 {type == 'input'

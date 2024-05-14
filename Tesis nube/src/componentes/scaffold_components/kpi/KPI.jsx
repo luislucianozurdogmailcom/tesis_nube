@@ -28,20 +28,19 @@ const KPI = ({ props, isFixed = false }) => {
   };
 
   return (
-    <div className='flex flex-col rounded-2xl p-5 items-center hover-shadow'
-      style={{ background: '#2D305B' }}
+    <div className='bg-[#2D305B] flex flex-col rounded-2xl p-5 items-center hover-shadow' 
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
     >
       <div className={`flex ${isExpanded ? 'flex-col' : 'flex-row'} items-center justify-between w-full`}>
-        <div>
-          <FontAwesomeIcon icon={props.icon} className='text-3xl text-yellow-500' />
+        <div className='flex flex-row items-center'>
+          <FontAwesomeIcon icon={props.icon} className='text-lg md:text-3xl text-yellow-500' />
           <span className='font-bold text-xl pl-3' style={{ color: '#A99BF9' }}>{props.value}</span>
         </div>
         {!isExpanded && (renderPercentages())}
         {isExpanded && (
           <div className='w-full flex flex-col'> 
-            <span className='text-white font-light text-sm mt-5 text-center'>{props.indicator}</span>
+            <span className='text-white hidden md:block font-light text-sm mt-5 text-center h-10'>{props.indicator}</span>
             <div className='flex flex-row justify-between mt-5'>
               {renderPercentages()}
               {renderTrendIcon()}
