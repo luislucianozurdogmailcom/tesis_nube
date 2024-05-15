@@ -15,11 +15,11 @@ const Checkbox = () => {
     const [value, setValue] = useState(false);
 
     return (
-        <div className='flex w-20 justify-center'>
-            <div className="cntr">
-                <input checked={value} onChange={() => { setValue(!value); }} type='checkbox' id='cbx' className='hidden-xs-up' />
-                <label for="cbx" class="cbx" />
-            </div>
+        <div className='flex w-20 h-6 justify-center'>
+            <label class="checkbox-container">
+                <input class="custom-checkbox" checked={value} onChange={() => { setValue(!value); }} type="checkbox" />
+                <span class="checkmark"></span>
+            </label>
         </div>
     );
 };
