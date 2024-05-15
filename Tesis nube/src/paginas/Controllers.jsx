@@ -32,6 +32,7 @@ const Controllers = () => {
       </div>
       {controllers.map((c, index) => (
         <Controller
+          key={index}
           name={c.name}
           description={'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec vel egestas dolor, nec dignissim metus.'}
           type={c.type}
