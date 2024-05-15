@@ -7,6 +7,7 @@ import Dashboard from "./paginas/Dashboard";
 import Home from "./paginas/Home";
 import Controllers from "./paginas/Controllers";
 import Settings from "./paginas/Settings";
+import DQuery from "./paginas/DQuery";
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/Dashboard" element={<Dashboard />} />
         <Route path="/Controllers" element={<Controllers />} />
+        <Route path="/DQuery" element={<DQuery />} />
         <Route path="/Settings" element={<Settings />} />
       </Routes>
     </BrowserRouter>
