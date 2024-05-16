@@ -48,7 +48,7 @@ const FooterLogo = () => {
 
 const Footer = () => {
     return (
-        <div className='bg-[#2D305B] rounded-t-2xl p-6 flex'>
+        <div className='bg-[#2D305B] rounded-t-2xl p-6 flex mt-5'>
             <Copyright />
             <FooterLogo />
             <ContactButtons />

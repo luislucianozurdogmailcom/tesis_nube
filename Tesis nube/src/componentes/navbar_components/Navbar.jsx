@@ -21,7 +21,7 @@ const NavBar = ({ isExpanded, toggleExpanded }) => {
     { to: '/', label: 'Home', icon: faHome },
     { to: '/Dashboard', label: 'Dashboard', icon: faChartBar },
     { to: '/Controllers', label: 'Controllers', icon: faWrench },
-    { to: '/', label: 'DQuery', icon: faDatabase },
+    { to: '/DQuery', label: 'DQuery', icon: faDatabase },
   ];
 
   const bottomButtons = [
