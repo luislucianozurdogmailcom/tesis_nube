@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react';
 import ChartContainer from '../ChartElements';
 import { PieChart, Pie, Cell, Legend, Tooltip } from 'recharts';
 
-const PieChartComponent = ({ data, dataKeys, title }) => {
+const PieChartComponent = ({ data, dataKeys, title, description}) => {
 
   /*
   const data = [
@@ -20,27 +20,36 @@ const PieChartComponent = ({ data, dataKeys, title }) => {
     { color: '#00FF00', variable: 'Var 2' },
   ]; 
 
+  // Verificar si los datos están disponibles antes de renderizar el componente
+  if (!data || data.length === 0) {
+    return <div>Loading...</div>; // O mostrar un mensaje de carga
+  }
+
+  console.log(data)
+
   return (
     <>
       <ChartContainer
         title={title}
         legend={legend}
-        description={'Lore iusmod tempor incididunt ut l'}
+        description={description}
       >
         <PieChart >
           <Pie
             data={data}
-            dataKey="valor"
-            nameKey="fecha"
+            dataKey="valor"//{dataKeys[0]} //"valor"
+            nameKey="etiqueta"//{dataKeys[1]} //"fecha"
             cx="50%"
             cy="50%"
             outerRadius={100}
             fill="#8884d8"
             label
           >
-            {data.map((entry, index) => (
+            
+            {data && data.map((entry, index) => (
               <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
             ))}
+            
           </Pie>
           <Tooltip itemStyle={{ color: '#ffffff' }} contentStyle={{ backgroundColor: 'rgba(0, 0, 0, 0.8)', color: '#ffffff', borderRadius: 12}} />
         </PieChart>

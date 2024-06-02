@@ -2,7 +2,7 @@ import React from 'react';
 import ChartContainer from '../ChartElements';
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer, Label } from 'recharts';
 
-const BarChartComponent = ({ data, dataKeys, title }) => {
+const BarChartComponent = ({ data, dataKeys, title, description}) => {
 
     const data2 = [
         { name: 'A', value: 100 },
@@ -26,7 +26,7 @@ const BarChartComponent = ({ data, dataKeys, title }) => {
             <ChartContainer
                 title={title}
                 legend={legend}
-                description={'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua'}
+                description={description}
             >
                 <BarChart data={data} margin={{ bottom: 15 }}>
                     <XAxis
@@ -35,7 +35,7 @@ const BarChartComponent = ({ data, dataKeys, title }) => {
                         strokeWidth={1}
                     >
                         <Label
-                            value="Nombre Eje"
+                            value="Fecha"
                             fill="#ffffff"
                             dy={20}
                             offset={20}
@@ -47,7 +47,7 @@ const BarChartComponent = ({ data, dataKeys, title }) => {
                         strokeWidth={1}
                     >
                         <Label
-                            value="Nombre Eje"
+                            value="Voltaje"
                             angle={-90}
                             dx={-20}
                             fill="#ffffff"

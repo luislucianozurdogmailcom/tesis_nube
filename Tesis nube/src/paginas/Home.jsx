@@ -30,12 +30,18 @@ const Home = () => {
     <Scaffold fixKPI={true}>
       <WelcomeBox />
       <div className='grid grid-cols-1 xl:grid-cols-3 gap-8 mt-10'>
-        <InformationBox title={'Objetivo'} content={'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec vel egestas dolor, nec dignissim metus. Donec augue elit, rhoncus ac sodales id, porttitor vitae est. Donec laoreet rutrum libero sed pharetra. Donec vel egestas dolor, nec dignissim metus. Donec augue elit, rhoncus ac sodales id, porttitor vitae est. Donec laoreet rutrum libero sed pharetra. Duis a arcu convallis, gravida purus eget, mollis diam.'} />
-        <InformationBox title={'¿Cómo funciona?'} content={'Lorem ipsum dolor sit a c augue elit, rhoncus ac sodales id, porttitor vitae est. Donec laoreet rutrum libero sed pharetra. Donec vel egestas dolor, nec dignissim metus. Donec augue elit, rhoncus ac sodales id, porttitor vitae est. Donec laoreet rutrum libero sed pharetra.'} />
+        <InformationBox title={'Objetivo'} content={`Lograr hacer una integración de la placa desarrollada por el IDEI
+                                                     para poder darle visibilidad a traves de un scada a sus datos y a su vez
+                                                     poder manipular la toma de los datos de manera remota sin necesidad de estar on site.`} />
+        
+        <InformationBox title={'¿Cómo funciona'} content={`Funciona a traves de la integración de cuatro sistemas que conviven en paralelo
+                                                            sosteniendo el ecosistema necesario para que los datos lleguen al usuario desde la placa.
+                                                            Estos cuatro sistemas son una base de datos en AWS, una API en AWS, un programa que se ejecuta
+                                                            on site junto con el funcionamiento de la placa para leer sus datos y la página web que nos sirve de SCADA`} />
         <div className='flex flex-col'>
-          <InformationBox title={'Desarrollo'} content={'Framework 1, Framework 2, Lenguaje 1, Framework 3'} />
+          <InformationBox title={'Tecnologias'} content={'Amazon Web Services (Base de datos y API), Python On site (Programa lector de la placa), React JS (Tecnología sobre la cual esta hecha la página)'} />
           <div className='mt-10'/>
-          <InformationBox title={'Otros'} content={'Framework 1, Framework 2, Lenguaje 1, Framework 3'} />
+          <InformationBox title={'Otros'} content={'Información adicional'} />
         </div>
       </div>
     </Scaffold>

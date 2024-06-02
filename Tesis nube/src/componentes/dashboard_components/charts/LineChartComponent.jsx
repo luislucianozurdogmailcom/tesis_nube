@@ -2,7 +2,7 @@ import React from 'react';
 import ChartContainer from '../ChartElements';
 import { AreaChart, XAxis, YAxis, Tooltip, Area, Label } from 'recharts';
 
-const LineChartComponent = ({ data, dataKeys, title }) => {
+const LineChartComponent = ({ data, dataKeys, title, description}) => {
   const hexStart = '#F99FBA'; // Hexadecimal value for red color
   const hexEnd = '#3B84F5'; // Hexadecimal value for green color 
 
@@ -16,7 +16,7 @@ const LineChartComponent = ({ data, dataKeys, title }) => {
       <ChartContainer 
         title={title} 
         legend={legend} 
-        description={'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua'}
+        description={description}
       >
         <AreaChart 
           data={data} 
@@ -40,7 +40,7 @@ const LineChartComponent = ({ data, dataKeys, title }) => {
             strokeWidth={1} 
           >
             <Label 
-              value="Nombre Eje" 
+              value="Fecha" 
               fill="#ffffff" 
               dy={25} 
               offset={20} 
@@ -53,7 +53,7 @@ const LineChartComponent = ({ data, dataKeys, title }) => {
             strokeWidth={1}
           >
             <Label 
-              value="Nombre Eje" 
+              value="Voltaje" 
               angle={-90} 
               dx={-20} 
               fill="#ffffff" 

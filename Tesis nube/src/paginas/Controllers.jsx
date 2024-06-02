@@ -16,12 +16,12 @@ const ControllerButton = ({ icon, color, label }) => {
 const Controllers = () => {
 
   const controllers = [
-    { name: 'Switch 1', type: 'switch' },
-    { name: 'Variable 1', type: 'input' },
-    { name: 'Switch 2', type: 'switch' },
-    { name: 'Variable 2', type: 'input' },
-    { name: 'Variable 3', type: 'input' },
-    { name: 'Switch 3', type: 'switch' },
+    { name: 'Switch 1', type: 'switch' , description: 'Este tipo de input se refiere a datos de tipo on/off que desee cambiar en la placa, por ejemplo dejar de medir "x" entrada o comenzar a hacerlo'},
+    { name: 'Variable 1', type: 'input', description: 'Este tipo de input se refiere a datos de tipo analógicos que desee cambiar en la placa, por ejemplo setear una salida con "x" voltaje' },
+    { name: 'Switch 2', type: 'switch' , description: 'Este tipo de input se refiere a datos de tipo on/off que desee cambiar en la placa, por ejemplo dejar de medir "x" entrada o comenzar a hacerlo' },
+    { name: 'Variable 2', type: 'input', description: 'Este tipo de input se refiere a datos de tipo analógicos que desee cambiar en la placa, por ejemplo setear una salida con "x" voltaje'  },
+    { name: 'Variable 3', type: 'input', description: 'Este tipo de input se refiere a datos de tipo analógicos que desee cambiar en la placa, por ejemplo setear una salida con "x" voltaje'  },
+    { name: 'Switch 3', type: 'switch' , description: 'Este tipo de input se refiere a datos de tipo on/off que desee cambiar en la placa, por ejemplo dejar de medir "x" entrada o comenzar a hacerlo'},
   ];
 
   return (
@@ -34,7 +34,7 @@ const Controllers = () => {
         <Controller
           key={index}
           name={c.name}
-          description={'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec vel egestas dolor, nec dignissim metus.'}
+          description={c.description}
           type={c.type}
         />
       ))}
