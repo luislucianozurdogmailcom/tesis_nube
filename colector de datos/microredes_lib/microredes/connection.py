@@ -61,7 +61,10 @@ class Connection(object):
         return ports
 
     def send_cmd(self, id, query, interval=0):
-        msg = can.Message(arbitration_id=id, data=query, is_extended_id=False)
+
+        # query = [0,0,3,3,0,0,0,0]
+        msg = can.Message(arbitration_id=id, data=query, is_extended_id=False);
+
         if interval > 0:
             return self.bus.send_periodic(msg, interval)
         else:

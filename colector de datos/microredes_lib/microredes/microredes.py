@@ -82,6 +82,7 @@ class Microredes(object):
             msg: dict, Objeto con los datos para el envío del mensaje.
         """
         query_array = self.gen_array(msg)
+        
         return self.can_send(query_array, interval)
 
     def set_target(self, target):
@@ -123,7 +124,7 @@ class Microredes(object):
         
         calc_helper = cal.CalcHelper()
         valor, unidad = calc_helper.calc_value(variable, lst_data)
-        # print(variable, lst_data)
+
         return {'origen': origen,
                 'status': status_code,
                 'timestamp': timestamp,

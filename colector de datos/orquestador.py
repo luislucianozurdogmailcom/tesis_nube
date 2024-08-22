@@ -11,8 +11,9 @@ if sistema_operativo == "Linux":
     
     while True:
         
+        print('Entramos por linux')
         # Ejecutar la consulta a la placa canbus mediante el sistema operativo
-        linux_command = f"python main.py --puerto /dev/ttyUSB0 --id 3 --entrada 0 --intervalo 0 --sistema {sistema_operativo}"
+        linux_command = f"python main.py --puerto /dev/ttyUSB0 --id 3 --entrada 2 --intervalo 0 --sistema {sistema_operativo}"
         linux_result = subprocess.run(linux_command, shell=True, capture_output=True, text=True);
         print("Resultado en Linux:", linux_result.stdout);
 

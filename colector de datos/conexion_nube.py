@@ -1,7 +1,7 @@
 import json
 import requests
 
-def insertar_medicion(id_nodo,id_sensor,valor,fecha):
+def insertar_medicion(id_nodo,id_parametrizacion,valor,fecha):
 
     """
     Programa que se encarga de tomar las mediciones realizadas por la placa CANBUS
@@ -10,10 +10,11 @@ def insertar_medicion(id_nodo,id_sensor,valor,fecha):
 
     # Armamos la query
     query_insert = f"""
-    INSERT INTO mediciones (id_nodo, id_sensor, valor, fecha) 
+    INSERT INTO mediciones (id_nodo, id_parametrizacion, valor, fecha) 
     VALUES 
-    ({id_nodo}, {id_sensor}, {valor}, '{fecha}');
+    ({id_nodo}, {id_parametrizacion}, {valor}, '{fecha}');
     """
+    print(query_insert);
 
     # Enviamos la petición:
     url = f"""https://62bwhyuxp6.execute-api.us-east-2.amazonaws.com/prod/insertarData?query={query_insert}"""

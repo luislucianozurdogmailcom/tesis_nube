@@ -38,18 +38,13 @@ def main(parametros):
 
     # Extraemos el resultado de llamar a la función
     medicion = bus.can_read();
-
+    print(medicion)
     # Separamos los valores que nos interesan
-    valor    = medicion[0]['valor'];
-    fecha    = medicion[0]['timestamp'];
+    # valor    = medicion[0]['valor'];
+    # fecha    = medicion[0]['timestamp'];
     
-    print('Hacemos la inserción de la información')
-    print(valor)
     # Enviamos la medición a la base de datos en la núbe:
-    id_parametrizacion: int = 1;
-    id_nodo: int            = 3;
-
-    cn.insertar_medicion(id_nodo,id_parametrizacion,valor,fecha);
+    # cn.insertar_medicion(3,10,valor,fecha);
 
 
 
