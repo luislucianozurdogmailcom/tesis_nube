@@ -13,13 +13,44 @@ const BarChartComponent = ({ data, dataKeys, title, description}) => {
 
     // Verificar si los datos están disponibles antes de renderizar el componente
     if (!data || data.length === 0) {
-        return <div>Loading...</div>; // O mostrar un mensaje de carga
+        return <div>...Loading...</div>; // O mostrar un mensaje de carga
     }
 
     const legend = [
-        { color: '#FF0000', variable: 'Var 1' },
-        { color: '#00FF00', variable: 'Var 2' },
+    //    { color: '#FF0000', variable: 'Var 1' },
+    //    { color: '#00FF00', variable: 'Var 2' },
     ];
+
+    // Componente personalizado para los ticks del eje X
+    const CustomTick = ({ x, y, payload }) => {
+        const lines = payload.value.split(' ').reduce((acc, word) => {
+            const lastLine = acc[acc.length - 1];
+            if (lastLine && lastLine.join(' ').length + word.length <= 8) { // Ajusta el número 10 según sea necesario
+                lastLine.push(word);
+            } else {
+                acc.push([word]);
+            }
+            return acc;
+        }, []).map(line => line.join(' '));
+
+        return (
+            <g transform={`translate(${x},${y})`}>
+                {lines.map((line, index) => (
+                    <text
+                        key={index}
+                        x={0}
+                        y={index * 15} // Ajusta el valor 12 según sea necesario para el espaciado entre líneas
+                        textAnchor="middle"
+                        dy={20}
+                        fill="#ffffff"
+                        fontSize="15px" // Ajusta el tamaño del texto según sea necesario
+                    >
+                        {line}
+                    </text>
+                ))}
+            </g>
+        );
+    };
 
     return (
         <>
@@ -27,17 +58,23 @@ const BarChartComponent = ({ data, dataKeys, title, description}) => {
                 title={title}
                 legend={legend}
                 description={description}
+                height={400}
             >
-                <BarChart data={data} margin={{ bottom: 15 }}>
+                <BarChart data={data} margin={{ bottom: 90 }}>
                     <XAxis
-                        dataKey="fecha"
+                        dataKey="etiqueta"
                         stroke='#ffffff'
                         strokeWidth={1}
+                        angle={0} 
+                        textAnchor="start"
+                        interval={0}
+                        style={{ fontSize: '20px' }}
+                        tick={CustomTick} // Aplicar el formateador
                     >
                         <Label
-                            value="Fecha"
+                            value="Sensores"
                             fill="#ffffff"
-                            dy={20}
+                            dy={95}
                             offset={20}
                         />
                     </XAxis>
@@ -47,9 +84,9 @@ const BarChartComponent = ({ data, dataKeys, title, description}) => {
                         strokeWidth={1}
                     >
                         <Label
-                            value="Voltaje"
+                            value="Mediciones realizadas"
                             angle={-90}
-                            dx={-20}
+                            dx={-25}
                             fill="#ffffff"
                         />
                     </YAxis>

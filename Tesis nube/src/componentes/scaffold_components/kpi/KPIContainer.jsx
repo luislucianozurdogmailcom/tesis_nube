@@ -4,6 +4,7 @@ import { faCoffee, faHashtag, faCircleNodes, faSquareShareNodes, faRuler } from 
 import KPI from './KPI'
 import { faBolt } from '@fortawesome/free-solid-svg-icons'
 import axios from 'axios';
+import ApiCall from '../../../servicios/ApiCall'
 
 // Redux
 import { useDispatch, useSelector } from "react-redux";
@@ -17,28 +18,6 @@ import { getAnalytics } from "firebase/analytics";
 import { getFirestore, collection, getDocs, query, doc, getDoc, aggregate } from 'firebase/firestore/lite'; 
 
 
-// Función de llamada a la API
-const ApiCall = async (query) => {
-  try {
-      const response = await fetch(`https://62bwhyuxp6.execute-api.us-east-2.amazonaws.com/prod/lanzarQuery?query=${query}`, {
-          method: 'GET',
-          mode: 'cors',
-          headers: {
-              //'secret'       : 'ungs123', // Corregido: 'Authorization' en lugar de 'Authentication'
-              //'client_id'    : 'administrador',
-              'Content-Type' : 'application/json',
-          },
-      });
-      if (!response.ok) {
-          throw new Error('Network response was not ok');
-      }
-      const data = await response.json();
-      return data;
-  } catch (error) {
-      console.error('Error en la llamada a la API:', error);
-      throw error;
-  }
-};
 
 
 const KPIContainer = ({ fixKPI }) => {
@@ -56,7 +35,7 @@ const KPIContainer = ({ fixKPI }) => {
   //const [medicionesAvg, setMedicionesAvg]     = useState(0); // Nuevo estado para el promedio
 
   // Redux
-  const dispatch = useDispatch();
+  const dispatch  = useDispatch();
   const nodoRedux = useSelector((state) => state.nodeSelected.node);
 
 
@@ -68,11 +47,11 @@ const KPIContainer = ({ fixKPI }) => {
     mediciones`;
 
   const query_cantidad_nodos_funcionales = `
-  select
-	  count(distinct(id_nodo))  
-  from
-	  mediciones m
-  where fecha = current_date `;
+    select
+      count(distinct(id_nodo))  
+    from
+      mediciones m
+    where fecha = current_date `;
 
   const query_cantidad_nodos = `
   select
@@ -83,9 +62,12 @@ const KPIContainer = ({ fixKPI }) => {
 
   const query_cantidad_sensores = `
   select
-	  count(distinct id_sensor)
+	  count(
+  		case when encendido = true then 1
+  		else null end
+  	)
   from
-	  mediciones m 
+	  sensores s  
   `;
 
   /////////////////////////////////////////////////////////////////////////////////
@@ -97,7 +79,6 @@ const KPIContainer = ({ fixKPI }) => {
         try {
             const result      = await ApiCall(query_cantidad_mediciones);
             const result_json = result.map(([valor]) => ({valor}));
-            console.log('Datos recibidos de la API:', result_json);
             setMediciones(result_json);
         } catch (error) {
             console.error('Error al obtener los datos:', error);
@@ -115,7 +96,6 @@ const KPIContainer = ({ fixKPI }) => {
         try {
             const result      = await ApiCall(query_cantidad_nodos_funcionales);
             const result_json = result.map(([valor]) => ({valor}));
-            console.log('Datos recibidos de la API:', result_json);
             setNodosActivos(result_json);
         } catch (error) {
             console.error('Error al obtener los datos:', error);
@@ -133,7 +113,6 @@ const KPIContainer = ({ fixKPI }) => {
         try {
             const result      = await ApiCall(query_cantidad_nodos);
             const result_json = result.map(([valor]) => ({valor}));
-            console.log('Datos recibidos de la API:', result_json);
             setNodosTotales(result_json);
         } catch (error) {
             console.error('Error al obtener los datos:', error);
@@ -151,7 +130,6 @@ const KPIContainer = ({ fixKPI }) => {
         try {
             const result      = await ApiCall(query_cantidad_sensores);
             const result_json = result.map(([valor]) => ({valor}));
-            console.log('Datos recibidos de la API:', result_json);
             setSensoresTotales(result_json);
         } catch (error) {
             console.error('Error al obtener los datos:', error);
@@ -173,6 +151,7 @@ const KPIContainer = ({ fixKPI }) => {
       //nodos_activos.length === 0 ||
       //nodos_activos.length === 0 
       ){
+
     return <div className='mb-5'>
       <KPI 
             isFixed={fixKPI}

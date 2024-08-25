@@ -13,11 +13,11 @@ const PieChartComponent = ({ data, dataKeys, title, description}) => {
     { name: 'Nodo 4', value: 800 },
   ];
   */
-  const COLORS = ['#8a4f7d', '#9b5fb6', '#a18cd1', '#c0c3e5'];
+  const COLORS = ['#8a4f7d', '#c0c3e5', '#9b5fb6', '#a18cd1'];
 
   const legend = [
-    { color: '#FF0000', variable: 'Var 1' },
-    { color: '#00FF00', variable: 'Var 2' },
+    { color: '#8a4f7d', variable: 'Mediciones Efectivas' },
+    { color: '#c0c3e5', variable: 'Mediciones en Cero' },
   ]; 
 
   // Verificar si los datos están disponibles antes de renderizar el componente
@@ -25,14 +25,13 @@ const PieChartComponent = ({ data, dataKeys, title, description}) => {
     return <div>Loading...</div>; // O mostrar un mensaje de carga
   }
 
-  console.log(data)
-
   return (
     <>
       <ChartContainer
         title={title}
         legend={legend}
         description={description}
+        height={400}
       >
         <PieChart >
           <Pie

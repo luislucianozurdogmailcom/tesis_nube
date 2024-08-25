@@ -43,7 +43,7 @@ const ChartLegend = ({ items }) => {
     );
 }
 
-const ChartContainer = ({ children, title, legend, description }) => {
+const ChartContainer = ({ children, title, legend, description, height}) => {
     const chartContainerRef = useRef(null);
     const [containerWidth, setContainerWidth] = useState(0);
 
@@ -61,9 +61,9 @@ const ChartContainer = ({ children, title, legend, description }) => {
         <div className='bg-[#2D305B] px-10 py-8 col-span-2 rounded-2xl'>
             <ChartTitle title={title} description={description}/>
             <div className="w-full p-2 rounded-2x1 rounded-lg">
-                <div className="w-full h-54 mb-5" ref={chartContainerRef}>
+                <div className="w-full h-54" ref={chartContainerRef}>
                     <div className='flex'>
-                        <ResponsiveContainer width="100%" height={260}>{children}</ResponsiveContainer>
+                        <ResponsiveContainer width="100%" height={height}>{children}</ResponsiveContainer>
                         <ChartLegend items={legend} />
                     </div>
                 </div>

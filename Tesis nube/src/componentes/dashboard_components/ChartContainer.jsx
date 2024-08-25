@@ -4,80 +4,43 @@ import LineChartComponent from './charts/LineChartComponent'
 import PieChartComponent from './charts/PieChartComponent'
 import BarChartComponent from './charts/BarChartComponents'
 import axios from 'axios'
-//import ApiCall from '../../servicios/ApiCall'
-
-const ApiCall = async (query) => {
-  try {
-      const response = await fetch(`https://62bwhyuxp6.execute-api.us-east-2.amazonaws.com/prod/lanzarQuery?query=${query}`, {
-          method: 'GET',
-          mode: 'cors',
-          headers: {
-              //'secret'       : 'ungs123', // Corregido: 'Authorization' en lugar de 'Authentication'
-              //'client_id'    : 'administrador',
-              'Content-Type' : 'application/json',
-          },
-      });
-      if (!response.ok) {
-          throw new Error('Network response was not ok');
-      }
-      const data = await response.json();
-      return data;
-  } catch (error) {
-      console.error('Error en la llamada a la API:', error);
-      throw error;
-  }
-};
-
+import ApiCall,{medicionesPinActivos} from '../../servicios/ApiCall'
+import {query_traer_mediciones, query_mediciones_efectivas, query_medicion_x_sensor_activo} from '../../utils/querys';
 
 const ChartsContainer = () => {
   
-  const [data, setData]       = useState(null);
-  const [data_2, setData_2]   = useState(null);
-  const [loading, setLoading] = useState(true);
-  const [error, setError]     = useState(null);
+  const [data_0, setData_0]                        = useState(null);
+  const [data_1, setData_1]                        = useState(null);
+  const [data_2, setData_2]                        = useState(null);
+  const [data_3, setData_3]                        = useState(null);
+  const [data_4, setData_4]                        = useState(null);
+  const [data_5, setData_5]                        = useState(null);
+  const [data_6, setData_6]                        = useState(null);
+  const [data_7, setData_7]                        = useState(null);
+  const [data_mediciones_efectivas, setMediciones] = useState(null);
+  const [data_medicion_sensor, setMedicionSensor]  = useState(null);
+  const [loading, setLoading]                      = useState(true);
+  const [error, setError]                          = useState(null);
   
-  const query = `
-  select
-  	valor,
-  	fecha::varchar
-  from
-  	mediciones
-  where valor > 0
-  order by id_medicion desc 
-  limit 20`;
-
-  const query_count = `
-  with a as (
-    select
-      'mediciones efectivas' as etiqueta,
-      sum(
-         case when valor > 0.01 then 1
-         else 0 end 
-       ) as valor
-     from
-       mediciones
-     ),
-  b as (
-   select
-      'mediciones en cero' as etiqueta,
-      count(valor) - sum(
-         case when valor > 0.01 then 1
-         else 0 end 
-       ) as valor
-     from
-       mediciones
-    )
-  select * from a
-  union all
-  select * from b
-  `
+  // Querys para la llamada al servicio directo a la DB
+  const query_count             = query_mediciones_efectivas();
+  const query_medicion_x_sensor = query_medicion_x_sensor_activo(); 
+  
+  // Llamadas a los servicios
   useEffect(() => {
     const fetchData = async () => {
         try {
+            // Llama a los datos para el piechart
             const result      = await ApiCall(query_count);
             const result_json = result.map(([etiqueta,valor]) => ({etiqueta, valor}));
-            //console.log('Datos recibidos de la API:', result_json);
-            setData_2(result_json);
+            setMediciones(result_json);
+
+            // Llama a los datos para el barchart
+            const result_2      = await ApiCall(query_medicion_x_sensor);
+            const result_json_2 = result_2.map(([etiqueta,valor]) => ({etiqueta, valor}));
+            console.log('Datos traidos de la consulta por sensores: ',result_json_2)
+            setMedicionSensor(result_json_2)
+            
         } catch (error) {
             console.error('Error al obtener los datos:', error);
             setError(error);
@@ -88,14 +51,42 @@ const ChartsContainer = () => {
     
     fetchData();
     }, [query_count]);
-
+  
+  // Todos los pines analógicos
   useEffect(() => {
       const fetchData = async () => {
           try {
-              const result      = await ApiCall(query);
-              const result_json = result.map(([valor,fecha]) => ({valor, fecha}));
-              //console.log('Datos recibidos de la API:', result_json);
-              setData(result_json);
+              // Llamadas a la API
+              const result_0 = await medicionesPinActivos(0,20); // pin 0
+              const result_1 = await medicionesPinActivos(1,20); // pin 1
+              const result_2 = await medicionesPinActivos(2,20); // pin 2
+              const result_3 = await medicionesPinActivos(3,20); // pin 3
+              const result_4 = await medicionesPinActivos(4,20); // pin 4
+              const result_5 = await medicionesPinActivos(5,20); // pin 5
+              const result_6 = await medicionesPinActivos(6,20); // pin 6
+              const result_7 = await medicionesPinActivos(7,20); // pin 7
+              
+              // Mapeamos la respuesta a Json
+              const result_json_0 = result_0.map(([sensor,pin,valor,fecha, unidad]) => ({valor, fecha, sensor, pin, unidad}));
+              const result_json_1 = result_1.map(([sensor,pin,valor,fecha, unidad]) => ({valor, fecha, sensor, pin, unidad}));
+              const result_json_2 = result_2.map(([sensor,pin,valor,fecha, unidad]) => ({valor, fecha, sensor, pin, unidad}));
+              const result_json_3 = result_3.map(([sensor,pin,valor,fecha, unidad]) => ({valor, fecha, sensor, pin, unidad}));
+              const result_json_4 = result_4.map(([sensor,pin,valor,fecha, unidad]) => ({valor, fecha, sensor, pin, unidad}));
+              const result_json_5 = result_5.map(([sensor,pin,valor,fecha, unidad]) => ({valor, fecha, sensor, pin, unidad}));
+              const result_json_6 = result_6.map(([sensor,pin,valor,fecha, unidad]) => ({valor, fecha, sensor, pin, unidad}));
+              const result_json_7 = result_7.map(([sensor,pin,valor,fecha, unidad]) => ({valor, fecha, sensor, pin, unidad}));
+
+              // Guardamos los datos en los estados de las variables
+              setData_0(result_json_0);
+              setData_1(result_json_1);
+              setData_2(result_json_2);
+              setData_3(result_json_3);
+              setData_4(result_json_4);
+              setData_5(result_json_5);
+              setData_6(result_json_6);
+              setData_7(result_json_7);
+
+              //console.log('Datos recibidos de la API y cargados en data_0', result_json_0);
           } catch (error) {
               console.error('Error al obtener los datos:', error);
               setError(error);
@@ -105,50 +96,60 @@ const ChartsContainer = () => {
       };
 
       fetchData();
-      }, [query]);
-
+      }, [query_count]);
   
-
-  const dataProof = [
-    { data: data, title: 'Mediciones' },
-    //{ data: data_2, title: 'Titulo 2' },
-    //{ data: data3, title: 'Titulo 3' },
-    //{ data: data, title: 'Titulo 4' },
-    //{ data: data2, title: 'Titulo 5' },
-  ];
+  // Función para chequear que ha llegado información en todos los set de datos
+  const createDataProof = (dataArray) => {
+    // Filtramos los datos que no son nulos y tienen un largo mayor a cero
+    const validDataArray = dataArray.filter(data => data && data.length > 0);
+  
+    // Creamos el array de objetos JSON solo con los datos válidos
+    return validDataArray.map(data => ({
+      data : data,
+      title: data[0]['sensor'],
+      units: data[0]['unidad']
+    }));
+  };
+  
+  // Usamos la función para crear dataProof
+  const dataProof = createDataProof([data_0, data_1, data_2, data_3, data_4, data_5, data_6, data_7]);
 
 
   return (
-    <div className="grid grid-cols-1 lg:grid-cols-10 gap-10">
+    <div className="grid grid-cols-1 lg:grid-cols-12 gap-10">
       
+      {
+      <div className="col-span-12 xl:col-span-7">
+        <BarChartComponent 
+          title={'Cantidad de mediciones realizadas por sensor'} 
+          data={data_medicion_sensor} 
+          dataKeys={['etiqueta','valor']} 
+          description={'Contabilizamos la cantidad de mediciones que se han realizado por cada uno de los sensores disponibles y activos'}/>
+      </div>
+      }
+
+      <div className="col-span-12 xl:col-span-5">
+        <PieChartComponent 
+          title={'Mediciones totales efectivas vs mediciones en cero'} 
+          data={data_mediciones_efectivas} 
+          dataKeys={['etiqueta','valor']} 
+          description={'Grafico de torta, se puede ver la cantidad de mediciones que dieron mayores a cero vs todas las mediciones'}/>
+      </div>
       
       {dataProof.map((chart, index) => (
-        <div key={index} className={`w-full lg:${index === 0 && dataProof.length % 2 !== 0 ? 'col-span-10 sm:col-span-10' : 'col-span-5'} ${index !== 0 && 'sm:col-span-10'}`}>
+        <div key={index} className={`w-full ${index === 0 && dataProof.length % 2 !== 0 ? 'xl:col-span-12 col-span-12' : '2xl:col-span-4 xl:col-span-6 col-span-12'} ${index !== 0 && 'col-span-12 xl:col-span-6 2xl:col-span-4'}`}>
           <LineChartComponent 
             data={chart.data} 
             dataKeys={['fecha','valor']} 
-            title={chart.title} 
+            title={chart.title}
+            units={chart.units} 
             description={'Grafico de lineas, mide voltaje vs Tiempo'}/>
         </div>
       ))}
       
-      <div className="xl:col-span-3 sm:col-span-10">
-        <PieChartComponent 
-          title={'Gráfico de mediciones realizadas'} 
-          data={data_2} 
-          dataKeys={['etiqueta','valor']} 
-          description={'Grafico de torta, aca podemos ver la cantidad de mediciones que dieron mayores a cero vs todas las mediciones'}/>
-      </div>
+
       
-      <div className="xl:col-span-7 sm:col-span-10">
-        <BarChartComponent 
-          title={'Gráfico de barras'} 
-          data={data} 
-          dataKeys={['fecha','valor']} 
-          description={'Grafico de barras, mide voltaje vs Tiempo'}/>
-      </div>
-      {/*
-      */}
+
     </div>
   );
 }
