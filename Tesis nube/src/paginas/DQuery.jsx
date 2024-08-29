@@ -1,11 +1,21 @@
 import React, { useState } from 'react'
 import Scaffold from '../componentes/scaffold_components/Scaffold';
+import ApiCall from '../servicios/ApiCall';
 
 const CommandResponse = ({ command }) => {
     return (
         <div className='mb-3'>
-            <p className='flex flex-row font-black'>Command {'>'}<p className='ml-3 font-medium'> {command}</p></p>
-            <p>{command}</p>
+            <p className='flex flex-row font-black'>Command {'>'}<p className='ml-3 font-medium'> {command.query}</p></p>
+            {Array.isArray(command.response) ? (
+                    command.response.map((object, index) => (
+                        <React.Fragment key={index}>
+                            <div>{JSON.stringify(object)}</div>
+                            {index < command.response.length - 1 && <hr className="divider" />}
+                        </React.Fragment>
+                    ))
+                ) : (
+                    <p>{command.response}</p>
+                )}
         </div>
     );
 };
@@ -13,15 +23,27 @@ const CommandResponse = ({ command }) => {
 const DQuery = () => {
     const [query, setQuery] = useState('');
     const [commands, setCommands] = useState([]);
+    const [response, setResponse] = useState([]);
+
 
     const handleInputChange = (event) => {
         setQuery(event.target.value);
     };
 
-    const handleExecuteQuery = () => {
+    const handleExecuteQuery = async () => {
         if (query.trim() !== '') {
-            setCommands([...commands, query]);
-            setQuery('');
+            setCommands([...commands, {'query' : query, 'response' : 'Esperando la respuesta del servidor...'}]);
+            try{
+
+                const respuesta = await ApiCall(query);
+                setCommands([...commands, {'query' : query, 'response' : respuesta}]);
+                setQuery('');
+            }
+            catch{
+                setCommands([...commands, {'query' : query, 'response' : 'Hubo algún tipo de error, puede ser que tu query esté mal, por favor verificala. Si llamas a campos de fechas deberás de pasarlas a varchar en tu select o dará un error.'}]);
+            }
+
+            
         }
     };
 

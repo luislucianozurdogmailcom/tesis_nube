@@ -89,6 +89,7 @@ const Controllers = () => {
         <ToastContainer />
       </div>
       */}
+      <ToastContainer />
       {controller_sensores.map((c, index) => (
         <Controller
           key={index}

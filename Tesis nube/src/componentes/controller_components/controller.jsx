@@ -60,7 +60,7 @@ const Controller = ({ name, description, type, encendido, id_sensor}) => {
                     draggable: true,
                     progress: undefined,
                     theme: "colored",
-                    style: { backgroundColor: '#8a2be2' } // Color violeta
+                    style: { backgroundColor: '#119542' } // Color violeta
                 });
             }
 
@@ -79,7 +79,7 @@ const Controller = ({ name, description, type, encendido, id_sensor}) => {
                     draggable: true,
                     progress: undefined,
                     theme: "colored",
-                    style: { backgroundColor: '#8a2be2' } // Color violeta
+                    style: { backgroundColor: '#119542' } // Color violeta
                 });
             }
             
