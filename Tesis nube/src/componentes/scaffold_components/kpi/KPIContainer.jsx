@@ -51,7 +51,7 @@ const KPIContainer = ({ fixKPI }) => {
       count(distinct(id_nodo))  
     from
       mediciones m
-    where fecha = current_date `;
+    where fecha > now() - INTERVAL '10 minutes'`;
 
   const query_cantidad_nodos = `
   select
